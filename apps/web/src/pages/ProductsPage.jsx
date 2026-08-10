@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Package, Loader2 } from 'lucide-react';
-import pb from '@/lib/pocketbaseClient';
+import { supabase } from '@/lib/supabaseClient';
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
 import { CATEGORIES, BRANDS, IMAGES } from '@/data/site';
 
@@ -11,9 +11,24 @@ export default function ProductsPage() {
     const [cat, setCat] = useState('All');
 
     useEffect(() => {
-        pb.collection('products').getFullList({ sort: '-created' })
-            .then(setItems).catch(() => setItems([])).finally(() => setLoading(false));
-    }, []);
+    const loadProducts = async () => {
+        const { data, error } = await supabase
+            .from('products')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('Error loading products:', error);
+            setItems([]);
+        } else {
+            setItems(data || []);
+        }
+
+        setLoading(false);
+    };
+
+    loadProducts();
+}, []);
 
     const filtered = cat === 'All' ? items : items.filter((p) => p.category === cat);
 
