@@ -17,12 +17,14 @@ export default function ProductsPage() {
             .select('*')
             .order('created_at', { ascending: false });
 
-        if (error) {
-            console.error('Error loading products:', error);
-            setItems([]);
-        } else {
-            setItems(data || []);
-        }
+       if (error) {
+    console.error('SUPABASE ERROR:', error);
+    alert('Supabase Error: ' + error.message);
+    setItems([]);
+} else {
+    console.log('SUPABASE PRODUCTS:', data);
+    setItems(data || []);
+}
 
         setLoading(false);
     };
