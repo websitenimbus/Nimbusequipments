@@ -32,7 +32,14 @@ export default function ProductsPage() {
     loadProducts();
 }, []);
 
-    const filtered = cat === 'All' ? items : items.filter((p) => p.category === cat);
+    const filtered =
+    cat === 'All'
+        ? items
+        : items.filter(
+            (p) =>
+                p.category?.trim().toLowerCase() ===
+                cat.trim().toLowerCase()
+        );
 
     return (
         <div className="bg-white">
