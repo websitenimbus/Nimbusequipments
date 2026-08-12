@@ -164,9 +164,9 @@ export default function ProductDetailPage() {
                   Product Description
                 </h2>
 
-                <p className="leading-7 text-gray-600">
-                  {product.description}
-                </p>
+                <div className="whitespace-pre-line leading-7 text-gray-600">
+                    {product.description}
+                </div>
               </div>
             )}
 
