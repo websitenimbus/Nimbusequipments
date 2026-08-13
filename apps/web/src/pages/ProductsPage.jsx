@@ -183,8 +183,16 @@ export default function ProductsPage() {
 
                                         {/* Description */}
                                         <p className="mt-3 flex-1 text-sm leading-relaxed text-[#0B1F4D]/65">
-                                            {p.description || 'Contact Nimbus Equipments for product details and compatibility.'}
-                                        </p>
+                                            {p.description
+                                              ?.replace(/^#{1,6}\s*/gm, '')
+                                              .replace(/\*\*/g, '')
+                                              .replace(/\*/g, '')
+                                              .replace(/\s+/g, ' ')
+                                              .trim()
+                                              .slice(0, 150) ||
+                                             'Contact Nimbus Equipments for product details and compatibility.'}
+                                         {p.description?.length > 150 ? '...' : ''}
+                                    </p>
 
                                         {/* Stock / Delivery */}
                                         <div className="mt-4 flex items-center justify-between border-t border-[#0B1F4D]/10 pt-3 text-xs">
