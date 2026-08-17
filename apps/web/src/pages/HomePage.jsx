@@ -124,7 +124,7 @@ export default function HomePage() {
            {/* BRANDS */}
 <Section id="brands">
     <div className="mx-auto max-w-[72rem]">
-        <Title sub="Compatible aftermarket and OEM-equivalent parts, matched to your model and serial number.">
+        <Title sub="Compatible aftermarket and Premium Quality parts, matched to your model and serial number.">
             Spares Compatible With Leading Brands
         </Title>
     </div>
