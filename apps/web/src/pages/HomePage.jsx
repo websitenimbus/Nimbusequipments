@@ -121,20 +121,43 @@ export default function HomePage() {
                 </div>
             </Section>
 
-            {/* BRANDS */}
-            <Section id="brands">
-                <div className="mx-auto max-w-[72rem]">
-                    <Title sub="Compatible aftermarket and OEM-equivalent parts, matched to your model and serial number.">Spares Compatible With Leading Brands</Title>
+           {/* BRANDS */}
+<Section id="brands">
+    <div className="mx-auto max-w-[72rem]">
+        <Title sub="Compatible aftermarket and OEM-equivalent parts, matched to your model and serial number.">
+            Spares Compatible With Leading Brands
+        </Title>
+    </div>
+
+    <div className="relative mx-auto max-w-[90rem] overflow-hidden border-y border-[#0B1F4D]/10 py-8">
+        <div className="marquee-track gap-4">
+            {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((b, i) => (
+                <div
+                    key={`${b}-${i}`}
+                    className="font-display flex min-w-[240px] items-center justify-center rounded-sm border border-[#0B1F4D]/10 bg-[#F5F6F8] px-10 py-6 text-xl font-bold uppercase tracking-wide text-[#0B1F4D]"
+                >
+                    {b}
                 </div>
-                <div className="relative mx-auto max-w-[90rem] overflow-hidden border-y border-[#0B1F4D]/10 py-8">
-                    <div className="marquee-track gap-4">
-                        {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((b, i) => (
-                            <div key={`${b}-${i}`} className="font-display flex min-w-[240px] items-center justify-center rounded-sm border border-[#0B1F4D]/10 bg-[#F5F6F8] px-10 py-6 text-xl font-bold uppercase tracking-wide text-[#0B1F4D]">{b}</div>
-                        ))}
-                    </div>
-                </div>
-                <div className="mx-auto mt-10 max-w-[72rem]"><Link to="/products#brands" className="gold-btn font-display inline-block rounded-sm px-8 py-4 text-sm font-bold uppercase tracking-wide">View All Brands</Link></div>
-            </Section>
+            ))}
+        </div>
+    </div>
+
+    {/* Brand Disclaimer */}
+    <div className="mx-auto mt-6 max-w-[72rem] text-center">
+        <p className="text-xs leading-5 text-[#0B1F4D]/60">
+            <span className="font-semibold">Brand Disclaimer:</span> Brand names are used solely for identification and compatibility purposes. Nimbus Equipments is an independent supplier and is not affiliated with or authorized by the respective manufacturers unless expressly stated.
+        </p>
+    </div>
+
+    <div className="mx-auto mt-8 max-w-[72rem]">
+        <Link
+            to="/products#brands"
+            className="gold-btn font-display inline-block rounded-sm px-8 py-4 text-sm font-bold uppercase tracking-wide"
+        >
+            View All Brands
+        </Link>
+    </div>
+</Section>
 
             {/* WHY CHOOSE US */}
             <Section className="bg-[#0B1F4D]">
