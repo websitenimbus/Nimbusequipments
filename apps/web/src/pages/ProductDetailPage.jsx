@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import {
-  Loader2,
   ArrowLeft,
   MessageCircle,
   Phone,
@@ -10,8 +9,8 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 
-import { supabase } from '@/lib/supabaseClient';
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
+import productsData from '@/data/products.json';
 
 /* ---------------------------------------------------------
    FORMAT PRODUCT DESCRIPTION
@@ -25,17 +24,8 @@ function formatDescription(description) {
     .replace(/\r/g, '\n')
     .trim();
 
-  /*
-   * Remove markdown heading symbols such as:
-   * ## Safety Relief Valves
-   */
   text = text.replace(/^#{1,6}\s*/gm, '');
 
-  /*
-   * Make our known section headings appear on their
-   * own lines, even when Supabase has stored everything
-   * together.
-   */
   const sectionNames = [
     'Product Overview',
     'Key Features',
@@ -53,26 +43,12 @@ function formatDescription(description) {
     );
   });
 
-  /*
-   * Convert markdown bullet markers into separate lines.
-   * Handles:
-   * * item
-   * - item
-   * • item
-   */
   text = text
     .replace(/\s+\*\s+/g, '\n* ')
     .replace(/\s+-\s+/g, '\n- ')
     .replace(/\s+•\s+/g, '\n• ');
 
-  /*
-   * Remove remaining markdown bold markers.
-   */
   text = text.replace(/\*\*/g, '');
-
-  /*
-   * Clean excessive blank lines.
-   */
   text = text.replace(/\n{3,}/g, '\n\n').trim();
 
   const lines = text
@@ -102,10 +78,6 @@ function formatDescription(description) {
       return;
     }
 
-    /*
-     * If there is text before the first recognized heading,
-     * keep it as a general section.
-     */
     if (!currentSection) {
       currentSection = {
         title: 'Product Overview',
@@ -139,48 +111,8 @@ function formatDescription(description) {
 export default function ProductDetailPage() {
   const { id } = useParams();
 
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadProduct = async () => {
-      const { data, error } = await supabase
-        .from('Products')
-        .select('*')
-        .eq('id', id)
-        .single();
-
-      if (error) {
-        console.error('PRODUCT ERROR:', error);
-        setProduct(null);
-      } else {
-        console.log('PRODUCT:', data);
-        setProduct(data);
-      }
-
-      setLoading(false);
-    };
-
-    loadProduct();
-  }, [id]);
-
-  /* -------------------------------------------------------
-     LOADING
-     ------------------------------------------------------- */
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-white">
-        <SiteHeader />
-
-        <div className="flex min-h-[60vh] items-center justify-center">
-          <Loader2 className="h-10 w-10 animate-spin text-[#D4A017]" />
-        </div>
-
-        <SiteFooter />
-      </div>
-    );
-  }
+  // Supabase call hatakar direct JSON se match:
+  const product = (productsData || []).find((p) => String(p.id) === String(id));
 
   /* -------------------------------------------------------
      PRODUCT NOT FOUND
