@@ -59,11 +59,11 @@ export default function HomePage() {
                     <Reveal>
                         <div className="max-w-4xl">
                             <div className="flex items-center gap-3">
-    <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 sm:h-14 sm:w-14 rounded-sm object-contain" />
-    <span className="font-display text-xl sm:text-2xl font-black uppercase tracking-wide text-[#D4A017]">
-        Nimbus Equipments
-    </span>
-</div>
+                                <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 sm:h-14 sm:w-14 rounded-sm object-contain" />
+                                <span className="font-display text-xl sm:text-2xl font-black uppercase tracking-wide text-[#D4A017]">
+                                    Nimbus Equipments
+                                </span>
+                            </div>
                             <h1 className="font-display mt-6 text-4xl font-bold uppercase leading-[1.05] text-white sm:text-6xl lg:text-7xl">
                                 Industrial Compressor <span className="text-[#D4A017]">Spare Parts & Solutions</span>
                             </h1>
@@ -204,7 +204,12 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D] to-[#0B1F4D]/30" />
                 <div className="relative mx-auto max-w-[90rem] px-5 py-20">
                     <div className="max-w-2xl">
-                        <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 rounded-sm object-contain" />
+                        <div className="flex items-center gap-3">
+                            <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 sm:h-14 sm:w-14 rounded-sm object-contain" />
+                            <span className="font-display text-xl sm:text-2xl font-black uppercase tracking-wide text-[#D4A017]">
+                                Nimbus Equipments
+                            </span>
+                        </div>
                         <h2 className="font-display mt-5 text-3xl font-bold uppercase leading-tight text-white sm:text-5xl">Emergency Compressor <span className="text-[#D4A017]">Breakdown Support</span></h2>
                         <p className="mt-4 text-white/75">Fast spare parts assistance for urgent industrial requirements.</p>
                         <div className="mt-8 flex flex-wrap items-center gap-3">
