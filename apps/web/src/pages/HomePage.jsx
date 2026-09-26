@@ -58,9 +58,9 @@ export default function HomePage() {
                 <div className="relative mx-auto w-full max-w-[90rem] px-5 py-20 lg:py-28">
                     <Reveal>
                         <div className="max-w-4xl">
-                            <div className="flex items-center gap-3.5">
-    <img src={LOGO} alt="Nimbus Equipments logo" className="h-14 w-14 rounded-sm object-contain" />
-    <span className="font-display text-lg sm:text-xl font-bold uppercase tracking-[0.2em] text-[#D4A017]">
+                            <div className="flex items-center gap-3">
+    <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 sm:h-14 sm:w-14 rounded-sm object-contain" />
+    <span className="font-display text-xl sm:text-2xl font-black uppercase tracking-wide text-[#D4A017]">
         Nimbus Equipments
     </span>
 </div>
