@@ -10,7 +10,7 @@ const empty = {
     part_requirement: ''
 };
 
-export default function RfqForm({ title = 'REQUEST QUICK QUOTE' }) {
+export default function RfqForm({ title = 'GET QUICK QUOTE' }) {
     const [form, setForm] = useState(empty);
     const [state, setState] = useState('idle');
     const [error, setError] = useState('');
@@ -59,7 +59,7 @@ export default function RfqForm({ title = 'REQUEST QUICK QUOTE' }) {
         <form onSubmit={submit} className="rounded-sm border-t-4 border-[#D4A017] bg-white p-6 shadow-2xl sm:p-7">
             <div className="mb-5 border-b border-[#0B1F4D]/10 pb-4">
                 <h3 className="font-display text-2xl font-bold uppercase text-[#0B1F4D]">{title}</h3>
-                <p className="mt-1 text-xs font-medium text-[#0B1F4D]/60">Share your requirement — get verified pricing & availability</p>
+                <p className="mt-1 text-xs font-medium text-[#0B1F4D]/60">Revert within standard working hours</p>
             </div>
 
             <div className="space-y-3.5">
