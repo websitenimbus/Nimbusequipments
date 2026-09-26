@@ -9,7 +9,6 @@ const NAV = [
     { to: '/products#brands', label: 'Brands' },
     { to: '/#industries', label: 'Industries' },
     { to: '/#guides', label: 'Technical Guides' },
-    { to: '/contact#rfq', label: 'RFQ' },
     { to: '/contact', label: 'Contact Us' },
 ];
 
