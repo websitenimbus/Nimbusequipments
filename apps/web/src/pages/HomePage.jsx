@@ -52,38 +52,41 @@ export default function HomePage() {
             <SiteHeader />
 
             {/* HERO */}
-            <section className="relative min-h-[100dvh] overflow-hidden">
+            <section className="relative min-h-[92dvh] flex items-center overflow-hidden">
                 <img src={IMAGES.hero} alt="Industrial screw air compressor room" className="absolute inset-0 h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/92 to-[#123D8D]/70" />
-                <div className="relative mx-auto grid max-w-[90rem] items-center gap-12 px-5 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/95 to-[#123D8D]/80" />
+                <div className="relative mx-auto w-full max-w-[90rem] px-5 py-20 lg:py-28">
                     <Reveal>
-                        <div className="flex items-center gap-3">
-                            <img src={LOGO} alt="Nimbus Equipments logo" className="h-14 w-14 rounded-sm object-contain" />
-                            <span className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-[#D4A017]">Nimbus Equipments</span>
-                        </div>
-                        <h1 className="font-display mt-6 text-4xl font-bold uppercase leading-[1.05] text-white sm:text-6xl lg:text-7xl">
-                            Industrial Compressor <span className="text-[#D4A017]">Spare Parts & Solutions</span>
-                        </h1>
-                        <p className="font-display mt-5 text-xl uppercase tracking-wide text-white/90 sm:text-2xl">Reliable Parts. Expert Support. Maximum Uptime.</p>
-                        <p className="mt-3 max-w-xl text-white/70">Your trusted supplier & service partner for compatible brands.</p>
-                        <ul className="mt-8 grid max-w-xl grid-cols-2 gap-3">
-                            {['Genuine Quality', 'Fast Delivery', 'Technical Support', 'Competitive Pricing'].map((t) => (
-                                <li key={t} className="flex items-center gap-2 text-sm text-white/85">
-                                    <Check className="h-4 w-4 shrink-0 text-[#D4A017]" strokeWidth={2.5} />{t}
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="mt-9 flex flex-wrap gap-3">
-                            <Link to="/contact#rfq" className="gold-btn font-display rounded-sm px-7 py-4 text-sm font-bold uppercase tracking-wide">Request Quote</Link>
-                            <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="font-display flex items-center gap-2 rounded-sm border border-white/30 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:border-[#D4A017] hover:text-[#D4A017]">
-                                <MessageCircle className="h-4 w-4" strokeWidth={1.75} /> WhatsApp Inquiry
-                            </a>
-                            <a href={`tel:${CONTACT.phoneRaw}`} className="font-display flex items-center gap-2 rounded-sm border border-white/30 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:border-[#D4A017] hover:text-[#D4A017]">
-                                <Phone className="h-4 w-4" strokeWidth={1.75} /> Call Now
-                            </a>
+                        <div className="max-w-4xl">
+                            <div className="flex items-center gap-3">
+                                <img src={LOGO} alt="Nimbus Equipments logo" className="h-14 w-14 rounded-sm object-contain" />
+                                <span className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-[#D4A017]">Nimbus Equipments</span>
+                            </div>
+                            <h1 className="font-display mt-6 text-4xl font-bold uppercase leading-[1.05] text-white sm:text-6xl lg:text-7xl">
+                                Industrial Compressor <span className="text-[#D4A017]">Spare Parts & Solutions</span>
+                            </h1>
+                            <p className="font-display mt-5 text-xl uppercase tracking-wide text-white/90 sm:text-2xl">Reliable Parts. Expert Support. Maximum Uptime.</p>
+                            <p className="mt-3 max-w-2xl text-base text-white/70 sm:text-lg">Your trusted supplier & service partner for compatible screw compressor spares, maintenance kits, and industrial support across India.</p>
+                            
+                            <ul className="mt-8 grid max-w-xl grid-cols-2 gap-4">
+                                {['Genuine Quality', 'Fast Delivery', 'Technical Support', 'Competitive Pricing'].map((t) => (
+                                    <li key={t} className="flex items-center gap-2.5 text-sm sm:text-base text-white/90">
+                                        <Check className="h-5 w-5 shrink-0 text-[#D4A017]" strokeWidth={2.5} />{t}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="mt-10 flex flex-wrap gap-4">
+                                <a href="#rfq" className="gold-btn font-display rounded-sm px-8 py-4 text-sm font-bold uppercase tracking-wide shadow-lg">Request Quote</a>
+                                <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="font-display flex items-center gap-2 rounded-sm border border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:border-[#D4A017] hover:text-[#D4A017]">
+                                    <MessageCircle className="h-4 w-4" strokeWidth={1.75} /> WhatsApp Inquiry
+                                </a>
+                                <a href={`tel:${CONTACT.phoneRaw}`} className="font-display flex items-center gap-2 rounded-sm border border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:border-[#D4A017] hover:text-[#D4A017]">
+                                    <Phone className="h-4 w-4" strokeWidth={1.75} /> Call Now
+                                </a>
+                            </div>
                         </div>
                     </Reveal>
-                    <Reveal delay={0.15}><RfqForm /></Reveal>
                 </div>
             </section>
 
@@ -121,43 +124,42 @@ export default function HomePage() {
                 </div>
             </Section>
 
-           {/* BRANDS */}
-<Section id="brands">
-    <div className="mx-auto max-w-[72rem]">
-        <Title sub="Compatible aftermarket and Premium Quality parts, matched to your model and serial number.">
-            Spares Compatible With Leading Brands
-        </Title>
-    </div>
-
-    <div className="relative mx-auto max-w-[90rem] overflow-hidden border-y border-[#0B1F4D]/10 py-8">
-        <div className="marquee-track gap-4">
-            {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((b, i) => (
-                <div
-                    key={`${b}-${i}`}
-                    className="font-display flex min-w-[240px] items-center justify-center rounded-sm border border-[#0B1F4D]/10 bg-[#F5F6F8] px-10 py-6 text-xl font-bold uppercase tracking-wide text-[#0B1F4D]"
-                >
-                    {b}
+            {/* BRANDS */}
+            <Section id="brands">
+                <div className="mx-auto max-w-[72rem]">
+                    <Title sub="Compatible aftermarket and Premium Quality parts, matched to your model and serial number.">
+                        Spares Compatible With Leading Brands
+                    </Title>
                 </div>
-            ))}
-        </div>
-    </div>
 
-    {/* Brand Disclaimer */}
-    <div className="mx-auto mt-6 max-w-[72rem] text-center">
-        <p className="text-xs leading-5 text-[#0B1F4D]/60">
-            <span className="font-semibold">Brand Disclaimer:</span> Brand names are used solely for identification and compatibility purposes. Nimbus Equipments is an independent supplier and is not affiliated with or authorized by the respective manufacturers unless expressly stated.
-        </p>
-    </div>
+                <div className="relative mx-auto max-w-[90rem] overflow-hidden border-y border-[#0B1F4D]/10 py-8">
+                    <div className="marquee-track gap-4">
+                        {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((b, i) => (
+                            <div
+                                key={`${b}-${i}`}
+                                className="font-display flex min-w-[240px] items-center justify-center rounded-sm border border-[#0B1F4D]/10 bg-[#F5F6F8] px-10 py-6 text-xl font-bold uppercase tracking-wide text-[#0B1F4D]"
+                            >
+                                {b}
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
-    <div className="mx-auto mt-8 max-w-[72rem]">
-        <Link
-            to="/products#brands"
-            className="gold-btn font-display inline-block rounded-sm px-8 py-4 text-sm font-bold uppercase tracking-wide"
-        >
-            View All Brands
-        </Link>
-    </div>
-</Section>
+                <div className="mx-auto mt-6 max-w-[72rem] text-center">
+                    <p className="text-xs leading-5 text-[#0B1F4D]/60">
+                        <span className="font-semibold">Brand Disclaimer:</span> Brand names are used solely for identification and compatibility purposes. Nimbus Equipments is an independent supplier and is not affiliated with or authorized by the respective manufacturers unless expressly stated.
+                    </p>
+                </div>
+
+                <div className="mx-auto mt-8 max-w-[72rem]">
+                    <Link
+                        to="/products#brands"
+                        className="gold-btn font-display inline-block rounded-sm px-8 py-4 text-sm font-bold uppercase tracking-wide"
+                    >
+                        View All Brands
+                    </Link>
+                </div>
+            </Section>
 
             {/* WHY CHOOSE US */}
             <Section className="bg-[#0B1F4D]">
@@ -248,8 +250,8 @@ export default function HomePage() {
                 </div>
             </Section>
 
-            {/* CTA */}
-            <Section className="bg-[#123D8D]">
+            {/* SINGLE DEDICATED RFQ / CTA SECTION */}
+            <Section id="rfq" className="bg-[#123D8D]">
                 <div className="mx-auto grid max-w-[90rem] items-center gap-12 lg:grid-cols-2">
                     <div>
                         <Title light sub="Share your compressor model and part requirement — we revert with pricing, availability and delivery time.">Request a Quotation</Title>
