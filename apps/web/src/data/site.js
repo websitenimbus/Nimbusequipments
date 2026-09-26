@@ -14,9 +14,12 @@ export const IMAGES = {
     parts: '/packaging.png',
     engineer: '/textile.png',
     automotive: '/automotive.png',
-    pharma: '/pharma.jpg.png',
+    pharma: '/pharma.png',
     food: '/food.png',
     steel: '/steel.png',
+    packaging: '/packaging.png',
+    textile: '/textile.png',
+    engineering: '/engineering.png',
 };
 
 export const CATEGORIES = [
@@ -38,11 +41,11 @@ export const CATEGORIES = [
 export const BRANDS = ['Atlas Copco', 'ELGi', 'Ingersoll Rand', 'Chicago Pneumatic', 'Kaeser'];
 
 export const INDUSTRIES = [
-    { name: 'Automotive', img: IMAGES.automotive },
-    { name: 'Pharmaceutical', img: IMAGES.pharma },
-    { name: 'Food Processing', img: IMAGES.food },
-    { name: 'Steel Plants', img: IMAGES.steel },
-    { name: 'Packaging', img: IMAGES.parts },
-    { name: 'Textile Industry', img: IMAGES.engineer },
-    { name: 'Engineering Workshops', img: IMAGES.hero },
+    { name: 'Automotive', img: '/automotive.png' },
+    { name: 'Pharmaceutical', img: '/pharma.png' },
+    { name: 'Food Processing', img: '/food.png' },
+    { name: 'Steel Plants', img: '/steel.png' },
+    { name: 'Packaging', img: '/packaging.png' },
+    { name: 'Textile Industry', img: '/textile.png' },
+    { name: 'Engineering Workshops', img: '/engineering.png' },
 ];
