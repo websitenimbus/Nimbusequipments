@@ -36,11 +36,11 @@ export function SiteHeader() {
             </div>
             <div className="border-b border-[#0B1F4D]/10 bg-white shadow-[0_2px_18px_-10px_rgba(11,31,77,.5)]">
                 <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-6 px-5 py-3">
-                    <Link to="/" className="flex items-center gap-3">
-                        <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 rounded-sm object-contain" />
+                    <Link to="/" className="flex items-center gap-3.5">
+                        <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 sm:h-14 sm:w-14 rounded-sm object-contain" />
                         <span className="leading-tight">
-                            <span className="font-display block text-xl font-bold uppercase tracking-wide text-[#0B1F4D]">Nimbus Equipments</span>
-                            <span className="block text-[11px] uppercase tracking-[0.18em] text-[#123D8D]/70">Compressor Parts & Service</span>
+                            <span className="font-display block text-xl sm:text-2xl font-bold uppercase tracking-wide text-[#0B1F4D]">Nimbus Equipments</span>
+                            <span className="block text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#123D8D]/80">Compressor Parts & Service</span>
                         </span>
                     </Link>
                     <nav className="hidden items-center gap-6 lg:flex">
@@ -74,9 +74,12 @@ export function SiteFooter() {
         <footer className="bg-[#0B1F4D] text-white/75">
             <div className="mx-auto grid max-w-[90rem] gap-10 px-5 py-16 md:grid-cols-2 lg:grid-cols-4">
                 <div>
-                    <div className="flex items-center gap-3">
-                        <img src={LOGO} alt="Nimbus Equipments logo" className="h-14 w-14 rounded-sm object-contain" />
-                        <span className="font-display text-xl font-bold uppercase text-white">Nimbus Equipments</span>
+                    <div className="flex items-center gap-3.5">
+                        <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 sm:h-14 sm:w-14 rounded-sm object-contain" />
+                        <span className="leading-tight">
+                            <span className="font-display block text-xl sm:text-2xl font-bold uppercase tracking-wide text-white">Nimbus Equipments</span>
+                            <span className="block text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A017]">Compressor Parts & Service</span>
+                        </span>
                     </div>
                     <p className="mt-5 text-sm leading-relaxed">Supplier and service partner for industrial air compressor spare parts, service kits, lubricants and maintenance solutions across India.</p>
                     <div className="mt-5 flex gap-3">
