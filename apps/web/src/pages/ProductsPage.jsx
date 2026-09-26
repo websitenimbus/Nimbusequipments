@@ -1,38 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Package, Loader2 } from 'lucide-react';
+import { Package } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { supabase } from '@/lib/supabaseClient';
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
 import { CATEGORIES, BRANDS, IMAGES } from '@/data/site';
+import productsData from '@/data/products.json';
 
 export default function ProductsPage() {
-    const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [items] = useState(productsData || []);
     const [cat, setCat] = useState('All');
-
-    useEffect(() => {
-        const loadProducts = async () => {
-            const { data, error } = await supabase
-                .from('Products')
-                .select('*')
-                .order('created_at', { ascending: false });
-
-            if (error) {
-                console.error('SUPABASE ERROR:', error);
-                alert('Supabase Error: ' + error.message);
-                setItems([]);
-            } else {
-                console.log('SUPABASE PRODUCTS:', data);
-                setItems(data || []);
-            }
-
-            setLoading(false);
-        };
-
-        loadProducts();
-    }, []);
 
     const filtered =
         cat === 'All'
@@ -99,19 +76,7 @@ export default function ProductsPage() {
                         ))}
                     </div>
 
-                    {/* Loading */}
-                    {loading ? (
-                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                            {[0, 1, 2, 3].map((i) => (
-                                <div
-                                    key={i}
-                                    className="h-56 animate-pulse rounded-sm bg-[#F5F6F8]"
-                                />
-                            ))}
-                        </div>
-
-                    ) : filtered.length === 0 ? (
-
+                    {filtered.length === 0 ? (
                         /* No Products */
                         <div className="rounded-sm border border-dashed border-[#0B1F4D]/20 p-14 text-center">
                             <Package
@@ -128,19 +93,10 @@ export default function ProductsPage() {
                                 with your part number.
                             </p>
                         </div>
-
                     ) : (
-
                         /* Product Grid */
                         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                             {filtered.map((p) => (
-
-                                /*
-                                 * PRODUCT CARD
-                                 *
-                                 * Clicking anywhere on the card now opens:
-                                 * /products/{product.id}
-                                 */
                                 <Link
                                     key={p.id}
                                     to={`/products/${p.id}`}
@@ -184,15 +140,15 @@ export default function ProductsPage() {
                                         {/* Description */}
                                         <p className="mt-3 flex-1 text-sm leading-relaxed text-[#0B1F4D]/65">
                                             {p.description
-                                              ?.replace(/^#{1,6}\s*/gm, '')
-                                              .replace(/\*\*/g, '')
-                                              .replace(/\*/g, '')
-                                              .replace(/\s+/g, ' ')
-                                              .trim()
-                                              .slice(0, 150) ||
-                                             'Contact Nimbus Equipments for product details and compatibility.'}
-                                         {p.description?.length > 150 ? '...' : ''}
-                                    </p>
+                                                ?.replace(/^#{1,6}\s*/gm, '')
+                                                .replace(/\*\*/g, '')
+                                                .replace(/\*/g, '')
+                                                .replace(/\s+/g, ' ')
+                                                .trim()
+                                                .slice(0, 150) ||
+                                                'Contact Nimbus Equipments for product details and compatibility.'}
+                                            {p.description?.length > 150 ? '...' : ''}
+                                        </p>
 
                                         {/* Stock / Delivery */}
                                         <div className="mt-4 flex items-center justify-between border-t border-[#0B1F4D]/10 pt-3 text-xs">
