@@ -258,18 +258,68 @@ export default function HomePage() {
             </Section>
 
             {/* SINGLE DEDICATED RFQ / CTA SECTION */}
-            <Section id="rfq" className="bg-[#123D8D]">
-                <div className="mx-auto grid max-w-[90rem] items-center gap-12 lg:grid-cols-2">
-                    <div>
-                        <Title light sub="Share your compressor model and part requirement — we revert with pricing, availability and delivery time.">Request a Quotation</Title>
-                        <div className="flex items-center gap-3 text-white">
-                            <IndianRupee className="h-6 w-6 text-[#D4A017]" strokeWidth={1.4} />
-                            <span className="font-display text-lg uppercase">Competitive industrial pricing</span>
-                        </div>
+<Section id="rfq" className="bg-[#123D8D]">
+    <div className="mx-auto grid max-w-[90rem] items-center gap-12 lg:grid-cols-2">
+        <div>
+            <Title light sub="Share your compressor model, serial number, or part requirement. Our technical engineers will revert with part availability, competitive pricing, and fast dispatch timeline.">
+                Request a Fast Quotation
+            </Title>
+
+            {/* Quick Benefits Grid - To Fill Left Side Space */}
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3">
+                        <IndianRupee className="h-5 w-5 text-[#D4A017]" />
+                        <span className="font-display text-sm font-bold uppercase tracking-wide text-white">Direct B2B Pricing</span>
                     </div>
-                    <RfqForm extended title="Request Quote" />
+                    <p className="mt-2 text-xs leading-relaxed text-white/70">Competitive industrial quotes without middleman margins.</p>
                 </div>
-            </Section>
+
+                <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3">
+                        <Clock className="h-5 w-5 text-[#D4A017]" />
+                        <span className="font-display text-sm font-bold uppercase tracking-wide text-white">Fast Revert Time</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-white/70">Quotes shared within standard working hours.</p>
+                </div>
+
+                <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3">
+                        <Wrench className="h-5 w-5 text-[#D4A017]" />
+                        <span className="font-display text-sm font-bold uppercase tracking-wide text-white">Technical Matching</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-white/70">100% fitment verification before supply.</p>
+                </div>
+
+                <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3">
+                        <Truck className="h-5 w-5 text-[#D4A017]" />
+                        <span className="font-display text-sm font-bold uppercase tracking-wide text-white">PAN India Dispatch</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-white/70">Express courier to your factory/plant location.</p>
+                </div>
+            </div>
+
+            {/* Need Immediate Help Box */}
+            <div className="mt-8 border-t border-white/10 pt-6">
+                <p className="text-xs uppercase tracking-widest text-[#D4A017] font-semibold">Need Instant Assistance?</p>
+                <div className="mt-3 flex flex-wrap items-center gap-4">
+                    <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 text-sm font-semibold text-white hover:text-[#D4A017]">
+                        <Phone className="h-4 w-4 text-[#D4A017]" /> {CONTACT.phone}
+                    </a>
+                    <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-semibold text-white hover:text-[#D4A017]">
+                        <MessageCircle className="h-4 w-4 text-[#D4A017]" /> WhatsApp Support
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {/* Right Side Form */}
+        <div className="w-full">
+            <RfqForm extended title="Request Quote" />
+        </div>
+    </div>
+</Section>
 
             <SiteFooter />
         </div>
