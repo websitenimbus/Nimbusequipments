@@ -1,22 +1,22 @@
-export const LOGO = 'https://horizons-cdn.hostinger.com/da59f94d-48d5-4624-bebf-d6a4b023e97a/860219f9f5df12515bb96ad6ca25eefc.jpg';
+export const LOGO = '/logo.png';
 
 export const CONTACT = {
     phone: '+91 9289425601',
     phoneRaw: '+919289425601',
     whatsapp: 'https://wa.me/919289425601',
-    email: 'nimbusequipments@outlook.com',
+    email: 'sales@nimbusequipments.in',
     location: 'Delhi NCR, India',
     hours: 'Mon - Sat: 9:00 AM - 6:00 PM',
 };
 
 export const IMAGES = {
-    hero: 'https://images.hostinger.com/58d8bbb8-78ad-4cc6-a7c8-85f33a5fe7ea.png',
-    parts: 'https://images.hostinger.com/064aeea1-f7a0-4144-8cbb-39b6117676a3.png',
-    engineer: 'https://images.hostinger.com/3448e83e-e6da-48e0-a69b-0eb0fe7f0910.png',
-    automotive: 'https://images.hostinger.com/b464a84b-04f7-45c7-a372-2f9e138fa457.png',
-    pharma: 'https://images.hostinger.com/870b5440-5b5f-4e07-a73f-4fc8125a2b4c.png',
-    food: 'https://images.hostinger.com/34cb3e97-6a7e-4f80-a3c5-e0aea8ed4fa6.png',
-    steel: 'https://images.hostinger.com/fad5dda8-1ed6-4b44-accc-1a5ea0f9e883.png',
+    hero: '/engineering.png',
+    parts: '/packaging.png',
+    engineer: '/textile.png',
+    automotive: '/automotive.png',
+    pharma: '/pharma.jpg.png',
+    food: '/food.png',
+    steel: '/steel.png',
 };
 
 export const CATEGORIES = [
