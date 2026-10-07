@@ -11,15 +11,6 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState(false);
 
-  // Exact encoded URL paths for safe category filtering
-  const pipingUrl = `/products?category=${encodeURIComponent('COMPRESSED AIR PIPING & FITTINGS')}`;
-  const accessoriesUrl = `/products?category=${encodeURIComponent('ACCESSORIES')}`;
-  const sparesUrl = `/products?category=${encodeURIComponent('COMPRESSOR SPARE PARTS')}`;
-  const serviceKitUrl = `/products?category=${encodeURIComponent('SERVICE KIT')}`;
-  const oilUrl = `/products?category=${encodeURIComponent('COMPRESSOR OIL')}`;
-  const amcUrl = `/products?category=${encodeURIComponent('AMC CONTRACT')}`;
-  const maintenanceUrl = `/products?category=${encodeURIComponent('MAINTENANCE SERVICE')}`;
-
   return (
     <header className="sticky top-0 z-50">
       {/* Top Contact Strip */}
@@ -79,42 +70,51 @@ export function SiteHeader() {
               {/* 5-Column Dropdown Panel */}
               <div className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:grid grid-cols-5 gap-4 w-[92vw] max-w-6xl bg-white rounded-md shadow-2xl border border-slate-200 p-6 z-50">
                 
-                {/* 1. Equipments & Machinery */}
+                {/* 1. Equipments */}
                 <div className="space-y-2 border-r border-slate-100 pr-3">
                   <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
                     <Package className="h-3.5 w-3.5" /> 1. Equipments
                   </div>
-                  <Link to="/products/reciprocating-compressors" className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-2 rounded transition-colors">
+                  <Link 
+                    to="/products/reciprocating-compressors" 
+                    className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-2 rounded transition-colors"
+                  >
                     Reciprocating Compressors
                   </Link>
+                  <p className="text-[11px] text-slate-400 px-2 leading-relaxed">
+                    Single Stage, Two-Stage & High-Pressure Units
+                  </p>
                 </div>
 
                 {/* 2. Accessories */}
-<div className="space-y-2 border-r border-slate-100 pr-3">
-  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
-    <Layers className="h-3.5 w-3.5" /> 2. Accessories
-  </div>
-  <Link 
-    to="/accessories" 
-    className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-2 rounded transition-colors"
-  >
-    Air Dryers, Tanks & Accessories
-  </Link>
-</div>
+                <div className="space-y-2 border-r border-slate-100 pr-3">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
+                    <Layers className="h-3.5 w-3.5" /> 2. Accessories
+                  </div>
+                  <Link 
+                    to="/accessories" 
+                    className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-2 rounded transition-colors"
+                  >
+                    Air Dryers, Tanks & Accessories
+                  </Link>
+                  <p className="text-[11px] text-slate-400 px-2 leading-relaxed">
+                    Refrigerated Dryers, Vessels & Line Filters
+                  </p>
+                </div>
 
-                {/* 3. Compressed Air Piping (SINGLE DIRECT BUTTON - NO CONFUSION) */}
+                {/* 3. Piping Solutions */}
                 <div className="space-y-2 border-r border-slate-100 pr-3">
                   <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
                     <PenTool className="h-3.5 w-3.5" /> 3. Piping
                   </div>
                   <Link 
-                    to={pipingUrl}
+                    to="/piping-solutions"
                     className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-2 rounded transition-colors"
                   >
                     Compressed Air Piping & Fittings
                   </Link>
                   <p className="text-[11px] text-slate-400 px-2 leading-relaxed">
-                    Includes Aluminium, PPRC Systems & Joint Fittings
+                    Aluminium Modular & PPRC Pipeline Networks
                   </p>
                 </div>
 
@@ -123,47 +123,32 @@ export function SiteHeader() {
                   <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
                     <Settings className="h-3.5 w-3.5" /> 4. Parts & Consumables
                   </div>
-                  <Link to={sparesUrl} className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors">
-                    Compressor Spare Parts
+                  <Link 
+                    to="/parts" 
+                    className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-2 rounded transition-colors"
+                  >
+                    All Spares, Kits & Lubricants
                   </Link>
-                  <Link to={serviceKitUrl} className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors">
-                    Service Kits
-                  </Link>
-                  <Link to={oilUrl} className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors">
-                    Compressor Oil
-                  </Link>
+                  <p className="text-[11px] text-slate-400 px-2 leading-relaxed">
+                    Air/Oil Filters, Service Kits & Compressor Oils
+                  </p>
                 </div>
 
-                {/* 5. Maintenance & Services */}
-<div className="space-y-2">
-  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
-    <Wrench className="h-3.5 w-3.5" /> 5. Services & Support
-  </div>
-  <Link 
-    to={`/products?category=${encodeURIComponent('MAINTENANCE SERVICE')}`}
-    className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
-  >
-    Maintenance Service
-  </Link>
-  <Link 
-    to={`/products?category=${encodeURIComponent('AMC CONTRACT')}`}
-    className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
-  >
-    AMC Contract
-  </Link>
-  <Link 
-    to={`/products?category=${encodeURIComponent('INSTALLATION')}`}
-    className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
-  >
-    Piping & Machine Installation
-  </Link>
-  <Link 
-    to={`/products?category=${encodeURIComponent('REPAIR JOB')}`}
-    className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
-  >
-    Overhauling & Repair Job
-  </Link>
-</div>
+                {/* 5. Services & Support */}
+                <div className="space-y-2">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
+                    <Wrench className="h-3.5 w-3.5" /> 5. Services
+                  </div>
+                  <Link 
+                    to="/services" 
+                    className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-2 rounded transition-colors"
+                  >
+                    Maintenance, AMC & Repairs
+                  </Link>
+                  <p className="text-[11px] text-slate-400 px-2 leading-relaxed">
+                    Preventive Audits, Piping Setup & Airend Overhaul
+                  </p>
+                </div>
 
               </div>
             </div>
@@ -218,29 +203,20 @@ export function SiteHeader() {
                     <Link to="/products/reciprocating-compressors" onClick={() => setOpen(false)} className="block py-1 text-slate-800 font-medium">Reciprocating Compressors</Link>
                   </div>
                   <div>
-  <div className="text-[11px] font-bold uppercase text-[#D4A017]">2. Accessories</div>
-  <Link 
-    to="/accessories" 
-    onClick={() => setOpen(false)} 
-    className="block py-1 text-slate-700"
-  >
-    Air Dryers, Tanks & Accessories
-  </Link>
-</div>
+                    <div className="text-[11px] font-bold uppercase text-[#D4A017]">2. Accessories</div>
+                    <Link to="/accessories" onClick={() => setOpen(false)} className="block py-1 text-slate-700">Air Dryers, Tanks & Accessories</Link>
+                  </div>
                   <div>
                     <div className="text-[11px] font-bold uppercase text-[#D4A017]">3. Piping</div>
-                    <Link to={pipingUrl} onClick={() => setOpen(false)} className="block py-1 text-slate-700 font-medium">Compressed Air Piping & Fittings</Link>
+                    <Link to="/piping-solutions" onClick={() => setOpen(false)} className="block py-1 text-slate-700 font-medium">Compressed Air Piping & Fittings</Link>
                   </div>
                   <div>
                     <div className="text-[11px] font-bold uppercase text-[#D4A017]">4. Parts & Consumables</div>
-                    <Link to={sparesUrl} onClick={() => setOpen(false)} className="block py-1 text-slate-700">Compressor Spare Parts</Link>
-                    <Link to={serviceKitUrl} onClick={() => setOpen(false)} className="block py-1 text-slate-700">Service Kit</Link>
-                    <Link to={oilUrl} onClick={() => setOpen(false)} className="block py-1 text-slate-700">Compressor Oil</Link>
+                    <Link to="/parts" onClick={() => setOpen(false)} className="block py-1 text-slate-700 font-medium">All Spares, Kits & Lubricants</Link>
                   </div>
                   <div>
                     <div className="text-[11px] font-bold uppercase text-[#D4A017]">5. Services</div>
-                    <Link to={maintenanceUrl} onClick={() => setOpen(false)} className="block py-1 text-slate-700">Maintenance Service</Link>
-                    <Link to={amcUrl} onClick={() => setOpen(false)} className="block py-1 text-slate-700">AMC Contract</Link>
+                    <Link to="/services" onClick={() => setOpen(false)} className="block py-1 text-slate-700 font-medium">Maintenance, AMC & Repairs</Link>
                   </div>
                 </div>
               )}
@@ -266,13 +242,6 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
-  const pipingUrl = `/products?category=${encodeURIComponent('COMPRESSED AIR PIPING & FITTINGS')}`;
-  const accessoriesUrl = `/products?category=${encodeURIComponent('ACCESSORIES')}`;
-  const sparesUrl = `/products?category=${encodeURIComponent('COMPRESSOR SPARE PARTS')}`;
-  const serviceKitUrl = `/products?category=${encodeURIComponent('SERVICE KIT')}`;
-  const amcUrl = `/products?category=${encodeURIComponent('AMC CONTRACT')}`;
-  const maintenanceUrl = `/products?category=${encodeURIComponent('MAINTENANCE SERVICE')}`;
-
   return (
     <footer className="bg-[#0B1F4D] text-white/75">
       <div className="mx-auto grid max-w-[90rem] gap-10 px-5 py-16 md:grid-cols-2 lg:grid-cols-4">
@@ -295,22 +264,21 @@ export function SiteFooter() {
         </div>
 
         <div>
-  <h3 className="font-display mb-4 text-lg font-bold uppercase text-[#D4A017]">Products & Equipments</h3>
-  <ul className="space-y-2.5 text-sm">
-    <li><Link to="/products/reciprocating-compressors" className="hover:text-[#D4A017] text-white font-semibold">Reciprocating Air Compressors</Link></li>
-    <li><Link to="/accessories" className="hover:text-[#D4A017]">Accessories & Air Dryers</Link></li>
-    <li><Link to={pipingUrl} className="hover:text-[#D4A017]">Compressed Air Piping & Fittings</Link></li>
-            <li><Link to={sparesUrl} className="hover:text-[#D4A017]">Compressor Spare Parts</Link></li>
-            <li><Link to={serviceKitUrl} className="hover:text-[#D4A017]">Service Kits & Maintenance</Link></li>
+          <h3 className="font-display mb-4 text-lg font-bold uppercase text-[#D4A017]">Products & Equipments</h3>
+          <ul className="space-y-2.5 text-sm">
+            <li><Link to="/products/reciprocating-compressors" className="hover:text-[#D4A017] text-white font-semibold">Reciprocating Air Compressors</Link></li>
+            <li><Link to="/accessories" className="hover:text-[#D4A017]">Accessories & Air Dryers</Link></li>
+            <li><Link to="/piping-solutions" className="hover:text-[#D4A017]">Compressed Air Piping & Fittings</Link></li>
+            <li><Link to="/parts" className="hover:text-[#D4A017]">Compressor Spare Parts & Oils</Link></li>
           </ul>
         </div>
 
         <div>
           <h3 className="font-display mb-4 text-lg font-bold uppercase text-[#D4A017]">Services & Solutions</h3>
           <ul className="space-y-2.5 text-sm">
-            <li><Link to={amcUrl} className="hover:text-[#D4A017]">Comprehensive AMC Plans</Link></li>
-            <li><Link to={maintenanceUrl} className="hover:text-[#D4A017]">Preventive Maintenance</Link></li>
-            <li><Link to={pipingUrl} className="hover:text-[#D4A017]">Turnkey Piping Installation</Link></li>
+            <li><Link to="/services" className="hover:text-[#D4A017]">Comprehensive AMC Plans</Link></li>
+            <li><Link to="/services" className="hover:text-[#D4A017]">Preventive Maintenance</Link></li>
+            <li><Link to="/piping-solutions" className="hover:text-[#D4A017]">Turnkey Piping Installation</Link></li>
             <li><Link to="/contact#rfq" className="hover:text-[#D4A017]">Request Machinery Quote</Link></li>
           </ul>
         </div>
