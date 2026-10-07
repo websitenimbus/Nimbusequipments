@@ -100,20 +100,29 @@ export function SiteHeader() {
                 </div>
 
                 {/* 3. Compressed Air Pipeline */}
-                <div className="space-y-2 border-r border-slate-100 pr-3">
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
-                    <PenTool className="h-3.5 w-3.5" /> 3. Piping
-                  </div>
-                  <Link to="/products?category=Compressed Air Piping & Fittings" className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors">
-                    Air Piping & Fittings
-                  </Link>
-                  <Link to="/products?category=Compressed Air Piping & Fittings" className="block text-xs text-slate-600 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors">
-                    Aluminium Modular Piping
-                  </Link>
-                  <Link to="/products?category=Compressed Air Piping & Fittings" className="block text-xs text-slate-600 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors">
-                    PPRC Pipes & Joints
-                  </Link>
-                </div>
+<div className="space-y-2 border-r border-slate-100 pr-3">
+  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
+    <PenTool className="h-3.5 w-3.5" /> 3. Piping
+  </div>
+  <Link 
+    to="/products?category=Compressed%20Air%20Piping%20%26%20Fittings" 
+    className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
+  >
+    All Air Piping & Fittings
+  </Link>
+  <Link 
+    to="/products?category=Compressed%20Air%20Piping%20%26%20Fittings" 
+    className="block text-xs text-slate-600 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
+  >
+    Aluminium Modular Piping
+  </Link>
+  <Link 
+    to="/products?category=Compressed%20Air%20Piping%20%26%20Fittings" 
+    className="block text-xs text-slate-600 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
+  >
+    PPRC Pipes & Joints
+  </Link>
+</div>
 
                 {/* 4. Parts & Consumables */}
                 <div className="space-y-2 border-r border-slate-100 pr-3">
