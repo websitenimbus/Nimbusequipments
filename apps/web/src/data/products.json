@@ -614,5 +614,35 @@
     "image_url": "https://wrvpshzxvyvikzjmmaax.supabase.co/storage/v1/object/public/products/Belt-and-coupling.jpg.jpeg",
     "delivery_time": "In stock - dispatched in 24-48 hrs (Delhi/NCR); 3-4 days pan-India",
     "updated_at": "2026-08-12 10:28:33.086671+00"
+  },
+  {
+    "id": "single-stage-air-compressor",
+    "name": "Single Stage Air Compressor",
+    "category": "Reciprocating Compressors",
+    "brand": "Nimbus Equipments",
+    "image_url": "/products/recip-single-stage.png",
+    "stock_status": "In Stock",
+    "part_number": "NRS-Series",
+    "description": "### PRODUCT OVERVIEW\nNimbus Equipments supplies heavy-duty cast iron Single Stage Reciprocating Air Compressors built for garages, surface coating, woodworking, and pneumatic workshop utilities with low-RPM quiet operation.\n\n### KEY FEATURES\n- Heavy-Duty Cast Iron Cylinder Block: Superior wear resistance, efficient heat dissipation, and extended pump life.\n- Low-RPM Belt-Driven Design: Smooth, balanced operation with reduced thermal stress and lower vibration.\n- Efficient Splash Lubrication: Continuous, reliable oil distribution to crankshaft and bearings for reduced friction.\n- 100% Copper-Wound Electric Motor: High starting torque, continuous thermal endurance, and low power loss.\n- Deep-Finned Air-Cooled System: Multi-fin cylinder and fly-wheel fan design for fast heat removal.\n\n### APPLICATIONS\n- Automotive Care: Two-wheeler service centers, car repair garages, and tyre inflation bays.\n- Woodworking & Furniture: Operation of pneumatic nailers, pinners, staplers, and finishing tools.\n- Surface Finishing: Touch-up spray painting, wood polishing, and light lacquer coating.\n- Workshop Utility: Air blow guns, pneumatic screwdrivers, parts cleaning, and light assembly lines.\n\n### TECHNICAL SPECIFICATIONS\n- Model NRS-01: 1.0 HP / 0.75 kW | FAD: 3.5 CFM | Working Pressure: 8 Bar (115 PSI) | Receiver: 45 Ltr | Speed: 900 RPM\n- Model NRS-02: 2.0 HP / 1.5 kW | FAD: 7 CFM | Working Pressure: 8 Bar (115 PSI) | Receiver: 100 Ltr | Speed: 850 RPM\n- Model NRS-03: 3.0 HP / 2.2 kW | FAD: 10 CFM | Working Pressure: 8.5 Bar (125 PSI) | Receiver: 160 Ltr | Speed: 850 RPM"
+  },
+  {
+    "id": "two-stage-air-compressor",
+    "name": "Two-Stage Industrial Air Compressor",
+    "category": "Reciprocating Compressors",
+    "brand": "Nimbus Equipments",
+    "image_url": "/products/recip-two-stage.png",
+    "stock_status": "In Stock",
+    "part_number": "NRT-Series",
+    "description": "### PRODUCT OVERVIEW\nNimbus Equipments manufactures continuous-duty Two-Stage Industrial Air Compressors engineered with copper intercooler pipes, oversized finned cylinders, and heavy cast iron crankshaft for manufacturing and fabrication plants.\n\n### KEY FEATURES\n- Graded Cast Iron Construction: Heavy-duty cylinder blocks and deep-finned crankcase provide maximum wear resistance and rigidity.\n- Low-RPM Belt-Driven Engineering: Conservatively rated pump speeds (700 – 900 RPM) drastically reduce friction and vibration.\n- 100% Copper-Wound Industrial Motor: High-torque 4-pole (1440 RPM) motor for continuous thermal endurance.\n- High-Efficiency Inter-Cooler: Aerodynamic flywheel fan with finned cooling tubes ensures rapid heat dissipation.\n- Precision-Balanced Crankshaft: Dynamically balanced crankshaft with heavy anti-friction bearings.\n- Stainless Steel Reed Valve Plates: Heat-treated valve design ensuring high volumetric efficiency and leak-free life.\n\n### APPLICATIONS\n- Automotive & Workshops: Heavy commercial vehicle service stations and tyre retreading plants.\n- General Engineering: Heavy pneumatic tooling, plasma/laser cutting assist, and sandblasting.\n- Manufacturing Facilities: Packaging machines, textile looms, printing presses, and CNC machine clamping.\n- Process Units: Plastic processing, rubber moulding, and automated assembly fixtures.\n\n### TECHNICAL SPECIFICATIONS\n- Model NRT-03: 3.0 HP / 2.2 kW | FAD: 9 CFM | Working Pressure: 12 Bar (175 PSI) | Receiver: 160 / 220 Ltr | Speed: 850 RPM\n- Model NRT-05: 5.0 HP / 3.7 kW | FAD: 16 CFM | Working Pressure: 12 Bar (175 PSI) | Receiver: 220 / 250 Ltr | Speed: 850 RPM\n- Model NRT-07: 7.5 HP / 5.5 kW | FAD: 24 CFM | Working Pressure: 12 Bar (175 PSI) | Receiver: 250 / 300 Ltr | Speed: 750 RPM\n- Model NRT-10: 10.0 HP / 7.5 kW | FAD: 35 CFM | Working Pressure: 12 Bar (175 PSI) | Receiver: 300 / 500 Ltr | Speed: 720 RPM\n- Model NRT-15: 15.0 HP / 11.0 kW | FAD: 52 CFM | Working Pressure: 12 Bar (175 PSI) | Receiver: 500 Ltr | Speed: 700 RPM"
+  },
+  {
+    "id": "high-pressure-air-compressor",
+    "name": "Multi-Stage High Pressure Air Compressor",
+    "category": "Reciprocating Compressors",
+    "brand": "Nimbus Equipments",
+    "image_url": "/products/recip-high-pressure.png",
+    "stock_status": "Available on Order",
+    "part_number": "NHP-Series",
+    "description": "### PRODUCT OVERVIEW\nSpecialized Multi-Stage High Pressure Air Compressors designed for continuous operation in PET bottle stretch blow moulding, hydrostatic pipe testing, and industrial pressure benches up to 40 Bar (580 PSI).\n\n### KEY FEATURES\n- Multi-Stage Compression (Up to 40 Bar): Distributes compression loads across multiple stages to deliver sustained peak pressure.\n- Heavy Cast Iron Heads & Crankcase: Reinforced to withstand continuous high pressure without mechanical fatigue.\n- Finned Inter-Coolers on Every Stage: Rapidly lowers air temperature between compression stages.\n- Ultra-Low Operating Speed (680 – 850 RPM): Reduces cylinder wear, extends ring life, and minimizes oil carryover.\n- Stainless Steel Disc Valves: Heat-treated discs designed for positive sealing under extreme pressure cycles.\n- Independent Stage Relief Protection: Dedicated safety relief valves on every compression stage.\n\n### APPLICATIONS\n- PET Blow Moulding: Specialized compressed air supply for PET bottle manufacturing plants.\n- Hydro & Pneumatic Testing: High-pressure testing of valves, pipes, cylinders, and boilers.\n- Defense & Marine Operations: High-pressure engine starting and breathing air cylinder filling.\n\n### TECHNICAL SPECIFICATIONS\n- Model NHP-100: 10.0 HP / 7.5 kW | FAD: 25 CFM | Working Pressure: 30 Bar (435 PSI) | Tank: 300 / 500 Ltr | Speed: 850 RPM\n- Model NHP-150: 15.0 HP / 11.0 kW | FAD: 38 CFM | Working Pressure: 30 Bar (435 PSI) | Tank: 500 / Base Mounted | Speed: 850 RPM\n- Model NHP-200: 20.0 HP / 15.0 kW | FAD: 52 CFM | Working Pressure: 40 Bar (580 PSI) | Tank: Base Mounted | Speed: 750 RPM\n- Model NHP-250: 25.0 HP / 18.5 kW | FAD: 70 CFM | Working Pressure: 40 Bar (580 PSI) | Tank: Base Mounted | Speed: 720 RPM\n- Model NHP-300: 30.0 HP / 22.0 kW | FAD: 85 CFM | Working Pressure: 40 Bar (580 PSI) | Tank: Base Mounted | Speed: 700 RPM\n- Model NHP-400: 40.0 HP / 30.0 kW | FAD: 115 CFM | Working Pressure: 40 Bar (580 PSI) | Tank: Base Mounted | Speed: 700 RPM\n\n*Note: High-pressure vertical air storage vessels 300L, 500L, 1000L available separately with hydrostatic test certificates."
   }
 ]
