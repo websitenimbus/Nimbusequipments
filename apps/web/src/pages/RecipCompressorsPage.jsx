@@ -8,6 +8,9 @@ import {
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
 import RfqForm from '@/components/RfqForm';
 
+// Exact catalog path from public/catalogs/
+const CATALOG_PDF_URL = '/catalogs/reciprocating-compressors.pdf';
+
 const COMPRESSOR_MODELS = [
   {
     id: 'single-stage',
@@ -17,9 +20,8 @@ const COMPRESSOR_MODELS = [
     powerRange: '1 HP – 3 HP',
     workingPressure: 'Up to 8.5 Bar (115 – 125 PSI)',
     designNote: 'Heavy-duty cast iron single stage reciprocating technology for workshops and garage utilities.',
-    image: '/images/products/recip-single-stage.png',
-    fallbackImage: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80',
-    catalogUrl: '/catalogs/single-stage-compressor.pdf',
+    image: '/products/recip-single-stage.png',
+    catalogUrl: CATALOG_PDF_URL,
     specsBadges: {
       power: '1.0 – 3.0 HP (0.75 – 2.2 kW)',
       pressure: '8.0 – 8.5 Bar (115 – 125 PSI)',
@@ -56,9 +58,8 @@ const COMPRESSOR_MODELS = [
     powerRange: '3 HP – 15 HP',
     workingPressure: 'Up to 12 Bar (175 PSI)',
     designNote: 'Engineered for continuous industrial duty, high compression efficiency with intercooler pipes and heavy cast iron crankshaft.',
-    image: '/images/products/recip-two-stage.png',
-    fallbackImage: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=900&q=80',
-    catalogUrl: '/catalogs/two-stage-compressor.pdf',
+    image: '/products/recip-two-stage.png',
+    catalogUrl: CATALOG_PDF_URL,
     specsBadges: {
       power: '3.0 – 15.0 HP (2.2 – 11.0 kW)',
       pressure: 'Up to 12 Bar (175 PSI)',
@@ -100,9 +101,8 @@ const COMPRESSOR_MODELS = [
     powerRange: '10 HP – 40 HP',
     workingPressure: '30 Bar – 40 Bar (435 – 580 PSI)',
     designNote: 'Heavy casted multi-stage design engineered for PET blowing & high-pressure testing applications.',
-    image: '/images/products/recip-high-pressure.png',
-    fallbackImage: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80',
-    catalogUrl: '/catalogs/high-pressure-compressor.pdf',
+    image: '/products/recip-high-pressure.png',
+    catalogUrl: CATALOG_PDF_URL,
     specsBadges: {
       power: '10.0 – 40.0 HP (7.5 – 30.0 kW)',
       pressure: '30 – 40 Bar (435 – 580 PSI)',
@@ -171,7 +171,7 @@ export default function RecipCompressorsPage() {
             </p>
           </div>
 
-          {/* Interactive Model Selection Buttons */}
+          {/* Model Switcher Tabs */}
           <div className="mt-8 flex flex-wrap gap-2">
             {COMPRESSOR_MODELS.map((item) => (
               <button
@@ -206,12 +206,15 @@ export default function RecipCompressorsPage() {
               </p>
             </div>
             <div className="mt-4 sm:mt-0 flex items-center gap-4">
+              {/* Direct PDF Download Link */}
               <a 
                 href={currentModel.catalogUrl}
-                download
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#0B1F4D]/20 text-[#0B1F4D] rounded text-xs font-bold uppercase hover:border-[#D4A017] hover:text-[#D4A017] transition shadow-sm"
+                download="Nimbus-Reciprocating-Compressors-Catalog.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0B1F4D] text-white rounded text-xs font-bold uppercase hover:bg-[#123D8D] transition shadow-sm border border-[#D4A017]/40"
               >
-                <Download className="h-3.5 w-3.5" /> Download Product Catalog PDF
+                <Download className="h-4 w-4 text-[#D4A017]" /> Download Catalog (PDF)
               </a>
               <a 
                 href="#rfq-section" 
@@ -231,10 +234,6 @@ export default function RecipCompressorsPage() {
                 <img 
                   src={currentModel.image} 
                   alt={currentModel.title} 
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = currentModel.fallbackImage;
-                  }}
                   className="max-h-72 w-full object-contain rounded drop-shadow-md transition-transform hover:scale-105 duration-300"
                 />
               </div>
@@ -251,7 +250,7 @@ export default function RecipCompressorsPage() {
                   {currentModel.designNote}
                 </p>
 
-                {/* Metric Summary Badges */}
+                {/* 4 Metric Badges */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
                   <div className="bg-slate-50 border border-slate-200 rounded p-3 text-center">
                     <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Power Range</div>
@@ -271,7 +270,6 @@ export default function RecipCompressorsPage() {
                   </div>
                 </div>
 
-                {/* Additional Highlights */}
                 <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap gap-4 text-xs text-slate-600">
                   <div className="flex items-center gap-1.5">
                     <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
@@ -285,7 +283,6 @@ export default function RecipCompressorsPage() {
               </div>
             </div>
 
-            {/* Note Banner for High Pressure (if available) */}
             {currentModel.noteBanner && (
               <div className="mt-8 p-4 bg-amber-50 border-l-4 border-[#D4A017] rounded-r text-xs text-amber-900 flex items-start gap-2.5">
                 <Info className="h-4 w-4 text-[#D4A017] shrink-0 mt-0.5" />
@@ -293,10 +290,8 @@ export default function RecipCompressorsPage() {
               </div>
             )}
 
-            {/* Key Features & Applications Grid */}
+            {/* Key Features & Applications */}
             <div className="mt-10 pt-8 border-t border-slate-200 grid md:grid-cols-2 gap-8">
-              
-              {/* Key Features */}
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-100">
                 <h4 className="text-sm font-bold uppercase tracking-wider text-[#0B1F4D] mb-4 flex items-center gap-2">
                   <Cpu className="h-4 w-4 text-[#D4A017]" /> Key Engineering Features
@@ -311,7 +306,6 @@ export default function RecipCompressorsPage() {
                 </ul>
               </div>
 
-              {/* Typical Applications */}
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-100">
                 <h4 className="text-sm font-bold uppercase tracking-wider text-[#0B1F4D] mb-4 flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-[#D4A017]" /> Typical Applications
@@ -327,7 +321,7 @@ export default function RecipCompressorsPage() {
               </div>
             </div>
 
-            {/* Technical Data Sheet Comparison Table */}
+            {/* Technical Specifications Table */}
             <div className="mt-8 pt-6 border-t border-slate-200">
               <button
                 type="button"
@@ -370,7 +364,6 @@ export default function RecipCompressorsPage() {
                     </tbody>
                   </table>
                   
-                  {/* Technical Disclaimer Footer */}
                   <p className="mt-3 text-[11px] text-slate-500 italic">
                     *{currentModel.disclaimer}
                   </p>
