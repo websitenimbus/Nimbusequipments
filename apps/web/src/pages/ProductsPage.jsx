@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Package } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
 import { CATEGORIES, BRANDS, IMAGES } from '@/data/site';
@@ -9,7 +9,34 @@ import productsData from '@/data/products.json';
 
 export default function ProductsPage() {
     const [items] = useState(productsData || []);
-    const [cat, setCat] = useState('All');
+    const [searchParams, setSearchParams] = useSearchParams();
+    
+    // URL se category read karein (agar URL me na ho toh default 'All')
+    const queryCat = searchParams.get('category');
+    const [cat, setCat] = useState(queryCat || 'All');
+
+    // Jab bhi URL ka parameter change ho (e.g. Header dropdown click se)
+    useEffect(() => {
+        if (queryCat) {
+            // Check karein match hone wali category
+            const matchedCategory = CATEGORIES.find(
+                (c) => c.name.toLowerCase() === queryCat.toLowerCase()
+            );
+            setCat(matchedCategory ? matchedCategory.name : queryCat);
+        } else {
+            setCat('All');
+        }
+    }, [queryCat]);
+
+    // Button click hone par category aur URL dono update karein
+    const handleCategoryChange = (newCat) => {
+        setCat(newCat);
+        if (newCat === 'All') {
+            setSearchParams({});
+        } else {
+            setSearchParams({ category: newCat });
+        }
+    };
 
     const filtered =
         cat === 'All'
@@ -58,15 +85,15 @@ export default function ProductsPage() {
             <section className="px-5 py-16">
                 <div className="mx-auto max-w-[90rem]">
 
-                    {/* Categories */}
+                    {/* Categories Pills */}
                     <div className="mb-10 flex flex-wrap gap-2">
                         {['All', ...CATEGORIES.map((c) => c.name)].map((c) => (
                             <button
                                 key={c}
                                 type="button"
-                                onClick={() => setCat(c)}
+                                onClick={() => handleCategoryChange(c)}
                                 className={`font-display rounded-sm border px-4 py-2.5 text-xs font-bold uppercase tracking-wide transition ${
-                                    cat === c
+                                    cat.toLowerCase() === c.toLowerCase()
                                         ? 'border-[#D4A017] bg-[#0B1F4D] text-[#D4A017]'
                                         : 'border-[#0B1F4D]/15 text-[#0B1F4D] hover:border-[#D4A017]'
                                 }`}
@@ -77,7 +104,7 @@ export default function ProductsPage() {
                     </div>
 
                     {filtered.length === 0 ? (
-                        /* No Products */
+                        /* No Products Found */
                         <div className="rounded-sm border border-dashed border-[#0B1F4D]/20 p-14 text-center">
                             <Package
                                 className="mx-auto h-10 w-10 text-[#D4A017]"
