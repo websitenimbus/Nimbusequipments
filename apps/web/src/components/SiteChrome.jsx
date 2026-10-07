@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Phone, Mail, MessageCircle, Menu, X, MapPin, Clock, Linkedin, Facebook, Twitter } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Menu, X, MapPin, Clock, Linkedin, Facebook, Twitter, ChevronDown } from 'lucide-react';
 import { LOGO, CONTACT } from '@/data/site';
-
-const NAV = [
-    { to: '/', label: 'Home' },
-    { to: '/products', label: 'Products' },
-    { to: '/products#brands', label: 'Brands' },
-    { to: '/#industries', label: 'Industries' },
-    { to: '/#guides', label: 'Technical Guides' },
-    { to: '/contact', label: 'Contact Us' },
-];
 
 export function SiteHeader() {
     const [open, setOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
     return (
         <header className="sticky top-0 z-50">
+            {/* Top Contact Bar */}
             <div className="bg-[#0B1F4D] text-white/85 text-[13px]">
                 <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-4 px-5 py-2">
                     <div className="flex items-center gap-5">
@@ -33,8 +27,12 @@ export function SiteHeader() {
                     </div>
                 </div>
             </div>
+
+            {/* Main Navigation Bar */}
             <div className="border-b border-[#0B1F4D]/10 bg-white shadow-[0_2px_18px_-10px_rgba(11,31,77,.5)]">
                 <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-6 px-5 py-3">
+                    
+                    {/* Brand Logo */}
                     <Link to="/" className="flex items-center gap-3.5">
                         <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 sm:h-14 sm:w-14 rounded-sm object-contain" />
                         <span className="leading-tight">
@@ -42,13 +40,70 @@ export function SiteHeader() {
                             <span className="block text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#123D8D]/80">Compressor Parts & Service</span>
                         </span>
                     </Link>
+
+                    {/* Desktop Menu */}
                     <nav className="hidden items-center gap-6 lg:flex">
-                        {NAV.map((n) => (
-                            <NavLink key={n.label} to={n.to} className={({ isActive }) => `font-display text-[15px] font-semibold uppercase tracking-wide transition-colors ${isActive ? 'text-[#D4A017]' : 'text-[#0B1F4D] hover:text-[#123D8D]'}`}>
-                                {n.label}
-                            </NavLink>
-                        ))}
+                        <NavLink to="/" className={({ isActive }) => `font-display text-[15px] font-semibold uppercase tracking-wide transition-colors ${isActive ? 'text-[#D4A017]' : 'text-[#0B1F4D] hover:text-[#123D8D]'}`}>
+                            Home
+                        </NavLink>
+
+                        {/* Products Dropdown (Desktop) */}
+                        <div className="relative group">
+                            <button
+                                type="button"
+                                className="font-display flex items-center gap-1 text-[15px] font-semibold uppercase tracking-wide text-[#0B1F4D] hover:text-[#123D8D] py-2"
+                            >
+                                <span>Products</span>
+                                <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
+                            </button>
+
+                            {/* Dropdown Menu Box */}
+                            <div className="absolute left-0 top-full hidden group-hover:block w-72 bg-white rounded-sm shadow-xl border border-slate-200 p-3 z-50">
+                                {/* Section 1: Machinery */}
+                                <div className="mb-2">
+                                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] px-2.5 py-1">
+                                        Equipments & Machinery
+                                    </div>
+                                    <Link
+                                        to="/products/reciprocating-compressors"
+                                        className="block px-2.5 py-2 text-sm text-slate-800 hover:bg-slate-50 hover:text-[#0B1F4D] rounded-sm font-medium transition-colors"
+                                    >
+                                        Reciprocating Compressors
+                                    </Link>
+                                </div>
+
+                                <div className="border-t border-slate-100 my-1"></div>
+
+                                {/* Section 2: Spares */}
+                                <div>
+                                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#0B1F4D]/70 px-2.5 py-1">
+                                        Parts & Consumables
+                                    </div>
+                                    <Link
+                                        to="/products"
+                                        className="block px-2.5 py-2 text-sm text-slate-800 hover:bg-slate-50 hover:text-[#0B1F4D] rounded-sm font-medium transition-colors"
+                                    >
+                                        All Spares & Maintenance Kits
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        <NavLink to="/products#brands" className="font-display text-[15px] font-semibold uppercase tracking-wide text-[#0B1F4D] hover:text-[#123D8D] transition-colors">
+                            Brands
+                        </NavLink>
+                        <a href="/#industries" className="font-display text-[15px] font-semibold uppercase tracking-wide text-[#0B1F4D] hover:text-[#123D8D] transition-colors">
+                            Industries
+                        </a>
+                        <a href="/#guides" className="font-display text-[15px] font-semibold uppercase tracking-wide text-[#0B1F4D] hover:text-[#123D8D] transition-colors">
+                            Technical Guides
+                        </a>
+                        <NavLink to="/contact" className={({ isActive }) => `font-display text-[15px] font-semibold uppercase tracking-wide transition-colors ${isActive ? 'text-[#D4A017]' : 'text-[#0B1F4D] hover:text-[#123D8D]'}`}>
+                            Contact Us
+                        </NavLink>
                     </nav>
+
+                    {/* Right Action Buttons */}
                     <div className="flex items-center gap-2">
                         <Link to="/contact#rfq" className="gold-btn font-display hidden rounded-sm px-5 py-3 text-sm font-bold uppercase tracking-wide sm:inline-block">Request Quote</Link>
                         <button type="button" aria-label="Menu" onClick={() => setOpen(!open)} className="rounded-sm border border-[#0B1F4D]/20 p-2.5 text-[#0B1F4D] lg:hidden">
@@ -56,11 +111,57 @@ export function SiteHeader() {
                         </button>
                     </div>
                 </div>
+
+                {/* Mobile Navigation Drawer */}
                 {open && (
-                    <nav className="border-t border-[#0B1F4D]/10 bg-white px-5 py-3 lg:hidden">
-                        {NAV.map((n) => (
-                            <Link key={n.label} to={n.to} onClick={() => setOpen(false)} className="font-display block py-2.5 text-base font-semibold uppercase text-[#0B1F4D]">{n.label}</Link>
-                        ))}
+                    <nav className="border-t border-[#0B1F4D]/10 bg-white px-5 py-3 lg:hidden space-y-1">
+                        <Link to="/" onClick={() => setOpen(false)} className="font-display block py-2 text-base font-semibold uppercase text-[#0B1F4D]">
+                            Home
+                        </Link>
+                        
+                        {/* Mobile Products Accordion */}
+                        <div>
+                            <button
+                                type="button"
+                                onClick={() => setDropdownOpen(!dropdownOpen)}
+                                className="font-display flex w-full items-center justify-between py-2 text-base font-semibold uppercase text-[#0B1F4D]"
+                            >
+                                <span>Products</span>
+                                <ChevronDown className={`h-4 w-4 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                            </button>
+
+                            {dropdownOpen && (
+                                <div className="pl-4 pb-2 pt-1 space-y-2 border-l-2 border-[#D4A017] ml-2">
+                                    <Link
+                                        to="/products/reciprocating-compressors"
+                                        onClick={() => setOpen(false)}
+                                        className="block text-sm font-medium text-slate-800 hover:text-[#0B1F4D]"
+                                    >
+                                        Reciprocating Air Compressors
+                                    </Link>
+                                    <Link
+                                        to="/products"
+                                        onClick={() => setOpen(false)}
+                                        className="block text-sm font-medium text-slate-800 hover:text-[#0B1F4D]"
+                                    >
+                                        Spares & Service Kits
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+
+                        <Link to="/products#brands" onClick={() => setOpen(false)} className="font-display block py-2 text-base font-semibold uppercase text-[#0B1F4D]">
+                            Brands
+                        </Link>
+                        <a href="/#industries" onClick={() => setOpen(false)} className="font-display block py-2 text-base font-semibold uppercase text-[#0B1F4D]">
+                            Industries
+                        </a>
+                        <a href="/#guides" onClick={() => setOpen(false)} className="font-display block py-2 text-base font-semibold uppercase text-[#0B1F4D]">
+                            Technical Guides
+                        </a>
+                        <Link to="/contact" onClick={() => setOpen(false)} className="font-display block py-2 text-base font-semibold uppercase text-[#0B1F4D]">
+                            Contact Us
+                        </Link>
                     </nav>
                 )}
             </div>
@@ -80,7 +181,7 @@ export function SiteFooter() {
                             <span className="block text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A017]">Compressor Parts & Service</span>
                         </span>
                     </div>
-                    <p className="mt-5 text-sm leading-relaxed">Supplier and service partner for industrial air compressor spare parts, service kits, lubricants and maintenance solutions across India.</p>
+                    <p className="mt-5 text-sm leading-relaxed">Supplier and service partner for industrial air compressor machinery, spare parts, service kits, and maintenance solutions across India.</p>
                     <div className="mt-5 flex gap-3">
                         {[Linkedin, Facebook, Twitter].map((Icon, i) => (
                             <span key={i} className="grid h-9 w-9 place-items-center rounded-sm border border-white/15 text-[#D4A017]"><Icon className="h-4 w-4" strokeWidth={1.75} /></span>
@@ -90,6 +191,7 @@ export function SiteFooter() {
                 <div>
                     <h3 className="font-display mb-4 text-lg font-bold uppercase text-[#D4A017]">Products</h3>
                     <ul className="space-y-2.5 text-sm">
+                        <li><Link to="/products/reciprocating-compressors" className="hover:text-[#D4A017] font-semibold text-white">Reciprocating Air Compressors</Link></li>
                         {['Compressor Spare Parts', 'Service Kit', 'Compressor Oil', 'Accessories', 'Piping & Fittings'].map((t) => (
                             <li key={t}><Link to="/products" className="hover:text-[#D4A017]">{t}</Link></li>
                         ))}
