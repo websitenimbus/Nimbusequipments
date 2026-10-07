@@ -4,7 +4,7 @@ export const RECIP_COMPRESSORS = [
     title: 'Single Stage Air Compressor',
     powerRange: '1.0 HP – 3.0 HP (0.75 – 2.2 kW)',
     workingPressure: 'Up to 8.5 Bar (115 – 125 PSI)',
-    image: '/products/recip-single-stage.jpg',
+    image: '/products/recip-single-stage.png',
     catalogUrl: '/catalogs/reciprocating-compressors.pdf',
     description: 'Designed for automotive care, surface finishing, and light workshop pneumatic utilities with low-RPM quiet operation.',
     features: [
@@ -31,7 +31,7 @@ export const RECIP_COMPRESSORS = [
     title: 'Two-Stage Industrial Air Compressor',
     powerRange: '3.0 HP – 15.0 HP (2.2 – 11.0 kW)',
     workingPressure: 'Up to 12 Bar (175 PSI)',
-    image: '/products/recip-two-stage.jpg',
+    image: '/products/recip-two-stage.png',
     catalogUrl: '/catalogs/reciprocating-compressors.pdf',
     description: 'Heavy-duty 12 Bar continuous industrial workhorse for fabrication, tyre retreading plants, and production machinery.',
     features: [
@@ -62,7 +62,7 @@ export const RECIP_COMPRESSORS = [
     title: 'Multi-Stage High Pressure Air Compressor',
     powerRange: '10.0 HP – 40.0 HP (7.5 – 30.0 kW)',
     workingPressure: '30 Bar – 40 Bar (435 – 580 PSI)',
-    image: '/products/recip-high-pressure.jpg',
+    image: '/products/recip-high-pressure.png',
     catalogUrl: '/catalogs/reciprocating-compressors.pdf',
     description: 'Specialized multi-stage compression engineered for PET blow moulding, hydro/pneumatic testing, and defense applications.',
     features: [
