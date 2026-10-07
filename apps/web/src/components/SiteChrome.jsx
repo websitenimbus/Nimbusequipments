@@ -132,17 +132,35 @@ export function SiteHeader() {
                 </div>
 
                 {/* 5. Maintenance & Services */}
-                <div className="space-y-2">
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
-                    <Wrench className="h-3.5 w-3.5" /> 5. Services
-                  </div>
-                  <Link to={maintenanceUrl} className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors">
-                    Maintenance Service
-                  </Link>
-                  <Link to={amcUrl} className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors">
-                    AMC Contract
-                  </Link>
-                </div>
+<div className="space-y-2">
+  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
+    <Wrench className="h-3.5 w-3.5" /> 5. Services & Support
+  </div>
+  <Link 
+    to={`/products?category=${encodeURIComponent('MAINTENANCE SERVICE')}`}
+    className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
+  >
+    Maintenance Service
+  </Link>
+  <Link 
+    to={`/products?category=${encodeURIComponent('AMC CONTRACT')}`}
+    className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
+  >
+    AMC Contract
+  </Link>
+  <Link 
+    to={`/products?category=${encodeURIComponent('INSTALLATION')}`}
+    className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
+  >
+    Piping & Machine Installation
+  </Link>
+  <Link 
+    to={`/products?category=${encodeURIComponent('REPAIR JOB')}`}
+    className="block text-xs font-medium text-slate-700 hover:text-[#0B1F4D] hover:bg-slate-50 p-1.5 rounded transition-colors"
+  >
+    Overhauling & Repair Job
+  </Link>
+</div>
 
               </div>
             </div>
