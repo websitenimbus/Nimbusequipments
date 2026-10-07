@@ -15,6 +15,7 @@ import {
   ChevronDown,
   ChevronUp,
   TableProperties,
+  Gauge
 } from 'lucide-react';
 
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
@@ -114,12 +115,11 @@ function formatDescription(description) {
 }
 
 /* ---------------------------------------------------------
-   HELPER: PARSE SPECIFICATIONS TABLE DATA
+   HELPER: PARSE SPECIFICATIONS TO TABLE
    --------------------------------------------------------- */
 function parseSpecsToTable(bullets) {
   return bullets
     .map((b) => {
-      // Sample format: "NRS-01: 1.0 HP / 0.75 kW | FAD: 3.5 CFM | Working Pressure: 8 Bar (115 PSI) | Receiver: 45 Ltr | Speed: 900 RPM"
       if (!b.includes('|')) return null;
       const [modelPart, ...specParts] = b.split('|').map((s) => s.trim());
       const model = modelPart.includes(':') ? modelPart.split(':')[0].trim() : modelPart;
@@ -129,9 +129,13 @@ function parseSpecsToTable(bullets) {
       specParts.forEach((part) => {
         const lower = part.toLowerCase();
         if (lower.startsWith('fad:')) specsObj.fad = part.replace(/^fad:\s*/i, '');
-        else if (lower.startsWith('working pressure:')) specsObj.pressure = part.replace(/^working pressure:\s*/i, '');
-        else if (lower.startsWith('receiver:') || lower.startsWith('tank:')) specsObj.tank = part.replace(/^(receiver|tank):\s*/i, '');
-        else if (lower.startsWith('speed:')) specsObj.speed = part.replace(/^speed:\s*/i, '');
+        else if (lower.startsWith('working pressure:') || lower.startsWith('pressure:')) {
+          specsObj.pressure = part.replace(/^(working pressure|pressure):\s*/i, '');
+        } else if (lower.startsWith('receiver:') || lower.startsWith('tank:')) {
+          specsObj.tank = part.replace(/^(receiver|tank):\s*/i, '');
+        } else if (lower.startsWith('speed:') || lower.startsWith('rpm:')) {
+          specsObj.speed = part.replace(/^(speed|rpm):\s*/i, '');
+        }
       });
       return specsObj;
     })
@@ -139,7 +143,7 @@ function parseSpecsToTable(bullets) {
 }
 
 /* ---------------------------------------------------------
-   PRODUCT DETAIL PAGE
+   PRODUCT DETAIL PAGE COMPONENT
    --------------------------------------------------------- */
 
 export default function ProductDetailPage() {
@@ -220,7 +224,7 @@ export default function ProductDetailPage() {
 
       <SiteHeader />
 
-      {/* Smart Back Breadcrumb */}
+      {/* Smart Back Navigation */}
       <div className="border-b border-gray-200 bg-gray-50">
         <div className="mx-auto max-w-[90rem] px-5 py-4">
           <button
@@ -238,14 +242,14 @@ export default function ProductDetailPage() {
       <main className="mx-auto max-w-[90rem] px-5 py-10 sm:py-14">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
           
-          {/* Main Product Image (Untouched & Pure) */}
+          {/* Main Product Image */}
           <div className="lg:sticky lg:top-6 lg:self-start">
             <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-[#F7F8FA] p-6 shadow-sm sm:min-h-[480px] sm:p-10">
               {product.image_url ? (
                 <img
                   src={product.image_url}
                   alt={product.name}
-                  className="max-h-[500px] w-full object-contain"
+                  className="max-h-[500px] w-full object-contain transition duration-200 hover:scale-105"
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center text-gray-400">
@@ -256,7 +260,7 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-          {/* Product Info & Specs */}
+          {/* Product Meta & Details */}
           <div>
             {product.category && (
               <div className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#D4A017]">
@@ -295,7 +299,7 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* Structured Sections */}
+            {/* Description Sections */}
             {descriptionSections.length > 0 && (
               <div className="mt-8 border-t border-gray-200 pt-8">
                 <div className="mb-6">
@@ -338,10 +342,10 @@ export default function ProductDetailPage() {
                           )}
                         </div>
 
-                        {/* Section Content */}
+                        {/* Section Body */}
                         <div className="px-5 py-5 sm:px-6">
                           
-                          {/* Standard Paragraphs */}
+                          {/* Standard Intro Paragraph */}
                           {section.content.length > 0 && (
                             <div className="space-y-3">
                               {section.content.map((paragraph, paragraphIndex) => (
@@ -355,7 +359,7 @@ export default function ProductDetailPage() {
                             </div>
                           )}
 
-                          {/* 1. KEY FEATURES: MODERN METRIC CARDS */}
+                          {/* 1. KEY FEATURES (MODERN 2.5D METRIC CARDS WITH INDUSTRIAL BADGES) */}
                           {isKeyFeatures && section.bullets.length > 0 && (
                             <div className="grid gap-3.5 sm:grid-cols-2 mt-2">
                               {section.bullets.map((bullet, bIdx) => {
@@ -363,43 +367,65 @@ export default function ProductDetailPage() {
                                 const title = parts[0];
                                 const desc = parts.slice(1).join(':');
 
-                                // Dynamic Context Icons
+                                // Contextual icon & badge styling
                                 const lower = title.toLowerCase();
                                 let IconComponent = Cpu;
+                                let badgeBg = 'bg-amber-50 text-amber-700 border-amber-200';
                                 let iconColor = 'text-[#D4A017]';
+                                let tagText = 'ENGINEERED';
+
                                 if (lower.includes('motor') || lower.includes('copper')) {
                                   IconComponent = Zap;
-                                  iconColor = 'text-amber-500';
+                                  badgeBg = 'bg-amber-100 text-amber-900 border-amber-300';
+                                  iconColor = 'text-amber-600';
+                                  tagText = '100% COPPER';
                                 } else if (lower.includes('cylinder') || lower.includes('cast iron')) {
                                   IconComponent = ShieldCheck;
+                                  badgeBg = 'bg-blue-50 text-blue-800 border-blue-200';
                                   iconColor = 'text-blue-600';
+                                  tagText = 'CAST IRON';
                                 } else if (lower.includes('cool') || lower.includes('fin')) {
                                   IconComponent = Wind;
-                                  iconColor = 'text-sky-500';
+                                  badgeBg = 'bg-sky-50 text-sky-800 border-sky-200';
+                                  iconColor = 'text-sky-600';
+                                  tagText = 'AIR COOLED';
                                 } else if (lower.includes('lubricat') || lower.includes('oil')) {
                                   IconComponent = Droplet;
+                                  badgeBg = 'bg-emerald-50 text-emerald-800 border-emerald-200';
                                   iconColor = 'text-emerald-600';
+                                  tagText = 'LUBRICATED';
+                                } else if (lower.includes('rpm') || lower.includes('speed') || lower.includes('belt')) {
+                                  IconComponent = Gauge;
+                                  badgeBg = 'bg-slate-100 text-slate-800 border-slate-300';
+                                  iconColor = 'text-slate-700';
+                                  tagText = 'LOW RPM';
                                 }
 
                                 return (
                                   <div
                                     key={bIdx}
-                                    className="rounded-lg border border-slate-200 bg-slate-50/70 p-4 transition duration-200 hover:border-[#D4A017] hover:bg-white hover:shadow-sm"
+                                    className="group relative rounded-xl border border-slate-200 bg-slate-50/60 p-4 transition-all duration-200 hover:border-[#D4A017] hover:bg-white hover:shadow-sm flex flex-col justify-between"
                                   >
-                                    <div className="flex items-start gap-3">
-                                      <div className="rounded bg-white p-2 border border-slate-100 shadow-2xs shrink-0">
-                                        <IconComponent className={`h-4 w-4 ${iconColor}`} />
+                                    <div>
+                                      <div className="flex items-center justify-between gap-2 mb-2">
+                                        <div className="flex items-center gap-2.5">
+                                          <div className="rounded-lg bg-white p-2 border border-slate-200/80 shadow-2xs shrink-0 group-hover:scale-105 transition-transform">
+                                            <IconComponent className={`h-4 w-4 ${iconColor}`} />
+                                          </div>
+                                          <h4 className="text-xs font-bold uppercase tracking-wide text-[#0B1F4D]">
+                                            {title}
+                                          </h4>
+                                        </div>
+                                        <span className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded border tracking-wider shrink-0 ${badgeBg}`}>
+                                          {tagText}
+                                        </span>
                                       </div>
-                                      <div>
-                                        <h4 className="text-xs font-bold uppercase tracking-wide text-[#0B1F4D]">
-                                          {title}
-                                        </h4>
-                                        {desc && (
-                                          <p className="mt-1 text-xs leading-relaxed text-slate-600">
-                                            {desc.trim()}
-                                          </p>
-                                        )}
-                                      </div>
+
+                                      {desc && (
+                                        <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                                          {desc.trim()}
+                                        </p>
+                                      )}
                                     </div>
                                   </div>
                                 );
@@ -407,7 +433,7 @@ export default function ProductDetailPage() {
                             </div>
                           )}
 
-                          {/* 2. TECHNICAL SPECIFICATIONS: CLEAN COMPARISON TABLE */}
+                          {/* 2. TECHNICAL SPECIFICATIONS (RESPONSIVE COMPARISON TABLE) */}
                           {isTechnicalSpecs && (
                             tableRows.length > 0 ? (
                               isTableOpen && (
@@ -439,7 +465,6 @@ export default function ProductDetailPage() {
                                 </div>
                               )
                             ) : (
-                              /* Non-table fallback */
                               <ul className="space-y-3">
                                 {section.bullets.map((bullet, bIdx) => (
                                   <li key={bIdx} className="flex items-start gap-3 text-sm text-gray-600">
@@ -451,7 +476,7 @@ export default function ProductDetailPage() {
                             )
                           )}
 
-                          {/* 3. APPLICATIONS & OTHER SECTIONS (CLEAN BULLETS) */}
+                          {/* 3. APPLICATIONS & OTHER SECTIONS */}
                           {!isKeyFeatures && !isTechnicalSpecs && section.bullets.length > 0 && (
                             <ul className={section.content.length > 0 ? 'mt-4 space-y-3' : 'space-y-3'}>
                               {section.bullets.map((bullet, bulletIndex) => (
