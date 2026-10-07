@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Wrench, ShieldCheck, CheckCircle2, PhoneCall, Clock } from 'lucide-react';
+import { Wrench, ShieldCheck, CheckCircle2, PhoneCall, Clock, Package } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
 import RfqForm from '@/components/RfqForm';
 import productsData from '@/data/products.json';
 
-const SERVICE_CATS = ['MAINTENANCE SERVICE', 'AMC CONTRACT', 'INSTALLATION', 'REPAIR JOB'];
+const SERVICE_TABS = [
+    { label: 'ALL SERVICES', value: 'ALL' },
+    { label: 'MAINTENANCE SERVICE', value: 'MAINTENANCE SERVICE' },
+    { label: 'AMC CONTRACT', value: 'AMC CONTRACT' },
+    { label: 'INSTALLATION', value: 'INSTALLATION' },
+    { label: 'REPAIR JOB', value: 'REPAIR JOB' },
+];
 
 export default function ServicesPage() {
-    const serviceItems = (productsData || []).filter((p) =>
-        SERVICE_CATS.includes(p.category?.trim().toUpperCase())
+    const [activeTab, setActiveTab] = useState('ALL');
+
+    const allServices = (productsData || []).filter((p) =>
+        SERVICE_TABS.some((t) => t.value !== 'ALL' && t.value === p.category?.trim().toUpperCase())
     );
+
+    const filtered = allServices.filter((p) => {
+        if (activeTab === 'ALL') return true;
+        return p.category?.trim().toUpperCase() === activeTab;
+    });
 
     return (
         <div className="bg-[#F8FAFC] min-h-screen">
@@ -26,7 +39,7 @@ export default function ServicesPage() {
 
             <SiteHeader />
 
-            {/* Header */}
+            {/* Header Section */}
             <section className="bg-[#0B1F4D] text-white py-14 border-b-4 border-[#D4A017]">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="max-w-3xl">
@@ -38,27 +51,26 @@ export default function ServicesPage() {
                             Maintenance, AMC & Turnkey Services
                         </h1>
                         <p className="mt-4 text-sm sm:text-base text-white/75 leading-relaxed">
-                            Comprehensive maintenance contracts, emergency breakdown support, screw airend overhauling, and certified plant piping installations executed by certified service technicians.
+                            Comprehensive maintenance contracts, emergency breakdown support, screw airend overhauling, and certified plant piping installations executed by certified technicians.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 max-w-4xl">
-                        <div className="bg-white/5 border border-white/10 rounded p-3 text-center">
-                            <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Service Range</div>
-                            <div className="text-sm font-semibold text-white mt-0.5">AMC & On-Demand</div>
-                        </div>
-                        <div className="bg-white/5 border border-white/10 rounded p-3 text-center">
-                            <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Response Time</div>
-                            <div className="text-sm font-semibold text-white mt-0.5">Under 24 Hours NCR</div>
-                        </div>
-                        <div className="bg-white/5 border border-white/10 rounded p-3 text-center">
-                            <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Airend Overhauls</div>
-                            <div className="text-sm font-semibold text-white mt-0.5">Precision Micron Specs</div>
-                        </div>
-                        <div className="bg-white/5 border border-white/10 rounded p-3 text-center">
-                            <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Turnkey Erection</div>
-                            <div className="text-sm font-semibold text-white mt-0.5">Complete Machine Setup</div>
-                        </div>
+                    {/* Uniform Clickable Filter Buttons */}
+                    <div className="mt-8 flex flex-wrap gap-2">
+                        {SERVICE_TABS.map((tab) => (
+                            <button
+                                key={tab.value}
+                                type="button"
+                                onClick={() => setActiveTab(tab.value)}
+                                className={`px-4 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition ${
+                                    activeTab === tab.value
+                                        ? 'bg-[#D4A017] text-[#0B1F4D] shadow'
+                                        : 'bg-white/10 text-white hover:bg-white/20'
+                                }`}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -71,40 +83,48 @@ export default function ServicesPage() {
                             Service Verticals & Offerings
                         </h2>
                         <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                            Browse specific maintenance services or book a plant audit below.
+                            Click any category above to filter or request on-site support.
                         </p>
                     </div>
 
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        {serviceItems.map((p) => (
-                            <Link key={p.id} to={`/products/${p.id}`} className="group block h-full">
-                                <article className="flex h-full flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#D4A017]/80 hover:shadow-lg">
-                                    <div className="mb-4 h-36 w-full overflow-hidden rounded bg-slate-50 flex items-center justify-center p-2">
-                                        {p.image_url ? (
-                                            <img src={p.image_url} alt={p.name} loading="lazy" className="max-h-full max-w-full object-contain transition duration-200 group-hover:scale-105" />
-                                        ) : (
-                                            <Wrench className="h-10 w-10 text-[#123D8D]" strokeWidth={1.2} />
-                                        )}
-                                    </div>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#D4A017]">
-                                        {p.category}
-                                    </span>
-                                    <h3 className="mt-1 text-sm font-bold uppercase leading-snug text-[#0B1F4D]">
-                                        {p.name}
-                                    </h3>
-                                    <p className="mt-2 flex-1 text-xs text-slate-600 line-clamp-3">
-                                        {p.description?.replace(/^#{1,6}\s*/gm, '').replace(/\*\*/g, '').replace(/\*/g, '').trim()}
-                                    </p>
-                                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                                        <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                                            On-Site Support
+                    {filtered.length === 0 ? (
+                        <div className="rounded-sm border border-dashed border-[#0B1F4D]/20 p-14 text-center bg-white">
+                            <Package className="mx-auto h-10 w-10 text-[#D4A017]" strokeWidth={1.3} />
+                            <p className="mt-4 text-lg font-bold uppercase text-[#0B1F4D]">No listed packages in this service category</p>
+                            <p className="mt-1 text-sm text-slate-500">Contact us directly for custom service scheduling.</p>
+                        </div>
+                    ) : (
+                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                            {filtered.map((p) => (
+                                <Link key={p.id} to={`/products/${p.id}`} className="group block h-full">
+                                    <article className="flex h-full flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#D4A017]/80 hover:shadow-lg">
+                                        <div className="mb-4 h-36 w-full overflow-hidden rounded bg-slate-50 flex items-center justify-center p-2">
+                                            {p.image_url ? (
+                                                <img src={p.image_url} alt={p.name} loading="lazy" className="max-h-full max-w-full object-contain transition duration-200 group-hover:scale-105" />
+                                            ) : (
+                                                <Wrench className="h-10 w-10 text-[#123D8D]" strokeWidth={1.2} />
+                                            )}
+                                        </div>
+                                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#D4A017]">
+                                            {p.category}
                                         </span>
-                                        <span className="font-bold text-[#0B1F4D] group-hover:text-[#D4A017]">Details →</span>
-                                    </div>
-                                </article>
-                            </Link>
-                        ))}
-                    </div>
+                                        <h3 className="mt-1 text-sm font-bold uppercase leading-snug text-[#0B1F4D]">
+                                            {p.name}
+                                        </h3>
+                                        <p className="mt-2 flex-1 text-xs text-slate-600 line-clamp-3">
+                                            {p.description?.replace(/^#{1,6}\s*/gm, '').replace(/\*\*/g, '').replace(/\*/g, '').trim()}
+                                        </p>
+                                        <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                                            <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                                                On-Site Support
+                                            </span>
+                                            <span className="font-bold text-[#0B1F4D] group-hover:text-[#D4A017]">Details →</span>
+                                        </div>
+                                    </article>
+                                </Link>
+                            ))}
+                        </div>
+                    )}
 
                     {/* Features Banner */}
                     <div className="mt-14 bg-white rounded-lg border border-slate-200 p-8 grid sm:grid-cols-3 gap-6 shadow-sm">
