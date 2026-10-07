@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import {
@@ -7,6 +7,14 @@ import {
   Phone,
   Package,
   CheckCircle2,
+  Cpu,
+  ShieldCheck,
+  Zap,
+  Wind,
+  Droplet,
+  ChevronDown,
+  ChevronUp,
+  TableProperties,
 } from 'lucide-react';
 
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
@@ -106,17 +114,41 @@ function formatDescription(description) {
 }
 
 /* ---------------------------------------------------------
+   HELPER: PARSE SPECIFICATIONS TABLE DATA
+   --------------------------------------------------------- */
+function parseSpecsToTable(bullets) {
+  return bullets
+    .map((b) => {
+      // Sample format: "NRS-01: 1.0 HP / 0.75 kW | FAD: 3.5 CFM | Working Pressure: 8 Bar (115 PSI) | Receiver: 45 Ltr | Speed: 900 RPM"
+      if (!b.includes('|')) return null;
+      const [modelPart, ...specParts] = b.split('|').map((s) => s.trim());
+      const model = modelPart.includes(':') ? modelPart.split(':')[0].trim() : modelPart;
+      const hp = modelPart.includes(':') ? modelPart.split(':')[1].trim() : '-';
+
+      const specsObj = { model, hp };
+      specParts.forEach((part) => {
+        const lower = part.toLowerCase();
+        if (lower.startsWith('fad:')) specsObj.fad = part.replace(/^fad:\s*/i, '');
+        else if (lower.startsWith('working pressure:')) specsObj.pressure = part.replace(/^working pressure:\s*/i, '');
+        else if (lower.startsWith('receiver:') || lower.startsWith('tank:')) specsObj.tank = part.replace(/^(receiver|tank):\s*/i, '');
+        else if (lower.startsWith('speed:')) specsObj.speed = part.replace(/^speed:\s*/i, '');
+      });
+      return specsObj;
+    })
+    .filter(Boolean);
+}
+
+/* ---------------------------------------------------------
    PRODUCT DETAIL PAGE
    --------------------------------------------------------- */
 
 export default function ProductDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isTableOpen, setIsTableOpen] = useState(true);
 
-  // JSON se direct matching
   const product = (productsData || []).find((p) => String(p.id) === String(id));
 
-  // Category ke base par dynamic back link aur label decide karna
   const getCategoryFallback = () => {
     const cat = (product?.category || '').toUpperCase();
     if (cat.includes('RECIPROCATING') || cat.includes('EQUIPMENT')) {
@@ -147,26 +179,14 @@ export default function ProductDetailPage() {
     }
   };
 
-  /* -------------------------------------------------------
-     PRODUCT NOT FOUND
-     ------------------------------------------------------- */
-
   if (!product) {
     return (
       <div className="min-h-screen bg-white">
         <SiteHeader />
-
         <div className="flex min-h-[60vh] flex-col items-center justify-center px-5 text-center">
           <Package className="mb-4 h-14 w-14 text-gray-400" />
-
-          <h1 className="text-2xl font-bold text-[#0B1F4D]">
-            Product Not Found
-          </h1>
-
-          <p className="mt-2 text-gray-600">
-            The product you are looking for is unavailable.
-          </p>
-
+          <h1 className="text-2xl font-bold text-[#0B1F4D]">Product Not Found</h1>
+          <p className="mt-2 text-gray-600">The product you are looking for is unavailable.</p>
           <Link
             to="/products"
             className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#0B1F4D] px-6 py-3 font-semibold text-white transition hover:bg-[#162d62]"
@@ -175,25 +195,15 @@ export default function ProductDetailPage() {
             Back to Products
           </Link>
         </div>
-
         <SiteFooter />
       </div>
     );
   }
 
-  /* -------------------------------------------------------
-     WHATSAPP & CALL
-     ------------------------------------------------------- */
-
   const whatsappNumber = '919289425600';
-
   const whatsappMessage = encodeURIComponent(
     `Hello Nimbus Equipments, I am interested in this product:\n\n${product.name}\n\nPlease share price, availability and details.`
   );
-
-  /* -------------------------------------------------------
-     DESCRIPTION SECTIONS
-     ------------------------------------------------------- */
 
   const descriptionSections = formatDescription(product.description);
   const fallbackInfo = getCategoryFallback();
@@ -202,7 +212,6 @@ export default function ProductDetailPage() {
     <div className="min-h-screen bg-white">
       <Helmet>
         <title>{product.name} | Nimbus Equipments</title>
-
         <meta
           name="description"
           content={`${product.name} from Nimbus Equipments. Contact us for price, availability and compressor compatibility.`}
@@ -211,10 +220,7 @@ export default function ProductDetailPage() {
 
       <SiteHeader />
 
-      {/* ---------------------------------------------------
-          SMART BREADCRUMB BACK BUTTON
-      --------------------------------------------------- */}
-
+      {/* Smart Back Breadcrumb */}
       <div className="border-b border-gray-200 bg-gray-50">
         <div className="mx-auto max-w-[90rem] px-5 py-4">
           <button
@@ -228,21 +234,13 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* ---------------------------------------------------
-          PRODUCT MAIN AREA
-      --------------------------------------------------- */}
-
+      {/* Product Main Container */}
       <main className="mx-auto max-w-[90rem] px-5 py-10 sm:py-14">
-
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-
-          {/* ------------------------------------------------
-              PRODUCT IMAGE
-          ------------------------------------------------ */}
-
+          
+          {/* Main Product Image (Untouched & Pure) */}
           <div className="lg:sticky lg:top-6 lg:self-start">
             <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-[#F7F8FA] p-6 shadow-sm sm:min-h-[480px] sm:p-10">
-
               {product.image_url ? (
                 <img
                   src={product.image_url}
@@ -252,182 +250,246 @@ export default function ProductDetailPage() {
               ) : (
                 <div className="flex flex-col items-center justify-center text-gray-400">
                   <Package className="h-24 w-24" />
-
-                  <p className="mt-3 text-sm">
-                    Product Image
-                  </p>
+                  <p className="mt-3 text-sm">Product Image</p>
                 </div>
               )}
-
             </div>
           </div>
 
-          {/* ------------------------------------------------
-              PRODUCT INFORMATION
-          ------------------------------------------------ */}
-
+          {/* Product Info & Specs */}
           <div>
-
-            {/* Category */}
-
             {product.category && (
               <div className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#D4A017]">
                 {product.category}
               </div>
             )}
 
-            {/* Product Name */}
-
             <h1 className="font-display text-3xl font-bold uppercase leading-tight text-[#0B1F4D] sm:text-4xl lg:text-5xl">
               {product.name}
             </h1>
 
-            {/* Brand */}
-
             {product.brand && (
               <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-gray-600">
                 <span>Brand:</span>
-
-                <span className="font-semibold text-[#0B1F4D]">
-                  {product.brand}
-                </span>
+                <span className="font-semibold text-[#0B1F4D]">{product.brand}</span>
               </div>
             )}
 
-            {/* Part Number */}
-
             <div className="mt-2 text-sm text-gray-600">
               Part Number:{' '}
-              <span className="font-semibold text-[#0B1F4D]">
-                {product.part_number || '-'}
-              </span>
+              <span className="font-semibold text-[#0B1F4D]">{product.part_number || '-'}</span>
             </div>
-
-            {/* Stock / Delivery */}
 
             {(product.stock_status || product.delivery_time) && (
               <div className="mt-5 flex flex-wrap gap-3">
-
                 {product.stock_status && (
                   <div className="rounded-full border border-green-200 bg-green-50 px-4 py-2 text-xs font-semibold text-green-700">
                     {product.stock_status}
                   </div>
                 )}
-
                 {product.delivery_time && (
                   <div className="rounded-full border border-gray-200 bg-gray-50 px-4 py-2 text-xs font-semibold text-gray-600">
                     Delivery: {product.delivery_time}
                   </div>
                 )}
-
               </div>
             )}
 
-            {/* ------------------------------------------------
-                DESCRIPTION SECTIONS
-            ------------------------------------------------ */}
-
+            {/* Structured Sections */}
             {descriptionSections.length > 0 && (
               <div className="mt-8 border-t border-gray-200 pt-8">
-
                 <div className="mb-6">
                   <div className="mb-3 h-1 w-12 bg-[#D4A017]" />
-
                   <h2 className="font-display text-2xl font-bold uppercase text-[#0B1F4D]">
                     Product Description
                   </h2>
                 </div>
 
                 <div className="space-y-7">
+                  {descriptionSections.map((section, index) => {
+                    const isKeyFeatures = section.title === 'Key Features';
+                    const isTechnicalSpecs = section.title === 'Technical Specifications';
+                    const tableRows = isTechnicalSpecs ? parseSpecsToTable(section.bullets) : [];
 
-                  {descriptionSections.map((section, index) => (
-                    <section
-                      key={`${section.title}-${index}`}
-                      className="rounded-xl border border-gray-100 bg-white"
-                    >
+                    return (
+                      <section
+                        key={`${section.title}-${index}`}
+                        className="rounded-xl border border-gray-100 bg-white shadow-xs"
+                      >
+                        {/* Section Header */}
+                        <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4 sm:px-6">
+                          <h3 className="font-display text-base font-bold uppercase tracking-wide text-[#0B1F4D]">
+                            {section.title}
+                          </h3>
 
-                      {/* Section Heading */}
+                          {isTechnicalSpecs && tableRows.length > 0 && (
+                            <button
+                              type="button"
+                              onClick={() => setIsTableOpen(!isTableOpen)}
+                              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] hover:text-[#D4A017] transition cursor-pointer"
+                            >
+                              <TableProperties className="h-4 w-4 text-[#D4A017]" />
+                              {isTableOpen ? (
+                                <><span>Hide Table</span> <ChevronUp className="h-4 w-4" /></>
+                              ) : (
+                                <><span>View Table</span> <ChevronDown className="h-4 w-4" /></>
+                              )}
+                            </button>
+                          )}
+                        </div>
 
-                      <div className="border-b border-gray-100 px-5 py-4 sm:px-6">
-                        <h3 className="font-display text-base font-bold uppercase tracking-wide text-[#0B1F4D]">
-                          {section.title}
-                        </h3>
-                      </div>
+                        {/* Section Content */}
+                        <div className="px-5 py-5 sm:px-6">
+                          
+                          {/* Standard Paragraphs */}
+                          {section.content.length > 0 && (
+                            <div className="space-y-3">
+                              {section.content.map((paragraph, paragraphIndex) => (
+                                <p
+                                  key={paragraphIndex}
+                                  className="text-sm leading-7 text-gray-600 sm:text-base"
+                                >
+                                  {paragraph}
+                                </p>
+                              ))}
+                            </div>
+                          )}
 
-                      {/* Section Content */}
+                          {/* 1. KEY FEATURES: MODERN METRIC CARDS */}
+                          {isKeyFeatures && section.bullets.length > 0 && (
+                            <div className="grid gap-3.5 sm:grid-cols-2 mt-2">
+                              {section.bullets.map((bullet, bIdx) => {
+                                const parts = bullet.split(':');
+                                const title = parts[0];
+                                const desc = parts.slice(1).join(':');
 
-                      <div className="px-5 py-5 sm:px-6">
+                                // Dynamic Context Icons
+                                const lower = title.toLowerCase();
+                                let IconComponent = Cpu;
+                                let iconColor = 'text-[#D4A017]';
+                                if (lower.includes('motor') || lower.includes('copper')) {
+                                  IconComponent = Zap;
+                                  iconColor = 'text-amber-500';
+                                } else if (lower.includes('cylinder') || lower.includes('cast iron')) {
+                                  IconComponent = ShieldCheck;
+                                  iconColor = 'text-blue-600';
+                                } else if (lower.includes('cool') || lower.includes('fin')) {
+                                  IconComponent = Wind;
+                                  iconColor = 'text-sky-500';
+                                } else if (lower.includes('lubricat') || lower.includes('oil')) {
+                                  IconComponent = Droplet;
+                                  iconColor = 'text-emerald-600';
+                                }
 
-                        {section.content.length > 0 && (
-                          <div className="space-y-3">
-                            {section.content.map((paragraph, paragraphIndex) => (
-                              <p
-                                key={paragraphIndex}
-                                className="text-sm leading-7 text-gray-600 sm:text-base"
-                              >
-                                {paragraph}
-                              </p>
-                            ))}
-                          </div>
-                        )}
+                                return (
+                                  <div
+                                    key={bIdx}
+                                    className="rounded-lg border border-slate-200 bg-slate-50/70 p-4 transition duration-200 hover:border-[#D4A017] hover:bg-white hover:shadow-sm"
+                                  >
+                                    <div className="flex items-start gap-3">
+                                      <div className="rounded bg-white p-2 border border-slate-100 shadow-2xs shrink-0">
+                                        <IconComponent className={`h-4 w-4 ${iconColor}`} />
+                                      </div>
+                                      <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-wide text-[#0B1F4D]">
+                                          {title}
+                                        </h4>
+                                        {desc && (
+                                          <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                                            {desc.trim()}
+                                          </p>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
 
-                        {/* Bullet Points */}
+                          {/* 2. TECHNICAL SPECIFICATIONS: CLEAN COMPARISON TABLE */}
+                          {isTechnicalSpecs && (
+                            tableRows.length > 0 ? (
+                              isTableOpen && (
+                                <div className="mt-2 overflow-x-auto rounded-lg border border-slate-200">
+                                  <table className="w-full text-left text-xs">
+                                    <thead className="bg-[#0B1F4D] text-white uppercase text-[11px] tracking-wider">
+                                      <tr>
+                                        <th className="py-3 px-3.5">Model</th>
+                                        <th className="py-3 px-3.5">Power</th>
+                                        <th className="py-3 px-3.5">Flow (FAD)</th>
+                                        <th className="py-3 px-3.5">Working Pressure</th>
+                                        <th className="py-3 px-3.5">Receiver</th>
+                                        <th className="py-3 px-3.5">Speed</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-slate-100 bg-white text-slate-700">
+                                      {tableRows.map((row, rIdx) => (
+                                        <tr key={rIdx} className="hover:bg-slate-50 transition">
+                                          <td className="py-3 px-3.5 font-bold text-[#0B1F4D]">{row.model}</td>
+                                          <td className="py-3 px-3.5 font-medium">{row.hp}</td>
+                                          <td className="py-3 px-3.5 font-bold text-emerald-700">{row.fad || '-'}</td>
+                                          <td className="py-3 px-3.5">{row.pressure || '-'}</td>
+                                          <td className="py-3 px-3.5">{row.tank || '-'}</td>
+                                          <td className="py-3 px-3.5 text-slate-500">{row.speed || '-'}</td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                </div>
+                              )
+                            ) : (
+                              /* Non-table fallback */
+                              <ul className="space-y-3">
+                                {section.bullets.map((bullet, bIdx) => (
+                                  <li key={bIdx} className="flex items-start gap-3 text-sm text-gray-600">
+                                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#D4A017]" />
+                                    <span>{bullet}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )
+                          )}
 
-                        {section.bullets.length > 0 && (
-                          <ul
-                            className={
-                              section.content.length > 0
-                                ? 'mt-4 space-y-3'
-                                : 'space-y-3'
-                            }
-                          >
-                            {section.bullets.map((bullet, bulletIndex) => (
-                              <li
-                                key={bulletIndex}
-                                className="flex items-start gap-3 text-sm leading-6 text-gray-600 sm:text-base"
-                              >
-                                <CheckCircle2
-                                  className="mt-1 h-4 w-4 shrink-0 text-[#D4A017]"
-                                  strokeWidth={2}
-                                />
+                          {/* 3. APPLICATIONS & OTHER SECTIONS (CLEAN BULLETS) */}
+                          {!isKeyFeatures && !isTechnicalSpecs && section.bullets.length > 0 && (
+                            <ul className={section.content.length > 0 ? 'mt-4 space-y-3' : 'space-y-3'}>
+                              {section.bullets.map((bullet, bulletIndex) => (
+                                <li
+                                  key={bulletIndex}
+                                  className="flex items-start gap-3 text-sm leading-6 text-gray-600 sm:text-base"
+                                >
+                                  <CheckCircle2
+                                    className="mt-1 h-4 w-4 shrink-0 text-[#D4A017]"
+                                    strokeWidth={2}
+                                  />
+                                  <span>{bullet}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
 
-                                <span>{bullet}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-
-                      </div>
-                    </section>
-                  ))}
-
+                        </div>
+                      </section>
+                    );
+                  })}
                 </div>
               </div>
             )}
 
-            {/* ------------------------------------------------
-                ENQUIRY BOX
-            ------------------------------------------------ */}
-
+            {/* Bottom Enquiry Box */}
             <div className="mt-10 rounded-2xl border border-[#D4A017]/30 bg-[#F8F9FB] p-6 sm:p-7">
-
               <div className="mb-5">
                 <div className="mb-3 h-1 w-12 bg-[#D4A017]" />
-
                 <h2 className="font-display text-xl font-bold uppercase text-[#0B1F4D]">
                   Need Price & Availability?
                 </h2>
-
                 <p className="mt-2 text-sm leading-6 text-gray-600">
-                  Contact Nimbus Equipments for current price,
-                  stock availability and compressor compatibility.
+                  Contact Nimbus Equipments for current price, stock availability and compressor compatibility.
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
-
-                {/* WhatsApp */}
-
                 <a
                   href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
                   target="_blank"
@@ -435,21 +497,16 @@ export default function ProductDetailPage() {
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-6 py-3 font-semibold text-white transition hover:opacity-90"
                 >
                   <MessageCircle className="h-5 w-5" />
-
                   WhatsApp Enquiry
                 </a>
-
-                {/* Phone */}
 
                 <a
                   href="tel:+919289425600"
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0B1F4D] px-6 py-3 font-semibold text-white transition hover:bg-[#162d62]"
                 >
                   <Phone className="h-5 w-5" />
-
                   Call Now
                 </a>
-
               </div>
             </div>
 
