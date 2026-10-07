@@ -57,18 +57,30 @@ export default function RecipCompressorsPage() {
 
       <SiteHeader />
 
-      {/* Navy Blue Hero Header (Consistent with all verticals) */}
-      <section className="bg-[#0B1F4D] text-white py-14 border-b-4 border-[#D4A017]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Upgraded Industrial Banner Header with Subtle Background Overlay */}
+      <section className="relative overflow-hidden bg-[#0B1F4D] text-white py-16 sm:py-20 border-b-4 border-[#D4A017]">
+        {/* Background Banner Image with Opacity & Gradient */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/products/recip-two-stage.png"
+            alt="Industrial Compressor Background"
+            className="h-full w-full object-cover object-right-bottom opacity-15 filter blur-[0.5px]"
+          />
+          {/* Dark Navy Blue Gradient Overlay taaki text 100% clear dikhe */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/90 to-transparent" />
+        </div>
+
+        {/* Content Container (Left Side Clear Text) */}
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-xs rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4 border border-white/10">
               <Package className="h-3.5 w-3.5" />
               Heavy Machinery Division
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white drop-shadow-xs">
               Reciprocating Air Compressors
             </h1>
-            <p className="mt-4 text-sm sm:text-base text-white/75 leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-white/80 leading-relaxed font-normal max-w-2xl">
               Precision-machined cast iron reciprocating technology engineered for automotive garages, industrial fabrication, PET blow moulding, and continuous plant utilities.
             </p>
           </div>
