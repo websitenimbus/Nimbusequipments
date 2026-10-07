@@ -8,23 +8,45 @@ import RfqForm from '@/components/RfqForm';
 import productsData from '@/data/products.json';
 
 const ACCESSORY_TABS = [
-    { label: 'ALL ACCESSORIES', keyword: 'ALL' },
-    { label: 'AIR DRYERS', keyword: 'dryer' },
-    { label: 'RECEIVER TANKS', keyword: 'tank' },
-    { label: 'LINE FILTERS & SEPARATORS', keyword: 'filter' },
+    { label: 'ALL ACCESSORIES', id: 'ALL' },
+    { label: 'AIR DRYERS', id: 'DRYERS' },
+    { label: 'RECEIVER TANKS', id: 'TANKS' },
+    { label: 'FILTERS & SEPARATORS', id: 'FILTERS_SEPARATORS' },
+    { label: 'DRAIN VALVES', id: 'DRAIN_VALVES' },
 ];
 
 export default function AccessoriesPage() {
     const [activeTab, setActiveTab] = useState('ALL');
 
+    // Sare accessories fetch karein
     const allAccessories = (productsData || []).filter(
         (p) => p.category?.trim().toUpperCase() === 'ACCESSORIES'
     );
 
+    // Exact name matching based on image products
     const filtered = allAccessories.filter((p) => {
         if (activeTab === 'ALL') return true;
-        const searchTarget = `${p.name} ${p.description || ''}`.toLowerCase();
-        return searchTarget.includes(activeTab);
+
+        const name = (p.name || '').toUpperCase();
+
+        if (activeTab === 'DRYERS') {
+            return name.includes('DRYER');
+        }
+        if (activeTab === 'TANKS') {
+            return name.includes('TANK') || name.includes('RECEIVER');
+        }
+        if (activeTab === 'FILTERS_SEPARATORS') {
+            return (
+                name.includes('LINE FILTER') ||
+                name.includes('FRL') ||
+                name.includes('SEPARATOR')
+            );
+        }
+        if (activeTab === 'DRAIN_VALVES') {
+            return name.includes('DRAIN') || name.includes('VALVE');
+        }
+
+        return true;
     });
 
     return (
@@ -33,7 +55,7 @@ export default function AccessoriesPage() {
                 <title>Compressed Air Accessories & Air Treatment | Nimbus Equipments</title>
                 <meta
                     name="description"
-                    content="Industrial air dryers, vertical air receivers, moisture separators, and inline filtration accessories by Nimbus Equipments."
+                    content="Industrial air dryers, vertical air receivers, moisture separators, FRL units, line filters and auto drain valves by Nimbus Equipments."
                 />
             </Helmet>
 
@@ -51,7 +73,7 @@ export default function AccessoriesPage() {
                             Air Compressor Accessories
                         </h1>
                         <p className="mt-4 text-sm sm:text-base text-white/75 leading-relaxed">
-                            Moisture-free, clean and reliable compressed air utilities. Complete range of refrigerated air dryers, certified air receiver tanks, and multi-stage precision line filters.
+                            Moisture-free, clean and reliable compressed air utilities. Complete range of refrigerated air dryers, certified air receiver tanks, precision line filters, FRL units, and auto drain valves.
                         </p>
                     </div>
 
@@ -59,11 +81,11 @@ export default function AccessoriesPage() {
                     <div className="mt-8 flex flex-wrap gap-2">
                         {ACCESSORY_TABS.map((tab) => (
                             <button
-                                key={tab.keyword}
+                                key={tab.id}
                                 type="button"
-                                onClick={() => setActiveTab(tab.keyword)}
+                                onClick={() => setActiveTab(tab.id)}
                                 className={`px-4 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition ${
-                                    activeTab === tab.keyword
+                                    activeTab === tab.id
                                         ? 'bg-[#D4A017] text-[#0B1F4D] shadow'
                                         : 'bg-white/10 text-white hover:bg-white/20'
                                 }`}
@@ -96,7 +118,7 @@ export default function AccessoriesPage() {
                         <div className="rounded-sm border border-dashed border-[#0B1F4D]/20 p-14 text-center bg-white">
                             <Package className="mx-auto h-10 w-10 text-[#D4A017]" strokeWidth={1.3} />
                             <p className="mt-4 text-lg font-bold uppercase text-[#0B1F4D]">No items found in this section</p>
-                            <p className="mt-1 text-sm text-slate-500">Contact us with your tank volume or air dryer CFM requirement.</p>
+                            <p className="mt-1 text-sm text-slate-500">Contact us directly with your specific accessory requirement.</p>
                         </div>
                     ) : (
                         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -148,7 +170,7 @@ export default function AccessoriesPage() {
                             <CheckCircle2 className="h-6 w-6 text-emerald-600 shrink-0 mt-0.5" />
                             <div>
                                 <h4 className="text-sm font-bold uppercase text-[#0B1F4D]">Zero Moisture Output</h4>
-                                <p className="text-xs text-slate-500 mt-1">Refrigerated air dryers ensure +3°C PDP to protect CNC machines, spray guns, and laser cutters.</p>
+                                <p className="text-xs text-slate-500 mt-1">Refrigerated air dryers and auto drain valves ensure condensate-free pneumatic lines.</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
