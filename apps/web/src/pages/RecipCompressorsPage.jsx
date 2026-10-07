@@ -43,6 +43,8 @@ export default function RecipCompressorsPage() {
 
         {/* Main Content Card */}
         <div className="bg-white rounded-sm shadow-md border border-slate-200 overflow-hidden mb-12">
+          
+          {/* Header & Download Action */}
           <div className="p-6 sm:p-8 border-b border-slate-100">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
@@ -65,36 +67,56 @@ export default function RecipCompressorsPage() {
             <p className="text-sm text-slate-600 mt-4">{selected.description}</p>
           </div>
 
-          {/* Model Specification Table */}
-          <div className="overflow-x-auto p-6 sm:p-8">
-            <h3 className="text-base font-bold uppercase text-[#0B1F4D] mb-4">Technical Specifications Table</h3>
-            <table className="w-full text-left text-sm border-collapse border border-slate-200">
-              <thead>
-                <tr className="bg-[#0B1F4D] text-white text-xs uppercase font-semibold">
-                  <th className="p-3 border border-slate-300">Model</th>
-                  <th className="p-3 border border-slate-300">Motor Power</th>
-                  <th className="p-3 border border-slate-300">FAD Delivery</th>
-                  <th className="p-3 border border-slate-300">Working Pressure</th>
-                  <th className="p-3 border border-slate-300">Receiver Tank</th>
-                  <th className="p-3 border border-slate-300">Pump RPM</th>
-                </tr>
-              </thead>
-              <tbody>
-                {selected.models.map((row, idx) => (
-                  <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
-                    <td className="p-3 border border-slate-200 font-bold text-[#0B1F4D]">{row.model}</td>
-                    <td className="p-3 border border-slate-200 text-slate-700">{row.motorPower}</td>
-                    <td className="p-3 border border-slate-200 font-semibold text-slate-800">{row.fad}</td>
-                    <td className="p-3 border border-slate-200 text-slate-700">{row.pressure}</td>
-                    <td className="p-3 border border-slate-200 text-slate-700">{row.tank}</td>
-                    <td className="p-3 border border-slate-200 text-slate-600">{row.rpm}</td>
+          {/* Product Image & Specs Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-slate-200 bg-white">
+            
+            {/* Product Image Section */}
+            <div className="lg:col-span-4 p-6 sm:p-8 bg-slate-50/50 flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-slate-200">
+              <div className="w-full flex items-center justify-center p-4 bg-white rounded border border-slate-200/80 shadow-sm min-h-[280px]">
+                <img
+                  src={selected.image}
+                  alt={selected.title}
+                  className="max-h-72 w-full object-contain transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <span className="text-xs text-slate-400 mt-3 font-medium uppercase tracking-wider text-center">
+                Heavy-Duty Industrial Base / Tank Mounted
+              </span>
+            </div>
+
+            {/* Model Specification Table */}
+            <div className="lg:col-span-8 p-6 sm:p-8 overflow-x-auto">
+              <h3 className="text-base font-bold uppercase text-[#0B1F4D] mb-4">Technical Specifications Table</h3>
+              <table className="w-full text-left text-sm border-collapse border border-slate-200">
+                <thead>
+                  <tr className="bg-[#0B1F4D] text-white text-xs uppercase font-semibold">
+                    <th className="p-3 border border-slate-300">Model</th>
+                    <th className="p-3 border border-slate-300">Motor Power</th>
+                    <th className="p-3 border border-slate-300">FAD Delivery</th>
+                    <th className="p-3 border border-slate-300">Working Pressure</th>
+                    <th className="p-3 border border-slate-300">Receiver Tank</th>
+                    <th className="p-3 border border-slate-300">Pump RPM</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <p className="text-xs text-slate-400 mt-2 italic">
-              * Due to continuous product development, specifications and dimensions are subject to change without prior notice.
-            </p>
+                </thead>
+                <tbody>
+                  {selected.models.map((row, idx) => (
+                    <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+                      <td className="p-3 border border-slate-200 font-bold text-[#0B1F4D]">{row.model}</td>
+                      <td className="p-3 border border-slate-200 text-slate-700">{row.motorPower}</td>
+                      <td className="p-3 border border-slate-200 font-semibold text-slate-800">{row.fad}</td>
+                      <td className="p-3 border border-slate-200 text-slate-700">{row.pressure}</td>
+                      <td className="p-3 border border-slate-200 text-slate-700">{row.tank}</td>
+                      <td className="p-3 border border-slate-200 text-slate-600">{row.rpm}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="text-xs text-slate-400 mt-3 italic">
+                * Due to continuous product development, specifications and dimensions are subject to change without prior notice.
+              </p>
+            </div>
+
           </div>
 
           {/* Features & Applications */}
@@ -127,6 +149,7 @@ export default function RecipCompressorsPage() {
               </ul>
             </div>
           </div>
+
         </div>
 
         {/* Lead Capture RFQ Form at bottom */}
