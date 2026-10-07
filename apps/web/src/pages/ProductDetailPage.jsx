@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import {
   ArrowLeft,
@@ -30,6 +30,7 @@ function formatDescription(description) {
     'Product Overview',
     'Key Features',
     'Applications',
+    'Technical Specifications',
     'Compatibility',
     'Why Choose Nimbus Equipments',
   ];
@@ -110,9 +111,41 @@ function formatDescription(description) {
 
 export default function ProductDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  // Supabase call hatakar direct JSON se match:
+  // JSON se direct matching
   const product = (productsData || []).find((p) => String(p.id) === String(id));
+
+  // Category ke base par dynamic back link aur label decide karna
+  const getCategoryFallback = () => {
+    const cat = (product?.category || '').toUpperCase();
+    if (cat.includes('RECIPROCATING') || cat.includes('EQUIPMENT')) {
+      return { path: '/products/reciprocating-compressors', label: 'Back to Reciprocating Compressors' };
+    }
+    if (cat.includes('ACCESSORIES')) {
+      return { path: '/accessories', label: 'Back to Accessories' };
+    }
+    if (cat.includes('PIPING')) {
+      return { path: '/piping-solutions', label: 'Back to Piping Solutions' };
+    }
+    if (
+      cat.includes('MAINTENANCE') ||
+      cat.includes('AMC') ||
+      cat.includes('INSTALLATION') ||
+      cat.includes('REPAIR')
+    ) {
+      return { path: '/services', label: 'Back to Services' };
+    }
+    return { path: '/parts', label: 'Back to Parts & Consumables' };
+  };
+
+  const handleBackNavigation = () => {
+    if (window.history.length > 2) {
+      navigate(-1);
+    } else {
+      navigate(getCategoryFallback().path);
+    }
+  };
 
   /* -------------------------------------------------------
      PRODUCT NOT FOUND
@@ -149,7 +182,7 @@ export default function ProductDetailPage() {
   }
 
   /* -------------------------------------------------------
-     WHATSAPP
+     WHATSAPP & CALL
      ------------------------------------------------------- */
 
   const whatsappNumber = '919289425600';
@@ -163,6 +196,7 @@ export default function ProductDetailPage() {
      ------------------------------------------------------- */
 
   const descriptionSections = formatDescription(product.description);
+  const fallbackInfo = getCategoryFallback();
 
   return (
     <div className="min-h-screen bg-white">
@@ -178,18 +212,19 @@ export default function ProductDetailPage() {
       <SiteHeader />
 
       {/* ---------------------------------------------------
-          BREADCRUMB
+          SMART BREADCRUMB BACK BUTTON
       --------------------------------------------------- */}
 
       <div className="border-b border-gray-200 bg-gray-50">
         <div className="mx-auto max-w-[90rem] px-5 py-4">
-          <Link
-            to="/products"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#0B1F4D] transition hover:text-[#D4A017]"
+          <button
+            type="button"
+            onClick={handleBackNavigation}
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#0B1F4D] transition hover:text-[#D4A017] cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Products
-          </Link>
+            {fallbackInfo.label}
+          </button>
         </div>
       </div>
 
@@ -289,7 +324,7 @@ export default function ProductDetailPage() {
             )}
 
             {/* ------------------------------------------------
-                DESCRIPTION
+                DESCRIPTION SECTIONS
             ------------------------------------------------ */}
 
             {descriptionSections.length > 0 && (
