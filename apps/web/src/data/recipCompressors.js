@@ -2,23 +2,28 @@ export const RECIP_COMPRESSORS = [
   {
     id: 'single-stage',
     title: 'Single Stage Air Compressor',
-    powerRange: '1.0 HP – 3.0 HP (0.75 – 2.2 kW)',
-    workingPressure: 'Up to 8.5 Bar (115 – 125 PSI)',
+    subtitle: 'Light Industrial & Garage Utility Range',
     image: '/products/recip-single-stage.png',
     catalogUrl: '/catalogs/reciprocating-compressors.pdf',
-    description: 'Designed for automotive care, surface finishing, and light workshop pneumatic utilities with low-RPM quiet operation.',
+    description: 'Heavy-duty cast iron reciprocating air compressor built for garages, surface coating, woodworking, and pneumatic workshop utilities with low-RPM quiet operation.',
+    stats: [
+      { label: 'Power Range', value: '1.0 – 3.0 HP', sub: '0.75 – 2.2 kW' },
+      { label: 'Max Pressure', value: '8.5 Bar', sub: '115 – 125 PSI' },
+      { label: 'Air Flow (FAD)', value: '3.5 – 10.0 CFM', sub: 'Single Stage' },
+      { label: 'Air Receiver', value: '45L – 160L', sub: 'Tested Vessel' },
+    ],
     features: [
-      'Heavy-Duty Cast Iron Cylinder Block for superior heat dissipation',
-      'Low-RPM Belt-Driven Design for lower vibration and thermal stability',
-      'Efficient Splash Lubrication for continuous oil distribution',
-      '100% Copper-Wound Electric Motor with high starting torque',
-      'Deep-Finned Air-Cooled System for rapid heat removal'
+      'Heavy-Duty Cast Iron Cylinder Block for superior heat dissipation & pump life',
+      'Low-RPM Belt-Driven Design for lower vibration and thermal balance',
+      'Efficient Splash Lubrication ensuring continuous oil supply to bearings',
+      '100% Copper-Wound Electric Motor with heavy starting torque',
+      'Deep-Finned Air-Cooled Heads for rapid heat removal'
     ],
     applications: [
-      'Automotive Care (2-wheeler & car repair garages, tyre inflation)',
-      'Woodworking & Furniture (pneumatic nailers, pinners, staplers)',
-      'Surface Finishing (spray painting, wood polishing, light lacquer)',
-      'Workshop Utility (air blow guns, parts cleaning, assembly)'
+      'Automotive garages, 2-wheeler workshops & tyre inflation bays',
+      'Woodworking furniture units (nailers, staplers, air sanders)',
+      'Touch-up spray painting and surface lacquer finishing',
+      'Pneumatic assembly lines and workshop air blow tools'
     ],
     models: [
       { model: 'NRS-01', motorPower: '1.0 HP / 0.75 kW', fad: '3.5 CFM', pressure: '8 Bar (115 PSI)', tank: '45 Ltr', rpm: '900 RPM' },
@@ -29,25 +34,29 @@ export const RECIP_COMPRESSORS = [
   {
     id: 'two-stage',
     title: 'Two-Stage Industrial Air Compressor',
-    powerRange: '3.0 HP – 15.0 HP (2.2 – 11.0 kW)',
-    workingPressure: 'Up to 12 Bar (175 PSI)',
+    subtitle: 'Continuous Medium-to-Heavy Duty Industrial Workhorse',
     image: '/products/recip-two-stage.png',
     catalogUrl: '/catalogs/reciprocating-compressors.pdf',
-    description: 'Heavy-duty 12 Bar continuous industrial workhorse for fabrication, tyre retreading plants, and production machinery.',
+    description: 'Engineered for continuous 12 Bar industrial duty with finned inter-stage cooling, low vibration pump speeds, and cast iron construction.',
+    stats: [
+      { label: 'Power Range', value: '3.0 – 15.0 HP', sub: '2.2 – 11.0 kW' },
+      { label: 'Max Pressure', value: '12.0 Bar', sub: 'Up to 175 PSI' },
+      { label: 'Air Flow (FAD)', value: '9.0 – 52.0 CFM', sub: 'Two-Stage Pump' },
+      { label: 'Air Receiver', value: '160L – 500L', sub: 'Heavy Tank Mounted' },
+    ],
     features: [
-      'Graded Cast Iron Construction with deep-finned crankcase',
-      'Low-RPM Belt-Driven Engineering (700 – 850 RPM) for minimal wear',
-      '100% Copper-Wound Industrial Motor (1440 RPM 4-Pole)',
-      'High-Efficiency Inter-Cooler & Deep-Fin Cooling tubes',
-      'Precision-Balanced Crankshaft with heavy-duty anti-friction bearings',
-      'Stainless Steel Reed Valve Plates for leak-free long life',
-      'Comprehensive safety relief valves and unloader pressure switch'
+      'Graded Cast Iron Cylinders and deep-finned crankcase for durability',
+      'Conservatively rated low pump speed (700 – 850 RPM) for lower wear',
+      '100% Copper-Wound 4-Pole Motor with IE efficiency compliance',
+      'High-Efficiency Inter-Cooler & flywheel fan for cooler discharge air',
+      'Precision-Balanced Crankshaft assembly with anti-friction bearings',
+      'Stainless Steel Reed Valve Plates for leak-free, high-volumetric output'
     ],
     applications: [
-      'Automotive & Workshops (commercial fleet stations, retreading)',
-      'General Engineering & Fabrication (sandblasting, plasma/laser assist)',
-      'Manufacturing Facilities (textile looms, printing, CNC clamping)',
-      'Process Units (plastic processing, rubber moulding)'
+      'Heavy commercial vehicle service stations & tyre retreading plants',
+      'Fabrication shops, sandblasting, plasma/laser cutting assist',
+      'Manufacturing lines, textile looms, printing presses & CNC clamping',
+      'Plastic processing, rubber moulding, and packaging machinery'
     ],
     models: [
       { model: 'NRT-03', motorPower: '3.0 HP / 2.2 kW', fad: '9 CFM', pressure: '12 Bar (175 PSI)', tank: '160 / 220 Ltr', rpm: '850 RPM' },
@@ -60,23 +69,28 @@ export const RECIP_COMPRESSORS = [
   {
     id: 'high-pressure',
     title: 'Multi-Stage High Pressure Air Compressor',
-    powerRange: '10.0 HP – 40.0 HP (7.5 – 30.0 kW)',
-    workingPressure: '30 Bar – 40 Bar (435 – 580 PSI)',
+    subtitle: 'Specialized 30–40 Bar High-Pressure Engineered Units',
     image: '/products/recip-high-pressure.png',
     catalogUrl: '/catalogs/reciprocating-compressors.pdf',
-    description: 'Specialized multi-stage compression engineered for PET blow moulding, hydro/pneumatic testing, and defense applications.',
+    description: 'Heavy-duty multi-stage reciprocating compressors designed specifically for PET bottle stretch blowing, hydro-pneumatic testing, and defense applications.',
+    stats: [
+      { label: 'Power Range', value: '10.0 – 40.0 HP', sub: '7.5 – 30.0 kW' },
+      { label: 'Max Pressure', value: '30 – 40 Bar', sub: '435 – 580 PSI' },
+      { label: 'Air Flow (FAD)', value: '25 – 115 CFM', sub: 'Multi-Stage Output' },
+      { label: 'Mounting Style', value: 'Base / Tank', sub: 'Up to 1000L Vessel' },
+    ],
     features: [
       'Multi-Stage Compression delivering sustained peak pressure up to 40 Bar',
       'High-Tensile Cast Iron Crankcase and reinforced cylinder heads',
-      'Individual Finned Inter-Coolers on every compression stage',
-      'Ultra-Low Operating Speed (680 – 850 RPM) for minimal oil carryover',
+      'Dedicated Finned Inter-Coolers between each compression stage',
+      'Ultra-Low Operating Speed (680 – 850 RPM) minimizing oil carryover',
       'High-Grade Stainless Steel Disc Valves for extreme pressure cycles',
-      'Independent pressure relief valves for stage protection'
+      'Independent safety relief valves on every compression stage'
     ],
     applications: [
-      'PET Blow Moulding (bottle manufacturing plants)',
-      'Hydro & Pneumatic Testing (valves, pipes, cylinders, boilers)',
-      'Defense & Marine Operations (engine starting, breathing air)'
+      'PET Blow Moulding for beverage and packaging bottle plants',
+      'Hydro & Pneumatic Testing of pipes, valves, boilers, and cylinders',
+      'Marine and defense engine starting & specialized test rigs'
     ],
     models: [
       { model: 'NHP-100', motorPower: '10.0 HP / 7.5 kW', fad: '25 CFM', pressure: '30 Bar (435 PSI)', tank: '300 / 500 Ltr', rpm: '850 RPM' },
