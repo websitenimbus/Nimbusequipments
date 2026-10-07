@@ -8,7 +8,6 @@ import {
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
 import RfqForm from '@/components/RfqForm';
 
-// Exact catalog path from public/catalogs/
 const CATALOG_PDF_URL = '/catalogs/reciprocating-compressors.pdf';
 
 const COMPRESSOR_MODELS = [
@@ -206,7 +205,6 @@ export default function RecipCompressorsPage() {
               </p>
             </div>
             <div className="mt-4 sm:mt-0 flex items-center gap-4">
-              {/* Direct PDF Download Link */}
               <a 
                 href={currentModel.catalogUrl}
                 download="Nimbus-Reciprocating-Compressors-Catalog.pdf"
@@ -290,39 +288,93 @@ export default function RecipCompressorsPage() {
               </div>
             )}
 
-            {/* Key Features & Applications */}
-            <div className="mt-10 pt-8 border-t border-slate-200 grid md:grid-cols-2 gap-8">
-              <div className="bg-slate-50 rounded-lg p-6 border border-slate-100">
-                <h4 className="text-sm font-bold uppercase tracking-wider text-[#0B1F4D] mb-4 flex items-center gap-2">
-                  <Cpu className="h-4 w-4 text-[#D4A017]" /> Key Engineering Features
-                </h4>
-                <ul className="space-y-3">
-                  {currentModel.keyFeatures.map((feat, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 leading-relaxed">
-                      <Check className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+            {/* MODERN ENGINEERING FEATURES & APPLICATIONS (VISUAL CARD GRID) */}
+            <div className="mt-12 pt-8 border-t border-slate-200 space-y-10">
+              
+              {/* 1. Key Engineering Features */}
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <Cpu className="h-5 w-5 text-[#D4A017]" />
+                    <h4 className="text-base font-bold uppercase tracking-wider text-[#0B1F4D]">
+                      Key Engineering Features
+                    </h4>
+                  </div>
+                  <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest hidden sm:inline">
+                    Industrial Standard Build
+                  </span>
+                </div>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {currentModel.keyFeatures.map((feat, idx) => {
+                    const parts = feat.split(':');
+                    const title = parts[0];
+                    const desc = parts.slice(1).join(':');
+
+                    return (
+                      <div 
+                        key={idx} 
+                        className="group p-4 bg-slate-50 hover:bg-white rounded-lg border border-slate-200 hover:border-[#D4A017] transition-all duration-200 shadow-sm hover:shadow-md flex flex-col justify-between"
+                      >
+                        <div>
+                          <div className="flex items-start gap-2.5">
+                            <div className="h-6 w-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#0B1F4D] group-hover:text-[#D4A017] transition-colors">
+                              <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                            </div>
+                            <h5 className="text-xs font-bold uppercase text-[#0B1F4D] group-hover:text-[#123D8D] leading-snug">
+                              {title}
+                            </h5>
+                          </div>
+                          {desc && (
+                            <p className="mt-2 text-[11px] text-slate-600 leading-relaxed pl-8">
+                              {desc.trim()}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
-              <div className="bg-slate-50 rounded-lg p-6 border border-slate-100">
-                <h4 className="text-sm font-bold uppercase tracking-wider text-[#0B1F4D] mb-4 flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-[#D4A017]" /> Typical Applications
-                </h4>
-                <ul className="space-y-3">
-                  {currentModel.applications.map((app, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 leading-relaxed">
-                      <div className="h-1.5 w-1.5 rounded-full bg-[#D4A017] mt-1.5 shrink-0" />
-                      <span>{app}</span>
-                    </li>
-                  ))}
-                </ul>
+              {/* 2. Typical Applications */}
+              <div>
+                <div className="flex items-center gap-2 mb-5">
+                  <ShieldCheck className="h-5 w-5 text-[#D4A017]" />
+                  <h4 className="text-base font-bold uppercase tracking-wider text-[#0B1F4D]">
+                    Typical Applications & Use Cases
+                  </h4>
+                </div>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                  {currentModel.applications.map((app, idx) => {
+                    const parts = app.split(':');
+                    const sector = parts[0];
+                    const details = parts.slice(1).join(':');
+
+                    return (
+                      <div 
+                        key={idx} 
+                        className="p-4 rounded-lg bg-white border-l-4 border-l-[#D4A017] border border-slate-200 shadow-sm hover:-translate-y-0.5 transition-transform"
+                      >
+                        <div className="text-xs font-bold uppercase tracking-wide text-[#0B1F4D]">
+                          {sector}
+                        </div>
+                        {details && (
+                          <p className="mt-1.5 text-[11px] text-slate-500 leading-relaxed">
+                            {details.trim()}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
+
             </div>
 
             {/* Technical Specifications Table */}
-            <div className="mt-8 pt-6 border-t border-slate-200">
+            <div className="mt-10 pt-8 border-t border-slate-200">
               <button
                 type="button"
                 onClick={() => setTableOpen(!tableOpen)}
