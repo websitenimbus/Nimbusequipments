@@ -90,14 +90,17 @@ export function SiteHeader() {
                 </div>
 
                 {/* 2. Accessories */}
-                <div className="space-y-2 border-r border-slate-100 pr-3">
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
-                    <Layers className="h-3.5 w-3.5" /> 2. Accessories
-                  </div>
-                  <Link to={accessoriesUrl} className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-2 rounded transition-colors">
-                    Air Dryers, Tanks & Accessories
-                  </Link>
-                </div>
+<div className="space-y-2 border-r border-slate-100 pr-3">
+  <div className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] pb-1 border-b border-slate-100 flex items-center gap-1.5">
+    <Layers className="h-3.5 w-3.5" /> 2. Accessories
+  </div>
+  <Link 
+    to="/accessories" 
+    className="block text-xs font-semibold text-slate-800 hover:text-[#0B1F4D] hover:bg-slate-50 p-2 rounded transition-colors"
+  >
+    Air Dryers, Tanks & Accessories
+  </Link>
+</div>
 
                 {/* 3. Compressed Air Piping (SINGLE DIRECT BUTTON - NO CONFUSION) */}
                 <div className="space-y-2 border-r border-slate-100 pr-3">
@@ -215,9 +218,15 @@ export function SiteHeader() {
                     <Link to="/products/reciprocating-compressors" onClick={() => setOpen(false)} className="block py-1 text-slate-800 font-medium">Reciprocating Compressors</Link>
                   </div>
                   <div>
-                    <div className="text-[11px] font-bold uppercase text-[#D4A017]">2. Accessories</div>
-                    <Link to={accessoriesUrl} onClick={() => setOpen(false)} className="block py-1 text-slate-700">Accessories</Link>
-                  </div>
+  <div className="text-[11px] font-bold uppercase text-[#D4A017]">2. Accessories</div>
+  <Link 
+    to="/accessories" 
+    onClick={() => setOpen(false)} 
+    className="block py-1 text-slate-700"
+  >
+    Air Dryers, Tanks & Accessories
+  </Link>
+</div>
                   <div>
                     <div className="text-[11px] font-bold uppercase text-[#D4A017]">3. Piping</div>
                     <Link to={pipingUrl} onClick={() => setOpen(false)} className="block py-1 text-slate-700 font-medium">Compressed Air Piping & Fittings</Link>
@@ -286,11 +295,11 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="font-display mb-4 text-lg font-bold uppercase text-[#D4A017]">Products & Equipments</h3>
-          <ul className="space-y-2.5 text-sm">
-            <li><Link to="/products/reciprocating-compressors" className="hover:text-[#D4A017] text-white font-semibold">Reciprocating Air Compressors</Link></li>
-            <li><Link to={accessoriesUrl} className="hover:text-[#D4A017]">Accessories & Air Dryers</Link></li>
-            <li><Link to={pipingUrl} className="hover:text-[#D4A017]">Compressed Air Piping & Fittings</Link></li>
+  <h3 className="font-display mb-4 text-lg font-bold uppercase text-[#D4A017]">Products & Equipments</h3>
+  <ul className="space-y-2.5 text-sm">
+    <li><Link to="/products/reciprocating-compressors" className="hover:text-[#D4A017] text-white font-semibold">Reciprocating Air Compressors</Link></li>
+    <li><Link to="/accessories" className="hover:text-[#D4A017]">Accessories & Air Dryers</Link></li>
+    <li><Link to={pipingUrl} className="hover:text-[#D4A017]">Compressed Air Piping & Fittings</Link></li>
             <li><Link to={sparesUrl} className="hover:text-[#D4A017]">Compressor Spare Parts</Link></li>
             <li><Link to={serviceKitUrl} className="hover:text-[#D4A017]">Service Kits & Maintenance</Link></li>
           </ul>
