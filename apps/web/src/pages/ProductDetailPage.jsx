@@ -122,7 +122,10 @@ function parseSpecsToTable(bullets) {
     .map((b) => {
       if (!b.includes('|')) return null;
       const [modelPart, ...specParts] = b.split('|').map((s) => s.trim());
-      const model = modelPart.includes(':') ? modelPart.split(':')[0].trim() : modelPart;
+      const rawModel = modelPart.includes(':') ? modelPart.split(':')[0].trim() : modelPart;
+      
+      // "Model " word ko automatically clean karega:
+      const model = rawModel.replace(/^model\s*/i, '').trim();
       const hp = modelPart.includes(':') ? modelPart.split(':')[1].trim() : '-';
 
       const specsObj = { model, hp };
