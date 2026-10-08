@@ -26,39 +26,62 @@ export default function PipingPage() {
 
             <SiteHeader />
 
-            {/* Hero Header */}
-            <section className="bg-[#0B1F4D] text-white py-14 border-b-4 border-[#D4A017]">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Industrial Hero Banner - Solid Left to Clear Image Right */}
+            <section className="relative overflow-hidden bg-[#0B1F4D] text-white border-b-4 border-[#D4A017]">
+                
+                {/* Right Side Industrial Visual with Smooth Navy Fade */}
+                <div className="absolute inset-y-0 right-0 w-full md:w-[65%] lg:w-[60%] z-0 pointer-events-none">
+                    <img
+                        src="/products/piping-banner.png"
+                        alt="Compressed Air Piping Systems & Network Installation"
+                        className="h-full w-full object-cover object-right opacity-70 md:opacity-90"
+                    />
+                    {/* Left-to-Right Navy Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/90 to-transparent md:via-[#0B1F4D]/65" />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1F4D] to-transparent" />
+                </div>
+
+                {/* Content Container (Left Side Clear Text & Metric Cards) */}
+                <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
                     <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4">
+                        
+                        {/* Division Tag */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-xs rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4 border border-white/15">
                             <PenTool className="h-3.5 w-3.5" />
                             Industrial Air Distribution Solutions
                         </div>
-                        <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">
-                            Compressed Air Piping Systems
+
+                        {/* Main Heading */}
+                        <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
+                            Compressed Air <br />
+                            <span className="text-[#D4A017]">Piping Systems</span>
                         </h1>
-                        <p className="mt-4 text-sm sm:text-base text-white/75 leading-relaxed">
+
+                        {/* Description */}
+                        <p className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed font-normal max-w-2xl">
                             Zero-leakage modular aluminium and fusion-welded PPRC pipeline networks engineered to eliminate pressure drop, prevent rust scale, and cut plant energy losses.
                         </p>
-                    </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 max-w-4xl">
-                        <div className="bg-white/5 border border-white/10 rounded p-3 text-center">
-                            <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Pipe Sizes</div>
-                            <div className="text-sm font-semibold text-white mt-0.5">20mm to 110mm OD</div>
+                        {/* Metric Highlight Cards */}
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 max-w-4xl">
+                            <div className="bg-white/10 backdrop-blur-xs border border-white/15 rounded p-3 text-center">
+                                <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Pipe Sizes</div>
+                                <div className="text-sm font-semibold text-white mt-0.5">20mm to 110mm OD</div>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur-xs border border-white/15 rounded p-3 text-center">
+                                <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Working Pressure</div>
+                                <div className="text-sm font-semibold text-white mt-0.5">Up to 15.0 Bar</div>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur-xs border border-white/15 rounded p-3 text-center">
+                                <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Energy Savings</div>
+                                <div className="text-sm font-semibold text-white mt-0.5">Up to 30% Low Drop</div>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur-xs border border-white/15 rounded p-3 text-center">
+                                <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Installation</div>
+                                <div className="text-sm font-semibold text-white mt-0.5">Rapid Quick-Fit Joints</div>
+                            </div>
                         </div>
-                        <div className="bg-white/5 border border-white/10 rounded p-3 text-center">
-                            <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Working Pressure</div>
-                            <div className="text-sm font-semibold text-white mt-0.5">Up to 15.0 Bar</div>
-                        </div>
-                        <div className="bg-white/5 border border-white/10 rounded p-3 text-center">
-                            <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Energy Savings</div>
-                            <div className="text-sm font-semibold text-white mt-0.5">Up to 30% Low Drop</div>
-                        </div>
-                        <div className="bg-white/5 border border-white/10 rounded p-3 text-center">
-                            <div className="text-[11px] uppercase tracking-wider text-[#D4A017] font-bold">Installation</div>
-                            <div className="text-sm font-semibold text-white mt-0.5">Rapid Quick-Fit Joints</div>
-                        </div>
+
                     </div>
                 </div>
             </section>
