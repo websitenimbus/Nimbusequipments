@@ -41,51 +41,73 @@ export default function PartsPage() {
 
             <SiteHeader />
 
-            {/* Header */}
-            <section className="bg-[#0B1F4D] text-white py-14 border-b-4 border-[#D4A017]">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4">
+            {/* Industrial Hero Banner - Solid Left to Clear Image Right */}
+            <section className="relative overflow-hidden bg-[#0B1F4D] text-white border-b-4 border-[#D4A017]">
+                
+                {/* Right Side Industrial Visual with Smooth Navy Fade */}
+                <div className="absolute inset-y-0 right-0 w-full md:w-[65%] lg:w-[60%] z-0 pointer-events-none">
+                    <img
+                        src="/products/recip-two-stage.png" // Agar aapke paas filters/spares ka banner image ho toh uska path de sakte hain
+                        alt="Compressor Spares, Service Kits & Lubricants"
+                        className="h-full w-full object-cover object-right opacity-70 md:opacity-90"
+                    />
+                    {/* Left-to-Right Navy Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/90 to-transparent md:via-[#0B1F4D]/65" />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1F4D] to-transparent" />
+                </div>
+
+                {/* Content Container (Left Side Clear Text, Tabs & Search) */}
+                <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
+                    <div className="max-w-4xl">
+                        
+                        {/* Division Tag */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-xs rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4 border border-white/15">
                             <Settings className="h-3.5 w-3.5" />
                             Aftermarket Parts & Consumables
                         </div>
-                        <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">
-                            Compressor Spares, Kits & Oils
+
+                        {/* Main Heading */}
+                        <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
+                            Compressor Spares, <br />
+                            <span className="text-[#D4A017]">Kits & Oils</span>
                         </h1>
-                        <p className="mt-4 text-sm sm:text-base text-white/75 leading-relaxed">
+
+                        {/* Description */}
+                        <p className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed font-normal max-w-2xl">
                             Complete range of genuine and premium replacement parts for Atlas Copco, ELGi, Ingersoll Rand, Chicago Pneumatic, and Kaeser screw and reciprocating air compressors.
                         </p>
-                    </div>
 
-                    {/* Filter Tabs & Search */}
-                    <div className="mt-8 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
-                        <div className="flex flex-wrap gap-2">
-                            {['ALL', 'COMPRESSOR SPARE PARTS', 'SERVICE KIT', 'COMPRESSOR OIL'].map((tab) => (
-                                <button
-                                    key={tab}
-                                    type="button"
-                                    onClick={() => setActiveTab(tab)}
-                                    className={`px-4 py-2 rounded text-xs font-bold uppercase tracking-wider transition ${
-                                        activeTab === tab
-                                            ? 'bg-[#D4A017] text-[#0B1F4D]'
-                                            : 'bg-white/10 text-white hover:bg-white/20'
-                                    }`}
-                                >
-                                    {tab === 'ALL' ? 'All Items' : tab}
-                                </button>
-                            ))}
+                        {/* Filter Tabs & Search Bar */}
+                        <div className="mt-8 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between max-w-4xl">
+                            <div className="flex flex-wrap gap-2">
+                                {['ALL', 'COMPRESSOR SPARE PARTS', 'SERVICE KIT', 'COMPRESSOR OIL'].map((tab) => (
+                                    <button
+                                        key={tab}
+                                        type="button"
+                                        onClick={() => setActiveTab(tab)}
+                                        className={`px-4 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition ${
+                                            activeTab === tab
+                                                ? 'bg-[#D4A017] text-[#0B1F4D] shadow'
+                                                : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
+                                        }`}
+                                    >
+                                        {tab === 'ALL' ? 'All Items' : tab}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <div className="relative w-full sm:w-72">
+                                <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+                                <input
+                                    type="text"
+                                    placeholder="Search by name or part no..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="w-full pl-9 pr-4 py-2 bg-white text-slate-800 rounded text-xs focus:outline-none focus:ring-2 focus:ring-[#D4A017] shadow-sm"
+                                />
+                            </div>
                         </div>
 
-                        <div className="relative w-full sm:w-72">
-                            <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
-                            <input
-                                type="text"
-                                placeholder="Search by name or part no..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-9 pr-4 py-2 bg-white text-slate-800 rounded text-xs focus:outline-none focus:ring-2 focus:ring-[#D4A017]"
-                            />
-                        </div>
                     </div>
                 </div>
             </section>
