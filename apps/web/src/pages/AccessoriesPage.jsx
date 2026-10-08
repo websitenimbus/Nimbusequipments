@@ -61,38 +61,60 @@ export default function AccessoriesPage() {
 
             <SiteHeader />
 
-            {/* Header Section */}
-            <section className="bg-[#0B1F4D] text-white py-14 border-b-4 border-[#D4A017]">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Industrial Hero Banner - Solid Left to Clear Image Right with Interactive Filter Tabs */}
+            <section className="relative overflow-hidden bg-[#0B1F4D] text-white border-b-4 border-[#D4A017]">
+                
+                {/* Right Side Industrial Visual with Smooth Navy Fade */}
+                <div className="absolute inset-y-0 right-0 w-full md:w-[65%] lg:w-[60%] z-0 pointer-events-none">
+                    <img
+                        src="/products/refrigerated-air-dryer.png"
+                        alt="Air Treatment and Storage Systems"
+                        className="h-full w-full object-cover object-right opacity-70 md:opacity-90"
+                    />
+                    {/* Left-to-Right Navy Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/90 to-transparent md:via-[#0B1F4D]/65" />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1F4D] to-transparent" />
+                </div>
+
+                {/* Content Container (Left Side Clear Text & Interactive Tabs) */}
+                <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
                     <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4">
+                        
+                        {/* Division Tag */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-xs rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4 border border-white/15">
                             <Layers className="h-3.5 w-3.5" />
                             Air Treatment & Storage Systems
                         </div>
-                        <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">
-                            Air Compressor Accessories
+
+                        {/* Main Heading */}
+                        <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
+                            Air Compressor <br />
+                            <span className="text-[#D4A017]">Accessories</span>
                         </h1>
-                        <p className="mt-4 text-sm sm:text-base text-white/75 leading-relaxed">
+
+                        {/* Description */}
+                        <p className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed font-normal max-w-2xl">
                             Moisture-free, clean and reliable compressed air utilities. Complete range of refrigerated air dryers, certified air receiver tanks, precision line filters, FRL units, and auto drain valves.
                         </p>
-                    </div>
 
-                    {/* Uniform Clickable Filter Buttons */}
-                    <div className="mt-8 flex flex-wrap gap-2">
-                        {ACCESSORY_TABS.map((tab) => (
-                            <button
-                                key={tab.id}
-                                type="button"
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`px-4 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition ${
-                                    activeTab === tab.id
-                                        ? 'bg-[#D4A017] text-[#0B1F4D] shadow'
-                                        : 'bg-white/10 text-white hover:bg-white/20'
-                                }`}
-                            >
-                                {tab.label}
-                            </button>
-                        ))}
+                        {/* Uniform Clickable Filter Buttons */}
+                        <div className="mt-8 flex flex-wrap gap-2.5">
+                            {ACCESSORY_TABS.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    type="button"
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`px-4 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition ${
+                                        activeTab === tab.id
+                                            ? 'bg-[#D4A017] text-[#0B1F4D] shadow'
+                                            : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
+                                    }`}
+                                >
+                                    {tab.label}
+                                </button>
+                            ))}
+                        </div>
+
                     </div>
                 </div>
             </section>
