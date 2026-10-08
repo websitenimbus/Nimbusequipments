@@ -57,35 +57,45 @@ export default function RecipCompressorsPage() {
 
       <SiteHeader />
 
-      {/* Upgraded Industrial Banner Header with Subtle Background Overlay */}
-      <section className="relative overflow-hidden bg-[#0B1F4D] text-white py-16 sm:py-20 border-b-4 border-[#D4A017]">
-        {/* Background Banner Image with Opacity & Gradient */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/products/recip-two-stage.png"
-            alt="Industrial Compressor Background"
-            className="h-full w-full object-cover object-right-bottom opacity-15 filter blur-[0.5px]"
-          />
-          {/* Dark Navy Blue Gradient Overlay taaki text 100% clear dikhe */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/90 to-transparent" />
-        </div>
+      {/* Industrial Hero Banner - Clean Left Text & Sharp Right Image */}
+<section className="relative overflow-hidden bg-[#0B1F4D] text-white border-b-4 border-[#D4A017]">
+  
+  {/* Right Side Industrial Image with Smooth Navy Fade */}
+  <div className="absolute inset-y-0 right-0 w-full md:w-[65%] lg:w-[60%] z-0 pointer-events-none">
+    <img
+      src="/products/recip-two-stage.png" 
+      alt="Reciprocating Air Compressor Plant"
+      className="h-full w-full object-cover object-right opacity-70 md:opacity-90"
+    />
+    {/* Smooth Left-to-Right Navy Gradient (Text area solid rahega, image right me clear dikhegi) */}
+    <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/85 to-transparent md:via-[#0B1F4D]/60" />
+    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1F4D] to-transparent" />
+  </div>
 
-        {/* Content Container (Left Side Clear Text) */}
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-xs rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4 border border-white/10">
-              <Package className="h-3.5 w-3.5" />
-              Heavy Machinery Division
-            </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white drop-shadow-xs">
-              Reciprocating Air Compressors
-            </h1>
-            <p className="mt-4 text-sm sm:text-base text-white/80 leading-relaxed font-normal max-w-2xl">
-              Precision-machined cast iron reciprocating technology engineered for automotive garages, industrial fabrication, PET blow moulding, and continuous plant utilities.
-            </p>
-          </div>
-        </div>
-      </section>
+  {/* Content Container (Left Side Clear Text) */}
+  <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <div className="max-w-2xl">
+      
+      {/* Division Badge */}
+      <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-xs rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-widest mb-4 border border-white/15">
+        <Package className="h-3.5 w-3.5" />
+        Nimbus Equipments • Heavy Machinery
+      </div>
+
+      {/* Main Heading */}
+      <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
+        Reciprocating Air <br />
+        <span className="text-[#D4A017]">Compressors</span>
+      </h1>
+
+      {/* Description */}
+      <p className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed font-normal max-w-xl">
+        Precision-machined cast iron reciprocating technology engineered for automotive garages, industrial fabrication, PET blow moulding, and continuous plant utilities.
+      </p>
+
+    </div>
+  </div>
+</section>
 
       {/* Product Listing Section */}
       <section className="py-14">
