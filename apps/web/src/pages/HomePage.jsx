@@ -154,7 +154,7 @@ export default function HomePage() {
             <Section id="products" className="bg-[#F5F6F8]">
                 <div className="mx-auto max-w-[90rem]">
                     <Title sub="Complete scope of heavy machinery, compressed air utilities, turnkey modular piping, aftermarket kits, and on-site engineering services.">
-                        Complete Range of Compressor Parts & Solutions
+                        COMPLETE RANGE OF OUR ALL PRODUCTS
                     </Title>
                     
                     {/* 5 Clean Pillars Grid */}
@@ -199,22 +199,7 @@ export default function HomePage() {
                             );
                         })}
                     </div>
-
-                    {/* Direct Spares & Parts Catalog Link */}
-                    <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#0B1F4D]/10 pt-8">
-                        <p className="text-xs sm:text-sm text-slate-500">
-                            Looking for full catalog part numbers and specifications across all equipment categories?
-                        </p>
-                        <Link 
-                            to="/parts" 
-                            className="gold-btn font-display inline-block shrink-0 rounded-sm px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wide"
-                        >
-                            View All Spares & Parts Catalog →
-                        </Link>
-                    </div>
-                </div>
-            </Section>
-
+                    
             {/* BRANDS */}
             <Section id="brands">
                 <div className="mx-auto max-w-[72rem]">
