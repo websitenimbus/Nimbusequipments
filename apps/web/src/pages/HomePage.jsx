@@ -1,18 +1,66 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { Check, Truck, Wrench, ShieldCheck, IndianRupee, Users, Headphones, Package, Clock, Phone, MessageCircle, Cog, MapPinned, Award } from 'lucide-react';
+import { 
+    Check, Truck, Wrench, ShieldCheck, IndianRupee, Users, 
+    Headphones, Package, Clock, Phone, MessageCircle, Cog, 
+    MapPinned, Award, Layers, PenTool, Settings, ArrowRight 
+} from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import CountUp from '@/components/CountUp';
 import RfqForm from '@/components/RfqForm';
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
-import { CATEGORIES, BRANDS, INDUSTRIES, IMAGES, CONTACT, LOGO } from '@/data/site';
+import { BRANDS, INDUSTRIES, IMAGES, CONTACT, LOGO } from '@/data/site';
 
 const trust = [
     { icon: MapPinned, label: 'PAN India Supply' },
     { icon: Truck, label: 'Express Delivery' },
     { icon: Wrench, label: 'Expert Technical Team' },
     { icon: Award, label: '100% Customer Satisfaction' },
+];
+
+// 5 Core Industrial Pillars mapped directly to dedicated category pages
+const CORE_SOLUTIONS = [
+    {
+        title: 'Industrial Air Compressors',
+        badge: '1. EQUIPMENTS',
+        desc: 'Precision reciprocating, two-stage, and high-pressure compressors built for continuous plant duty.',
+        items: ['Single Stage Recip', 'Two Stage Heavy Duty', 'High Pressure Units', 'PET Blow Moulding'],
+        link: '/reciprocating-compressors',
+        icon: Package,
+    },
+    {
+        title: 'Air Dryers & Accessories',
+        badge: '2. ACCESSORIES',
+        desc: 'Moisture-free utility range to prevent pneumatic tool corrosion and maintain clean airline pressure.',
+        items: ['Refrigerated Air Dryers', 'Vertical Receiver Tanks', 'Precision Line Filters', 'Auto Drain Valves'],
+        link: '/accessories',
+        icon: Layers,
+    },
+    {
+        title: 'Modular Air Piping Systems',
+        badge: '3. PIPING',
+        desc: 'Zero-leakage modular aluminium and PPRC pipeline networks engineered to eliminate plant pressure drop.',
+        items: ['Aluminium Air Pipes', 'PPRC Pipeline Networks', 'Quick-Fit Couplers', 'Turnkey Factory Erection'],
+        link: '/piping',
+        icon: PenTool,
+    },
+    {
+        title: 'Spares, Kits & Lubricants',
+        badge: '4. PARTS & CONSUMABLES',
+        desc: 'OEM equivalent consumable replacements for Atlas Copco, ELGi, IR, CP, and Kaeser platforms.',
+        items: ['Air & Oil Filters', 'Air-Oil Separators', 'Service Kits (2000H/4000H)', 'Synthetic Compressor Oil'],
+        link: '/parts',
+        icon: Settings,
+    },
+    {
+        title: 'Maintenance, AMC & Overhauls',
+        badge: '5. SERVICES',
+        desc: 'Certified on-site field engineering, annual maintenance contracts, and airend rebuild solutions.',
+        items: ['Preventive AMC Contracts', 'Emergency Breakdown Support', 'Screw Airend Overhaul', 'Air Audit & Repair'],
+        link: '/services',
+        icon: Wrench,
+    },
 ];
 
 const why = [
@@ -104,25 +152,68 @@ export default function HomePage() {
                 </div>
             </div>
 
-            {/* PRODUCTS */}
+            {/* UPGRADED 5 CORE VERTICALS SECTION */}
             <Section id="products" className="bg-[#F5F6F8]">
                 <div className="mx-auto max-w-[90rem]">
-                    <Title sub="Parts, kits, lubricants, accessories and complete on-site service scope for rotary screw and reciprocating compressors.">Complete Range of Compressor Parts & Solutions</Title>
+                    <Title sub="Complete scope of heavy machinery, compressed air utilities, turnkey modular piping, aftermarket kits, and on-site engineering services.">
+                        Complete Range of Compressor Parts & Solutions
+                    </Title>
+                    
+                    {/* 5 Clean Pillars Grid */}
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {CATEGORIES.map((c, i) => (
-                            <Reveal key={c.name} delay={(i % 3) * 0.06}>
-                                <div className="group h-full rounded-sm border border-[#0B1F4D]/8 bg-white p-7 shadow-[0_10px_40px_-24px_rgba(11,31,77,.55)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#D4A017]/60 hover:shadow-[0_24px_50px_-24px_rgba(11,31,77,.55)]">
-                                    <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-sm bg-[#0B1F4D] text-[#D4A017] transition group-hover:bg-[#D4A017] group-hover:text-[#0B1F4D]">
-                                        <Cog className="h-6 w-6" strokeWidth={1.4} />
-                                    </div>
-                                    <h3 className="font-display text-xl font-bold uppercase text-[#0B1F4D]">{c.name}</h3>
-                                    <p className="mt-3 text-sm leading-relaxed text-[#0B1F4D]/65">{c.items.slice(0, 6).join(' · ')}{c.items.length > 6 ? ' and more' : ''}</p>
-                                    <Link to="/products" className="font-display mt-5 inline-block text-sm font-bold uppercase text-[#123D8D] underline-offset-4 hover:text-[#D4A017] hover:underline">Explore range</Link>
-                                </div>
-                            </Reveal>
-                        ))}
+                        {CORE_SOLUTIONS.map((c, i) => {
+                            const IconComponent = c.icon;
+                            return (
+                                <Reveal key={c.title} delay={(i % 3) * 0.06}>
+                                    <Link 
+                                        to={c.link}
+                                        className="group flex h-full flex-col justify-between rounded-sm border border-[#0B1F4D]/10 bg-white p-7 shadow-[0_10px_40px_-24px_rgba(11,31,77,.45)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#D4A017] hover:shadow-[0_24px_50px_-24px_rgba(11,31,77,.55)]"
+                                    >
+                                        <div>
+                                            <div className="mb-5 flex items-center justify-between">
+                                                <div className="inline-flex h-12 w-12 items-center justify-center rounded-sm bg-[#0B1F4D] text-[#D4A017] transition group-hover:bg-[#D4A017] group-hover:text-[#0B1F4D]">
+                                                    <IconComponent className="h-6 w-6" strokeWidth={1.5} />
+                                                </div>
+                                                <span className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] bg-[#0B1F4D]/5 px-2.5 py-1 rounded">
+                                                    {c.badge}
+                                                </span>
+                                            </div>
+
+                                            <h3 className="font-display text-xl font-bold uppercase text-[#0B1F4D] group-hover:text-[#123D8D]">
+                                                {c.title}
+                                            </h3>
+                                            
+                                            <p className="mt-2.5 text-xs text-[#0B1F4D]/70 leading-relaxed">
+                                                {c.desc}
+                                            </p>
+
+                                            <div className="mt-4 pt-3.5 border-t border-slate-100 text-xs leading-relaxed text-[#0B1F4D]/80 font-medium">
+                                                {c.items.join(' · ')}
+                                            </div>
+                                        </div>
+
+                                        <div className="mt-6 flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-wider text-[#123D8D] group-hover:text-[#D4A017] transition">
+                                            <span>Explore Range</span>
+                                            <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+                                        </div>
+                                    </Link>
+                                </Reveal>
+                            );
+                        })}
                     </div>
-                    <div className="mt-12"><Link to="/products" className="gold-btn font-display inline-block rounded-sm px-8 py-4 text-sm font-bold uppercase tracking-wide">View All Products</Link></div>
+
+                    {/* Master Catalog Link */}
+                    <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#0B1F4D]/10 pt-8">
+                        <p className="text-xs sm:text-sm text-slate-500">
+                            Looking for full catalog part numbers and specifications across all equipment categories?
+                        </p>
+                        <Link 
+                            to="/products" 
+                            className="gold-btn font-display inline-block shrink-0 rounded-sm px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wide"
+                        >
+                            View All Products & Master Catalog →
+                        </Link>
+                    </div>
                 </div>
             </Section>
 
@@ -258,68 +349,65 @@ export default function HomePage() {
             </Section>
 
             {/* SINGLE DEDICATED RFQ / CTA SECTION */}
-<Section id="rfq" className="bg-[#123D8D]">
-    <div className="mx-auto grid max-w-[90rem] items-center gap-12 lg:grid-cols-2">
-        <div>
-            <Title light sub="Share your compressor model, serial number, or part requirement. Our technical engineers will revert with part availability, competitive pricing, and fast dispatch timeline.">
-                Request a Fast Quotation
-            </Title>
+            <Section id="rfq" className="bg-[#123D8D]">
+                <div className="mx-auto grid max-w-[90rem] items-center gap-12 lg:grid-cols-2">
+                    <div>
+                        <Title light sub="Share your compressor model, serial number, or part requirement. Our technical engineers will revert with part availability, competitive pricing, and fast dispatch timeline.">
+                            Request a Fast Quotation
+                        </Title>
 
-            {/* Quick Benefits Grid - To Fill Left Side Space */}
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-                    <div className="flex items-center gap-3">
-                        <IndianRupee className="h-5 w-5 text-[#D4A017]" />
-                        <span className="font-display text-sm font-bold uppercase tracking-wide text-white">Direct B2B Pricing</span>
+                        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                            <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                                <div className="flex items-center gap-3">
+                                    <IndianRupee className="h-5 w-5 text-[#D4A017]" />
+                                    <span className="font-display text-sm font-bold uppercase tracking-wide text-white">Direct B2B Pricing</span>
+                                </div>
+                                <p className="mt-2 text-xs leading-relaxed text-white/70">Competitive industrial quotes without middleman margins.</p>
+                            </div>
+
+                            <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                                <div className="flex items-center gap-3">
+                                    <Clock className="h-5 w-5 text-[#D4A017]" />
+                                    <span className="font-display text-sm font-bold uppercase tracking-wide text-white">Fast Revert Time</span>
+                                </div>
+                                <p className="mt-2 text-xs leading-relaxed text-white/70">Quotes shared within standard working hours.</p>
+                            </div>
+
+                            <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                                <div className="flex items-center gap-3">
+                                    <Wrench className="h-5 w-5 text-[#D4A017]" />
+                                    <span className="font-display text-sm font-bold uppercase tracking-wide text-white">Technical Matching</span>
+                                </div>
+                                <p className="mt-2 text-xs leading-relaxed text-white/70">100% fitment verification before supply.</p>
+                            </div>
+
+                            <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                                <div className="flex items-center gap-3">
+                                    <Truck className="h-5 w-5 text-[#D4A017]" />
+                                    <span className="font-display text-sm font-bold uppercase tracking-wide text-white">PAN India Dispatch</span>
+                                </div>
+                                <p className="mt-2 text-xs leading-relaxed text-white/70">Express courier to your factory/plant location.</p>
+                            </div>
+                        </div>
+
+                        <div className="mt-8 border-t border-white/10 pt-6">
+                            <p className="text-xs uppercase tracking-widest text-[#D4A017] font-semibold">Need Instant Assistance?</p>
+                            <div className="mt-3 flex flex-wrap items-center gap-4">
+                                <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 text-sm font-semibold text-white hover:text-[#D4A017]">
+                                    <Phone className="h-4 w-4 text-[#D4A017]" /> {CONTACT.phone}
+                                </a>
+                                <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-semibold text-white hover:text-[#D4A017]">
+                                    <MessageCircle className="h-4 w-4 text-[#D4A017]" /> WhatsApp Support
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <p className="mt-2 text-xs leading-relaxed text-white/70">Competitive industrial quotes without middleman margins.</p>
-                </div>
 
-                <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-                    <div className="flex items-center gap-3">
-                        <Clock className="h-5 w-5 text-[#D4A017]" />
-                        <span className="font-display text-sm font-bold uppercase tracking-wide text-white">Fast Revert Time</span>
+                    <div className="w-full">
+                        <RfqForm extended title="Request Quote" />
                     </div>
-                    <p className="mt-2 text-xs leading-relaxed text-white/70">Quotes shared within standard working hours.</p>
                 </div>
-
-                <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-                    <div className="flex items-center gap-3">
-                        <Wrench className="h-5 w-5 text-[#D4A017]" />
-                        <span className="font-display text-sm font-bold uppercase tracking-wide text-white">Technical Matching</span>
-                    </div>
-                    <p className="mt-2 text-xs leading-relaxed text-white/70">100% fitment verification before supply.</p>
-                </div>
-
-                <div className="rounded-sm border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-                    <div className="flex items-center gap-3">
-                        <Truck className="h-5 w-5 text-[#D4A017]" />
-                        <span className="font-display text-sm font-bold uppercase tracking-wide text-white">PAN India Dispatch</span>
-                    </div>
-                    <p className="mt-2 text-xs leading-relaxed text-white/70">Express courier to your factory/plant location.</p>
-                </div>
-            </div>
-
-            {/* Need Immediate Help Box */}
-            <div className="mt-8 border-t border-white/10 pt-6">
-                <p className="text-xs uppercase tracking-widest text-[#D4A017] font-semibold">Need Instant Assistance?</p>
-                <div className="mt-3 flex flex-wrap items-center gap-4">
-                    <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 text-sm font-semibold text-white hover:text-[#D4A017]">
-                        <Phone className="h-4 w-4 text-[#D4A017]" /> {CONTACT.phone}
-                    </a>
-                    <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-semibold text-white hover:text-[#D4A017]">
-                        <MessageCircle className="h-4 w-4 text-[#D4A017]" /> WhatsApp Support
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        {/* Right Side Form */}
-        <div className="w-full">
-            <RfqForm extended title="Request Quote" />
-        </div>
-    </div>
-</Section>
+            </Section>
 
             <SiteFooter />
         </div>
