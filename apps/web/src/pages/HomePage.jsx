@@ -150,55 +150,59 @@ export default function HomePage() {
                 </div>
             </div>
 
-            {/* UPGRADED 5 CORE VERTICALS SECTION */}
-            <Section id="products" className="bg-[#F5F6F8]">
-                <div className="mx-auto max-w-[90rem]">
-                    <Title sub="Complete scope of heavy machinery, compressed air utilities, turnkey modular piping, aftermarket kits, and on-site engineering services.">
-                        COMPLETE RANGE OF OUR ALL PRODUCTS
-                    </Title>
-                    
-                    {/* 5 Clean Pillars Grid */}
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {CORE_SOLUTIONS.map((c, i) => {
-                            const IconComponent = c.icon;
-                            return (
-                                <Reveal key={c.title} delay={(i % 3) * 0.06}>
-                                    <Link 
-                                        to={c.link}
-                                        className="group flex h-full flex-col justify-between rounded-sm border border-[#0B1F4D]/10 bg-white p-7 shadow-[0_10px_40px_-24px_rgba(11,31,77,.45)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#D4A017] hover:shadow-[0_24px_50px_-24px_rgba(11,31,77,.55)]"
-                                    >
-                                        <div>
-                                            <div className="mb-5 flex items-center justify-between">
-                                                <div className="inline-flex h-12 w-12 items-center justify-center rounded-sm bg-[#0B1F4D] text-[#D4A017] transition group-hover:bg-[#D4A017] group-hover:text-[#0B1F4D]">
-                                                    <IconComponent className="h-6 w-6" strokeWidth={1.5} />
-                                                </div>
-                                                <span className="text-[11px] font-bold uppercase tracking-wider text-[#D4A017] bg-[#0B1F4D]/5 px-2.5 py-1 rounded">
-                                                    {c.badge}
-                                                </span>
-                                            </div>
+            {/* CORE SOLUTIONS */}
+            <section className="bg-slate-50 py-20 lg:py-28">
+                <div className="mx-auto max-w-[90rem] px-5">
+                    <Reveal>
+                        <div className="max-w-3xl">
+                            <div className="h-1 w-16 bg-[#D4A017] mb-4" />
+                            <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-[#0B1F4D] sm:text-4xl lg:text-5xl">
+                                COMPLETE RANGE OF OUR ALL PRODUCTS
+                            </h2>
+                            <p className="mt-4 text-base text-slate-600 sm:text-lg">
+                                Complete scope of heavy machinery, compressed air utilities, turnkey modular piping, aftermarket kits, and on-site engineering services.
+                            </p>
+                        </div>
+                    </Reveal>
 
-                                            <h3 className="font-display text-xl font-bold uppercase text-[#0B1F4D] group-hover:text-[#123D8D]">
-                                                {c.title}
-                                            </h3>
-                                            
-                                            <p className="mt-2.5 text-xs text-[#0B1F4D]/70 leading-relaxed">
-                                                {c.desc}
-                                            </p>
-
-                                            <div className="mt-4 pt-3.5 border-t border-slate-100 text-xs leading-relaxed text-[#0B1F4D]/80 font-medium">
-                                                {c.items.join(' · ')}
-                                            </div>
+                    <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+                        {CORE_SOLUTIONS.map((sol, idx) => (
+                            <Reveal key={sol.title} delay={idx * 0.08}>
+                                <div className="group flex h-full flex-col justify-between rounded-sm border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#D4A017] hover:shadow-md">
+                                    <div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-[#0B1F4D] text-[#D4A017]">
+                                                <sol.icon className="h-5 w-5" strokeWidth={1.75} />
+                                            </span>
+                                            <span className="text-xs font-bold uppercase tracking-wider text-[#D4A017]">
+                                                {sol.step}
+                                            </span>
                                         </div>
+                                        <h3 className="font-display mt-5 text-lg font-bold uppercase text-[#0B1F4D]">
+                                            {sol.title}
+                                        </h3>
+                                        <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                                            {sol.desc}
+                                        </p>
+                                    </div>
 
-                                        <div className="mt-6 flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-wider text-[#123D8D] group-hover:text-[#D4A017] transition">
-                                            <span>Explore Range</span>
-                                            <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+                                    <div className="mt-6 border-t border-slate-100 pt-4">
+                                        <div className="text-xs text-slate-500 font-medium leading-relaxed">
+                                            {sol.items}
                                         </div>
-                                    </Link>
-                                </Reveal>
-                            );
-                        })}
+                                        <Link 
+                                            to={sol.link} 
+                                            className="font-display mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] transition group-hover:text-[#D4A017]"
+                                        >
+                                            Explore Solutions <ArrowRight className="h-3.5 w-3.5" />
+                                        </Link>
+                                    </div>
+                                </div>
+                            </Reveal>
+                        ))}
                     </div>
+                </div>
+            </section>
                     
             {/* BRANDS */}
             <Section id="brands">
