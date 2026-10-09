@@ -274,24 +274,53 @@ export default function HomePage() {
                 </div>
             </Section>
 
-            {/* EMERGENCY BANNER */}
-            <section className="relative overflow-hidden bg-[#0B1F4D]">
-                <img src={IMAGES.engineer} alt="Engineer servicing an air compressor" className="absolute inset-y-0 right-0 hidden h-full w-1/2 object-cover lg:block" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D] to-[#0B1F4D]/30" />
-                <div className="relative mx-auto max-w-[90rem] px-5 py-20">
-                    <div className="max-w-2xl">
-                        <div className="flex items-center gap-3">
-                            <img src={LOGO} alt="Nimbus Equipments logo" className="h-12 w-12 sm:h-14 sm:w-14 rounded-sm object-contain" />
-                            <span className="font-display text-xl sm:text-2xl font-black uppercase tracking-wide text-[#D4A017]">
-                                Nimbus Equipments
+            {/* EMERGENCY BREAKDOWN SUPPORT STRIP */}
+            <section className="relative overflow-hidden bg-[#0B1F4D] py-16 lg:py-20">
+                <img
+                    src={IMAGES.breakdown || IMAGES.factory}
+                    alt="Compressor breakdown maintenance support"
+                    className="absolute inset-0 h-full w-full object-cover opacity-25"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/90 to-transparent" />
+
+                <div className="relative mx-auto max-w-[90rem] px-5">
+                    <div className="max-w-3xl">
+                        <h2 className="font-display text-3xl font-bold uppercase leading-tight text-white sm:text-5xl">
+                            Emergency Compressor <br className="hidden sm:inline" />
+                            <span className="text-[#D4A017]">Breakdown Support</span>
+                        </h2>
+
+                        <p className="mt-4 text-base text-white/80 sm:text-lg">
+                            Fast replacement parts assistance, on-site overhauling, and certified repair engineering to prevent plant downtime.
+                        </p>
+
+                        <div className="mt-8 flex flex-wrap items-center gap-4">
+                            <a
+                                href={`tel:${CONTACT.phoneRaw}`}
+                                className="gold-btn font-display flex items-center gap-2 rounded-sm px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg"
+                            >
+                                <Phone className="h-4 w-4" strokeWidth={2} /> Call Now
+                            </a>
+
+                            <a
+                                href={CONTACT.whatsapp}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="font-display flex items-center gap-2 rounded-sm border border-white/30 bg-white/5 px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-white backdrop-blur-sm transition hover:border-[#D4A017] hover:text-[#D4A017]"
+                            >
+                                <MessageCircle className="h-4 w-4" strokeWidth={2} /> WhatsApp Now
+                            </a>
+
+                            <Link
+                                to="/services"
+                                className="font-display flex items-center gap-2 rounded-sm border border-[#D4A017]/60 bg-[#D4A017]/10 px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#D4A017] transition hover:bg-[#D4A017] hover:text-[#0B1F4D]"
+                            >
+                                Explore Services & AMC Plans →
+                            </Link>
+
+                            <span className="font-mono text-sm font-semibold tracking-wide text-white/70">
+                                {CONTACT.phone}
                             </span>
-                        </div>
-                        <h2 className="font-display mt-5 text-3xl font-bold uppercase leading-tight text-white sm:text-5xl">Emergency Compressor <span className="text-[#D4A017]">Breakdown Support</span></h2>
-                        <p className="mt-4 text-white/75">Fast spare parts assistance for urgent industrial requirements.</p>
-                        <div className="mt-8 flex flex-wrap items-center gap-3">
-                            <a href={`tel:${CONTACT.phoneRaw}`} className="gold-btn font-display flex items-center gap-2 rounded-sm px-7 py-4 text-sm font-bold uppercase"><Phone className="h-4 w-4" /> Call Now</a>
-                            <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="font-display flex items-center gap-2 rounded-sm border border-white/30 px-7 py-4 text-sm font-bold uppercase text-white transition hover:border-[#D4A017] hover:text-[#D4A017]"><MessageCircle className="h-4 w-4" /> WhatsApp Now</a>
-                            <span className="font-display text-lg font-semibold text-white">{CONTACT.phone}</span>
                         </div>
                     </div>
                 </div>
