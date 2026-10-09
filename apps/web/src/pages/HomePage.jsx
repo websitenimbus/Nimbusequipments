@@ -100,27 +100,24 @@ export default function HomePage() {
             <SiteHeader />
 
             {/* HERO */}
-            <section className="relative min-h-[90dvh] flex items-center overflow-hidden">
+            <section className="relative min-h-[92dvh] flex items-center overflow-hidden">
                 <img src={IMAGES.hero} alt="Industrial screw air compressor room" className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/95 to-[#123D8D]/80" />
-                <div className="relative mx-auto w-full max-w-[90rem] px-5 py-16 lg:py-24">
+                <div className="relative mx-auto w-full max-w-[90rem] px-5 py-20 lg:py-28">
                     <Reveal>
                         <div className="max-w-4xl">
-                            <span className="font-display text-xs sm:text-sm font-bold uppercase tracking-widest text-[#D4A017] bg-[#D4A017]/10 px-3 py-1.5 rounded-sm inline-block mb-4">
-                                Complete Air Machinery, Piping & Multi-Brand Spares
-                            </span>
-                            <h1 className="font-display text-4xl font-bold uppercase leading-[1.08] text-white sm:text-6xl lg:text-7xl">
-                                Industrial Air Compressors, <span className="text-[#D4A017]">Spares & Solutions</span>
+                            <h1 className="font-display text-4xl font-bold uppercase leading-[1.05] text-white sm:text-6xl lg:text-7xl">
+                                Industrial Air Compressor, <span className="text-[#D4A017]">Spare Parts & Service Solutions</span>
                             </h1>
-                            <p className="font-display mt-5 text-xl uppercase tracking-wide text-white/90 sm:text-2xl">
+                            <p className="font-display mt-4 text-base font-semibold uppercase tracking-wider text-white/90 sm:text-lg">
                                 Reliable Equipments. Multi-Brand Spares. Maximum Plant Uptime.
                             </p>
-                            <p className="mt-3 max-w-2xl text-base text-white/75 sm:text-lg">
+                            <p className="mt-3 max-w-2xl text-base text-white/70 sm:text-lg">
                                 Your trusted partner for industrial air compressors, Complete air piping solutions, and compatible screw compressor spares across India.
                             </p>
                             
                             <ul className="mt-8 grid max-w-xl grid-cols-2 gap-4">
-                                {['OEM Compatible Spares', 'Express PAN India Delivery', 'Technical Fitment Support', 'Competitive B2B Pricing'].map((t) => (
+                                {['Genuine Quality', 'Fast Delivery', 'Technical Support', 'Competitive Pricing'].map((t) => (
                                     <li key={t} className="flex items-center gap-2.5 text-sm sm:text-base text-white/90">
                                         <Check className="h-5 w-5 shrink-0 text-[#D4A017]" strokeWidth={2.5} />{t}
                                     </li>
@@ -140,7 +137,7 @@ export default function HomePage() {
                     </Reveal>
                 </div>
             </section>
-
+            
             {/* TRUST STRIP */}
             <div className="bg-[#123D8D]">
                 <div className="mx-auto grid max-w-[90rem] gap-6 px-5 py-8 sm:grid-cols-2 lg:grid-cols-4">
