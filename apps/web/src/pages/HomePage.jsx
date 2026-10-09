@@ -230,12 +230,13 @@ export default function HomePage() {
                 </div>
 
                 <div className="mx-auto mt-8 max-w-[72rem]">
-                   <Link
-    to="/parts"
-    className="gold-btn font-display inline-flex items-center gap-2 rounded-sm px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider shadow"
->
-    VIEW ALL SPARES & PARTS CATALOG →
-</Link>
+                    <Link
+                        to="/parts"
+                        className="gold-btn font-display inline-flex items-center gap-2 rounded-sm px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider shadow"
+                    >
+                        VIEW ALL SPARES & PARTS CATALOG →
+                    </Link>
+                </div>
             </Section>
 
             {/* WHY CHOOSE US */}
