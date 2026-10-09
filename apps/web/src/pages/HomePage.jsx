@@ -274,14 +274,14 @@ export default function HomePage() {
                 </div>
             </Section>
 
-            {/* EMERGENCY BREAKDOWN SUPPORT STRIP */}
+           {/* EMERGENCY BREAKDOWN SUPPORT STRIP */}
             <section className="relative overflow-hidden bg-[#0B1F4D] py-16 lg:py-20">
                 <img
-                    src={IMAGES.breakdown || IMAGES.factory}
+                    src={IMAGES.cta || IMAGES.factory || IMAGES.breakdown}
                     alt="Compressor breakdown maintenance support"
-                    className="absolute inset-0 h-full w-full object-cover opacity-25"
+                    className="absolute inset-0 h-full w-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/90 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/90 to-[#0B1F4D]/40" />
 
                 <div className="relative mx-auto max-w-[90rem] px-5">
                     <div className="max-w-3xl">
