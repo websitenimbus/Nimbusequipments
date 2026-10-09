@@ -19,14 +19,14 @@ const trust = [
     { icon: Award, label: '100% Customer Satisfaction' },
 ];
 
-// 5 Core Industrial Pillars mapped directly to dedicated category pages
+// 5 Core Industrial Pillars mapped EXACTLY to App.jsx routes
 const CORE_SOLUTIONS = [
     {
         title: 'Industrial Air Compressors',
         badge: '1. EQUIPMENTS',
         desc: 'Precision reciprocating, two-stage, and high-pressure compressors built for continuous plant duty.',
         items: ['Single Stage Recip', 'Two Stage Heavy Duty', 'High Pressure Units', 'PET Blow Moulding'],
-        link: '/reciprocating-compressors',
+        link: '/products/reciprocating-compressors',
         icon: Package,
     },
     {
@@ -42,7 +42,7 @@ const CORE_SOLUTIONS = [
         badge: '3. PIPING',
         desc: 'Zero-leakage modular aluminium and PPRC pipeline networks engineered to eliminate plant pressure drop.',
         items: ['Aluminium Air Pipes', 'PPRC Pipeline Networks', 'Quick-Fit Couplers', 'Turnkey Factory Erection'],
-        link: '/piping',
+        link: '/piping-solutions',
         icon: PenTool,
     },
     {
@@ -202,16 +202,16 @@ export default function HomePage() {
                         })}
                     </div>
 
-                    {/* Master Catalog Link */}
+                    {/* Direct Spares & Parts Catalog Link */}
                     <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#0B1F4D]/10 pt-8">
                         <p className="text-xs sm:text-sm text-slate-500">
                             Looking for full catalog part numbers and specifications across all equipment categories?
                         </p>
                         <Link 
-                            to="/products" 
+                            to="/parts" 
                             className="gold-btn font-display inline-block shrink-0 rounded-sm px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wide"
                         >
-                            View All Products & Master Catalog →
+                            View All Spares & Parts Catalog →
                         </Link>
                     </div>
                 </div>
