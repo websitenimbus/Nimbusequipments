@@ -13,6 +13,7 @@ export default function PipingPage() {
             (p) => p.category?.trim().toUpperCase() === 'COMPRESSED AIR PIPING & FITTINGS'
         )
     );
+    const [showCatalogModal, setShowCatalogModal] = useState(false);
 
     return (
         <div className="bg-[#F8FAFC] min-h-screen">
@@ -98,9 +99,24 @@ export default function PipingPage() {
                                 Complete selection of anodised aluminium pipes, PPRC air pipes, fittings, brackets, and quick couplers.
                             </p>
                         </div>
-                        <a href="#rfq-section" className="mt-4 sm:mt-0 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] hover:text-[#D4A017] transition">
-                            Get Pipeline Sizing Quote <ArrowUpRight className="h-4 w-4" />
-                        </a>
+
+                        {/* Top Action Buttons (Catalog Download + Sizing Quote) */}
+                        <div className="mt-4 sm:mt-0 flex flex-wrap items-center gap-4">
+                            <button
+                                type="button"
+                                onClick={() => setShowCatalogModal(true)}
+                                className="inline-flex items-center gap-2 rounded-lg bg-[#0B1F4D] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition hover:bg-[#162d62] cursor-pointer"
+                            >
+                                <svg className="h-4 w-4 text-[#D4A017]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                <span>Download Catalog (PDF)</span>
+                            </button>
+
+                            <a href="#rfq-section" className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] hover:text-[#D4A017] transition">
+                                Get Pipeline Sizing Quote <ArrowUpRight className="h-4 w-4" />
+                            </a>
+                        </div>
                     </div>
 
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -167,6 +183,60 @@ export default function PipingPage() {
                     </div>
                 </div>
             </section>
+
+            {/* Multi-System Download Popup Modal */}
+            {showCatalogModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
+                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl border border-slate-100">
+                        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <h3 className="text-sm font-bold uppercase tracking-wider text-[#0B1F4D]">
+                                Select Piping System Catalog
+                            </h3>
+                            <button
+                                type="button"
+                                onClick={() => setShowCatalogModal(false)}
+                                className="text-slate-400 hover:text-slate-600 text-lg font-bold cursor-pointer"
+                            >
+                                ✕
+                            </button>
+                        </div>
+
+                        <p className="mt-3 text-xs text-slate-500">
+                            Choose the piping technical catalog you wish to download:
+                        </p>
+
+                        <div className="mt-5 space-y-3">
+                            {/* 1. ALUMINIUM PIPING */}
+                            <a
+                                href="/catalogs/aluminium-air-piping-catalog.pdf"
+                                download
+                                onClick={() => setShowCatalogModal(false)}
+                                className="flex items-center justify-between rounded-xl border border-slate-200 p-3.5 hover:border-[#D4A017] hover:bg-slate-50 transition cursor-pointer"
+                            >
+                                <div>
+                                    <div className="text-xs font-bold text-[#0B1F4D]">Aluminium Air Piping System</div>
+                                    <div className="text-[11px] text-slate-500">Modular zero-leakage technical sizing & specs</div>
+                                </div>
+                                <span className="text-xs font-bold text-[#D4A017]">PDF ↓</span>
+                            </a>
+
+                            {/* 2. PPRC PIPING */}
+                            <a
+                                href="/catalogs/pprc-air-piping-catalog.pdf"
+                                download
+                                onClick={() => setShowCatalogModal(false)}
+                                className="flex items-center justify-between rounded-xl border border-slate-200 p-3.5 hover:border-[#D4A017] hover:bg-slate-50 transition cursor-pointer"
+                            >
+                                <div>
+                                    <div className="text-xs font-bold text-[#0B1F4D]">PPRC Air Piping System</div>
+                                    <div className="text-[11px] text-slate-500">Fusion-welded high-pressure fittings catalog</div>
+                                </div>
+                                <span className="text-xs font-bold text-[#D4A017]">PDF ↓</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <SiteFooter />
         </div>
