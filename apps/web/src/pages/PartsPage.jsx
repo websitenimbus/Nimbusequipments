@@ -74,7 +74,7 @@ export default function PartsPage() {
 
                         {/* Description */}
                         <p className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed font-normal max-w-2xl">
-                            Complete range of genuine and premium replacement parts for Atlas Copco, ELGi, Ingersoll Rand, Chicago Pneumatic, and Kaeser screw and reciprocating air compressors.
+                            We supply a complete range of premium replacement parts, service kits, and high-grade compressor lubricants for all major screw and reciprocating compressor brands.
                         </p>
 
                         {/* Filter Tabs & Search Bar */}
