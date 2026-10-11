@@ -67,12 +67,12 @@ export default function ServicesPage() {
                         {/* Main Heading */}
                         <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
                             Maintenance, AMC & <br />
-                            <span className="text-[#D4A017]">Turnkey Services</span>
+                            <span className="text-[#D4A017]">Installation Services</span>
                         </h1>
 
                         {/* Description */}
                         <p className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed font-normal max-w-2xl">
-                            Comprehensive maintenance contracts, emergency breakdown support, screw airend overhauling, and certified plant piping installations executed by certified technicians.
+                            We provide end-to-end compressor servicing, preventive AMC plans, emergency breakdown repair, and airend overhauling for all major compressor brands.
                         </p>
 
                         {/* Uniform Clickable Filter Buttons */}
