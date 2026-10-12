@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Package, Search, Settings, ShieldCheck, Download } from 'lucide-react';
+import { Package, Search, Settings, ArrowUpRight, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
@@ -77,18 +77,6 @@ export default function PartsPage() {
                             We supply a complete range of premium replacement parts, service kits, and high-grade compressor lubricants for all major screw and reciprocating compressor brands.
                         </p>
 
-                        {/* Catalog Download CTA Button */}
-                        <div className="mt-5">
-                            <a
-                                href="/catalogs/nimbus-spares-and-services-catalog.pdf"
-                                download
-                                className="inline-flex items-center gap-2 rounded-lg bg-[#D4A017] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] shadow-md transition hover:bg-[#c49212] cursor-pointer"
-                            >
-                                <Download className="h-4 w-4" />
-                                <span>Download Spares & Service Catalog (PDF)</span>
-                            </a>
-                        </div>
-
                         {/* Filter Tabs & Search Bar */}
                         <div className="mt-8 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between max-w-4xl">
                             <div className="flex flex-wrap gap-2">
@@ -124,9 +112,41 @@ export default function PartsPage() {
                 </div>
             </section>
 
-            {/* Grid */}
+            {/* Product Grid Section */}
             <section className="py-14">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    
+                    {/* Header Bar matching Piping / Reciprocating Page Layout */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-slate-200">
+                        <div>
+                            <h2 className="text-xl sm:text-2xl font-bold uppercase text-[#0B1F4D]">
+                                Spare Parts & Consumables Catalog
+                            </h2>
+                            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                                High-efficiency air filters, oil filters, air-oil separators, maintenance kits, and compressor lubricants.
+                            </p>
+                        </div>
+
+                        {/* Right Side Actions: Navy Download Button + Quick Quote */}
+                        <div className="mt-4 sm:mt-0 flex flex-wrap items-center gap-4">
+                            <a
+                                href="/catalogs/nimbus-spares-and-services-catalog.pdf"
+                                download
+                                className="inline-flex items-center gap-2 rounded-lg bg-[#0B1F4D] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition hover:bg-[#162d62] cursor-pointer"
+                            >
+                                <Download className="h-4 w-4 text-[#D4A017]" />
+                                <span>Download Catalog (PDF)</span>
+                            </a>
+
+                            <a
+                                href="#rfq-section"
+                                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] hover:text-[#D4A017] transition"
+                            >
+                                Enquire by Part No. <ArrowUpRight className="h-4 w-4" />
+                            </a>
+                        </div>
+                    </div>
+
                     {filtered.length === 0 ? (
                         <div className="rounded-sm border border-dashed border-[#0B1F4D]/20 p-14 text-center bg-white">
                             <Package className="mx-auto h-10 w-10 text-[#D4A017]" strokeWidth={1.3} />
