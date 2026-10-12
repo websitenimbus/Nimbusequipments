@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Package, Search, Settings, ShieldCheck } from 'lucide-react';
+import { Package, Search, Settings, ShieldCheck, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
@@ -47,7 +47,7 @@ export default function PartsPage() {
                 {/* Right Side Industrial Visual with Smooth Navy Fade */}
                 <div className="absolute inset-y-0 right-0 w-full md:w-[65%] lg:w-[60%] z-0 pointer-events-none">
                     <img
-                        src="/products/recip-two-stage.png" // Agar aapke paas filters/spares ka banner image ho toh uska path de sakte hain
+                        src="/products/recip-two-stage.png"
                         alt="Compressor Spares, Service Kits & Lubricants"
                         className="h-full w-full object-cover object-right opacity-70 md:opacity-90"
                     />
@@ -76,6 +76,18 @@ export default function PartsPage() {
                         <p className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed font-normal max-w-2xl">
                             We supply a complete range of premium replacement parts, service kits, and high-grade compressor lubricants for all major screw and reciprocating compressor brands.
                         </p>
+
+                        {/* Catalog Download CTA Button */}
+                        <div className="mt-5">
+                            <a
+                                href="/catalogs/nimbus-spares-and-services-catalog.pdf"
+                                download
+                                className="inline-flex items-center gap-2 rounded-lg bg-[#D4A017] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] shadow-md transition hover:bg-[#c49212] cursor-pointer"
+                            >
+                                <Download className="h-4 w-4" />
+                                <span>Download Spares & Service Catalog (PDF)</span>
+                            </a>
+                        </div>
 
                         {/* Filter Tabs & Search Bar */}
                         <div className="mt-8 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between max-w-4xl">
