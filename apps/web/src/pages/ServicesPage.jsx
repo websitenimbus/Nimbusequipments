@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Wrench, ShieldCheck, CheckCircle2, PhoneCall, Clock, Package } from 'lucide-react';
+import { Wrench, ShieldCheck, PhoneCall, Clock, Package, ArrowUpRight, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
@@ -100,13 +100,36 @@ export default function ServicesPage() {
             {/* Services Grid */}
             <section className="py-14">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="mb-8">
-                        <h2 className="text-xl sm:text-2xl font-bold uppercase text-[#0B1F4D]">
-                            Service Verticals & Offerings
-                        </h2>
-                        <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                            Click any category above to filter or request on-site support.
-                        </p>
+                    
+                    {/* Header Bar matching Piping / Spares Layout */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-slate-200">
+                        <div>
+                            <h2 className="text-xl sm:text-2xl font-bold uppercase text-[#0B1F4D]">
+                                Service Verticals & Offerings
+                            </h2>
+                            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                                Click any category above to filter or request on-site support.
+                            </p>
+                        </div>
+
+                        {/* Right Side Actions: Navy Download Button + Quick Quote */}
+                        <div className="mt-4 sm:mt-0 flex flex-wrap items-center gap-4">
+                            <a
+                                href="/catalogs/nimbus-spares-and-services-catalog.pdf"
+                                download
+                                className="inline-flex items-center gap-2 rounded-lg bg-[#0B1F4D] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition hover:bg-[#162d62] cursor-pointer"
+                            >
+                                <Download className="h-4 w-4 text-[#D4A017]" />
+                                <span>Download Brochure (PDF)</span>
+                            </a>
+
+                            <a
+                                href="#rfq-section"
+                                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] hover:text-[#D4A017] transition"
+                            >
+                                Book Service Visit <ArrowUpRight className="h-4 w-4" />
+                            </a>
+                        </div>
                     </div>
 
                     {filtered.length === 0 ? (
