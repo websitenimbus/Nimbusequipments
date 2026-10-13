@@ -137,7 +137,7 @@ export default function AccessoriesPage() {
                         {/* Action Buttons Right Side */}
                         <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
                             <a
-                                href="/nimbus-accessories-catalog.pdf"
+                                href="/catalogs/nimbus-accessories-catalog.pdf"
                                 download="Nimbus-Accessories-Catalog.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
