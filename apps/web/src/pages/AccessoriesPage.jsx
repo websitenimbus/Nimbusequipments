@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Package, ShieldCheck, ArrowUpRight, CheckCircle2, Layers } from 'lucide-react';
+import { Package, ShieldCheck, ArrowUpRight, CheckCircle2, Layers, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
@@ -61,7 +61,7 @@ export default function AccessoriesPage() {
 
             <SiteHeader />
 
-            {/* Industrial Hero Banner - Solid Left to Clear Image Right with Interactive Filter Tabs */}
+            {/* Industrial Hero Banner */}
             <section className="relative overflow-hidden bg-[#0B1F4D] text-white border-b-4 border-[#D4A017]">
                 
                 {/* Right Side Industrial Visual with Smooth Navy Fade */}
@@ -76,7 +76,7 @@ export default function AccessoriesPage() {
                     <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1F4D] to-transparent" />
                 </div>
 
-                {/* Content Container (Left Side Clear Text & Interactive Tabs) */}
+                {/* Content Container */}
                 <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
                     <div className="max-w-3xl">
                         
@@ -122,7 +122,9 @@ export default function AccessoriesPage() {
             {/* Products Grid */}
             <section className="py-14">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-slate-200">
+                    
+                    {/* Header bar with Download Catalog & Quote link */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-slate-200 gap-4">
                         <div>
                             <h2 className="text-xl sm:text-2xl font-bold uppercase text-[#0B1F4D]">
                                 Available Accessories Range
@@ -131,9 +133,27 @@ export default function AccessoriesPage() {
                                 High-durability equipment engineered to eliminate moisture, line scale, and pneumatic tool corrosion.
                             </p>
                         </div>
-                        <a href="#rfq-section" className="mt-4 sm:mt-0 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] hover:text-[#D4A017] transition">
-                            Request Custom Size Quote <ArrowUpRight className="h-4 w-4" />
-                        </a>
+                        
+                        {/* Action Buttons Right Side */}
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
+                            <a
+                                href="/nimbus-accessories-catalog.pdf"
+                                download="Nimbus-Accessories-Catalog.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-[#0B1F4D] hover:bg-[#D4A017] hover:text-[#0B1F4D] text-white text-xs font-bold uppercase tracking-wider shadow-sm transition"
+                            >
+                                <Download className="h-3.5 w-3.5" />
+                                Download Catalog
+                            </a>
+
+                            <a 
+                                href="#rfq-section" 
+                                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0B1F4D] hover:text-[#D4A017] transition"
+                            >
+                                Request Custom Size Quote <ArrowUpRight className="h-4 w-4" />
+                            </a>
+                        </div>
                     </div>
 
                     {filtered.length === 0 ? (
