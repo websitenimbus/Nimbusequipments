@@ -101,8 +101,12 @@ export default function HomePage() {
 
             {/* HERO */}
             <section className="relative min-h-[92dvh] flex items-center overflow-hidden">
-                <img src={IMAGES.hero} alt="Industrial screw air compressor room" className="absolute inset-0 h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/95 to-[#123D8D]/80" />
+                <img 
+                    src="/banners/hero-banner-1.png" 
+                    alt="Nimbus Equipments Industrial Compressors and Spares" 
+                    className="absolute inset-0 h-full w-full object-cover object-right" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D]/75 to-transparent" />
                 <div className="relative mx-auto w-full max-w-[90rem] px-5 py-20 lg:py-28">
                     <Reveal>
                         <div className="max-w-4xl">
@@ -274,7 +278,7 @@ export default function HomePage() {
                 </div>
             </Section>
 
-           {/* EMERGENCY BREAKDOWN SUPPORT STRIP */}
+            {/* EMERGENCY BREAKDOWN SUPPORT STRIP */}
             <section className="relative overflow-hidden bg-[#0B1F4D] py-16 lg:py-20">
                 <img
                     src={INDUSTRIES[0]?.img || IMAGES.hero}
