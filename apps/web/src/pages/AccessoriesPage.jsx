@@ -67,7 +67,7 @@ export default function AccessoriesPage() {
                 {/* Right Side Industrial Visual with Smooth Navy Fade */}
                 <div className="absolute inset-y-0 right-0 w-full md:w-[65%] lg:w-[60%] z-0 pointer-events-none">
                     <img
-                        src="/products/refrigerated-air-dryer.png"
+                        src="/banners/accessories-banner.png"
                         alt="Air Treatment and Storage Systems"
                         className="h-full w-full object-cover object-right opacity-70 md:opacity-90"
                     />
