@@ -33,7 +33,7 @@ export default function PipingPage() {
                 {/* Right Side Industrial Visual with Smooth Navy Fade */}
                 <div className="absolute inset-y-0 right-0 w-full md:w-[65%] lg:w-[60%] z-0 pointer-events-none">
                     <img
-                        src="/products/piping-banner.png"
+                        src="/banners/pipeline-system-banner.png"
                         alt="Compressed Air Piping Systems & Network Installation"
                         className="h-full w-full object-cover object-right opacity-70 md:opacity-90"
                     />
